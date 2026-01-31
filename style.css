@@ -123,6 +123,7 @@ img {
 @media (max-width: 600px) {
     .search-dropdown {
         right:0px;
+        width:200px;
     }
 }
 
@@ -680,7 +681,6 @@ img {
 
     .about-image {
         height: 300px;
-        width: 100%;
     }
 }
 
