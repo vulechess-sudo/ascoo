@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>asco — Start a Return</title>
+    <link rel="icon" type="image/x-icon" href="images/icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<header class="navbar">
+  <div class="nav-left">
+    <button class="menu-btn hamburger-btn">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="top-dropdown">
+      <div class="menu-header">
+        <button class="close-menu">&times;</button>
+        <h2 class="dropdown-title">asco</h2>
+      </div>
+      <div class="menu-links">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <div class="submenu">
+          <button class="submenu-btn">Categories <i class="fas fa-chevron-right"></i></button>
+          <div class="submenu-content">
+            <a href="shop.html?category=jackets">Jackets</a>
+            <a href="shop.html?category=shoes">Shoes</a>
+            <a href="shop.html?category=newin">New In</a>
+            <a href="shop.html?category=accessories">Accessories</a>
+            <a href="shop.html?category=dresses">Dresses</a>
+            <a href="shop.html?category=tops">Tops</a>
+            <a href="shop.html?category=skirts">Skirts</a>
+          </div>
+        </div>
+        <a href="aboutus.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="startareturn.html">Start a return</a>
+        <a href="https://www.instagram.com/vukotaaaaaa">Instagram</a>
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+  <div class="nav-center">
+    <h1>asco</h1>
+  </div>
+  <div class="nav-right">
+    <button class="icon-btn search-btn"><i class="fas fa-magnifying-glass"></i></button>
+    
+    <!-- Cart with dropdown -->
+    <div class="cart-container">
+        <button class="icon-btn cart-btn-header" onclick="toggleCartDropdown()">
+            <i class="fas fa-cart-shopping"></i>
+            <span class="cart-counter" id="cartCounter" style="display: none;">0</span>
+        </button>
+        
+        <!-- Cart Dropdown -->
+        <div class="cart-dropdown" id="cartDropdown">
+            <div class="cart-header">
+                <h3>Your Cart</h3>
+                <button class="close-cart" onclick="toggleCartDropdown()">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <!-- Items injected here -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cartTotal">0 RSD</span>
+                </div>
+                <a href="checkout.html" class="checkout-btn">Checkout</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="dropdown">
+        <button class="dropbtn">EN <i class="fas fa-chevron-down"></i></button>
+        <div class="dropdown-content">
+            <a href="#">EN</a>
+            <a href="#">RS</a>
+        </div>
+    </div>
+</div>
+ <div class="search-dropdown">
+        <input type="text" class="search-input" placeholder="Search...">
+    </div>
+</header>
+
+<!-- ================= RETURN FORM ================= -->
+<section class="return-container">
+    <div class="return-header">
+        <h2>Start a Return</h2>
+        <p class="return-subtitle">We accept returns within 14 days of delivery</p>
+    </div>
+
+    <form class="return-form" id="returnForm" onsubmit="submitReturn(event)">
+        
+        <!-- Step 1: Order Info -->
+        <div class="form-section">
+            <h3>Order Information</h3>
+            
+            <div class="form-group">
+                <label>Order Number *</label>
+                <input type="text" name="orderNumber" required placeholder="e.g. ASCO-2024-001">
+            </div>
+
+            <div class="form-group">
+                <label>Email Address *</label>
+                <input type="email" name="email" required placeholder="your@email.com">
+            </div>
+
+            <div class="form-group">
+                <label>Order Date *</label>
+                <input type="date" name="orderDate" required max="2024-12-31">
+            </div>
+        </div>
+
+        <!-- Step 2: Items to Return -->
+        <div class="form-section">
+            <h3>Items to Return</h3>
+            
+            <div class="items-container" id="itemsContainer">
+                <div class="item-row">
+                    <select name="item1" required>
+                        <option value="">Select Item</option>
+                        <option value="jacket">Jacket - 78.710 RSD</option>
+                        <option value="dress">Dress - 80.000 RSD</option>
+                        <option value="shoes">Shoes - 65.000 RSD</option>
+                        <option value="accessories">Accessories - 45.000 RSD</option>
+                    </select>
+                    <select name="reason1" required>
+                        <option value="">Reason</option>
+                        <option value="too-small">Too Small</option>
+                        <option value="too-large">Too Large</option>
+                        <option value="defective">Defective</option>
+                        <option value="not-as-described">Not as Described</option>
+                        <option value="changed-mind">Changed Mind</option>
+                    </select>
+                    <button type="button" class="remove-item" onclick="removeItem(this)">&times;</button>
+                </div>
+            </div>
+            
+            <button type="button" class="add-item-btn" onclick="addItem()">
+                <i class="fas fa-plus"></i> Add Another Item
+            </button>
+        </div>
+
+        <!-- Step 3: Return Details -->
+        <div class="form-section">
+            <h3>Return Details</h3>
+            
+            <div class="form-group">
+                <label>Return Method</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="returnMethod" value="pickup" checked>
+                        <span>Pickup (Free)</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="returnMethod" value="dropoff">
+                        <span>Drop Off</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Additional Comments</label>
+                <textarea name="comments" rows="4" placeholder="Tell us more about why you're returning..."></textarea>
+            </div>
+        </div>
+
+        <!-- Terms -->
+        <div class="terms-box">
+            <label class="checkbox-option">
+                <input type="checkbox" required>
+                <span>I agree that items are unworn, unwashed, and in original condition</span>
+            </label>
+            <label class="checkbox-option">
+                <input type="checkbox" required>
+                <span>I understand returns are processed within 5-7 business days</span>
+            </label>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="submit-return-btn">
+            <i class="fas fa-paper-plane"></i> Submit Return Request
+        </button>
+
+        <div class="success-message" id="successMessage">
+            <i class="fas fa-check-circle"></i>
+            <h4>Return Request Submitted!</h4>
+            <p>We'll email you return instructions within 24 hours.</p>
+            <button type="button" onclick="resetForm()">Start New Return</button>
+        </div>
+    </form>
+
+    <div class="return-info">
+        <h4>Return Policy</h4>
+        <ul>
+            <li>Items must be returned within 14 days of delivery</li>
+            <li>Items must be unworn, unwashed, and in original condition</li>
+            <li>Original packaging and tags must be included</li>
+            <li>Refunds are processed within 5-7 business days</li>
+            <li>Shipping costs are non-refundable</li>
+        </ul>
+    </div>
+</section>
+<footer class="footer">
+     <div class="footer-inner">
+            <div class="footer-col"> 
+                <a href="aboutus.html">About the Brand</a> 
+                <a href="contact.html">Contact Us</a> 
+            </div>
+            <div class="footer-col"> 
+                <a href="https://www.instagram.com/vukotaaaaaa">Instagram</a> 
+                <a href="shipping.html">Shipping</a> 
+            </div>
+            <div class="footer-col"> 
+                <a href="startareturn.html">Start a Return</a> 
+                <a href="FAQ.html">FAQ</a> 
+                <a href="privacypolicy.html">Legal & Privacy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">asco © 2026</div>
+</footer>
+
+<script src="script.js"></script>
+<script src="search.js"></script>
+<script src="cart-mini.js"></script>
+<script src="return.js"></script>
+</body>
+</html>

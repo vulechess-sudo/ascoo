@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Asco Shop</title>
+
+  <link rel="icon" type="image/x-icon" href="images/icon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="navbar">
+    <div class="nav-left">
+      <button class="menu-btn hamburger-btn">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="top-dropdown">
+        <div class="menu-header">
+          <button class="close-menu">&times;</button>
+          <h2 class="dropdown-title">asco</h2>
+        </div>
+        <div class="menu-links">
+          <a href="index.html">Home</a>
+          <a href="shop.html">Shop</a>
+          <div class="submenu">
+            <button class="submenu-btn">Categories <i class="fas fa-chevron-right"></i></button>
+            <div class="submenu-content">
+              <a href="shop.html?category=jackets">Jackets</a>
+              <a href="shop.html?category=shoes">Shoes</a>
+              <a href="shop.html?category=newin">New In</a>
+              <a href="shop.html?category=accessories">Accessories</a>
+              <a href="shop.html?category=dresses">Dresses</a>
+              <a href="shop.html?category=tops">Tops</a>
+              <a href="shop.html?category=skirts">Skirts</a>
+            </div>
+          </div>
+          <a href="aboutus.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="startareturn.html">Start a return</a>
+          <a href="https://www.instagram.com/vukotaaaaaa">Instagram</a>
+        </div>
+      </div>
+    </div>
+    <div class="overlay"></div>
+    <div class="nav-center">
+      <h1>asco</h1>
+    </div>
+    <div class="nav-right">
+    <button class="icon-btn search-btn"><i class="fas fa-magnifying-glass"></i></button>
+    
+    <!-- Cart with dropdown -->
+    <div class="cart-container">
+        <button class="icon-btn cart-btn-header" onclick="toggleCartDropdown()">
+            <i class="fas fa-cart-shopping"></i>
+            <span class="cart-counter" id="cartCounter" style="display: none;">0</span>
+        </button>
+        
+        <!-- Cart Dropdown -->
+        <div class="cart-dropdown" id="cartDropdown">
+            <div class="cart-header">
+                <h3>Your Cart</h3>
+                <button class="close-cart" onclick="toggleCartDropdown()">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <!-- Items injected here -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cartTotal">0 RSD</span>
+                </div>
+                <a href="checkout.html" class="checkout-btn">Checkout</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="dropdown">
+        <button class="dropbtn">EN <i class="fas fa-chevron-down"></i></button>
+        <div class="dropdown-content">
+            <a href="#">EN</a>
+            <a href="#">RS</a>
+        </div>
+    </div>
+</div>
+ <div class="search-dropdown">
+        <input type="text" class="search-input" placeholder="Search...">
+    </div>
+  </header>
+  <section class="shop">
+
+    <!-- FILTER BAR -->
+    <div class="shop-bar">
+
+      <!-- CATEGORY -->
+      <div class="filter">
+        <button class="filter-btn">
+          Category <span>▾</span>
+        </button>
+
+        <ul class="filter-dropdown">
+          <li data-category="all">All</li>
+          <li data-category="jackets">Jackets</li>
+          <li data-category="dresses">Dresses</li>
+          <li data-category="skirts">Skirts</li>
+          <li data-category="newin">Newin</li>
+          <li data-category="shoes">Shoes</li>
+          <li data-category="tops">Tops</li>
+          <li data-category="accessories">Accessories</li>
+        </ul>
+      </div>
+
+      <!-- SORT -->
+      <div class="sort">
+        <select id="priceSort">
+          <option value="">Sort by price</option>
+          <option value="asc">Price: Low → High</option>
+          <option value="desc">Price: High → Low</option>
+        </select>
+      </div>
+
+    </div>
+
+    <!-- PRODUCTS -->
+    <section class="products">
+
+      <!-- 🔥 IMPORTANT WRAPPER -->
+      <div class="products-grid" id="productsGrid">
+
+        <!-- ================= BLOCK 1 ================= -->
+        <div class="block">
+
+          <div class="small-grid">
+
+            <div class="card" data-category="newin" data-price="78710" data-id="newin">
+              <div class="img-wrap">
+                <img src="images/slides/newin.jpg" class="img-main">
+                <img src="images/1ed7274c7b3b47e88c123d451096a0c4.HD-1080p-7.2Mbps-61559299.gif" class="img-hover">
+              </div>
+              <div class="info">
+                <h3>New in</h3>
+                <span class="price">78.710 RSD</span>
+              </div>
+            </div>
+
+            <div class="card" data-category="dresses" data-price="80000" data-id="dress">
+              <div class="img-wrap">
+                <img src="images/slides/dresses.jpg" class="img-main">
+                <img src="images/slides/dresses2.jpg" class="img-hover">
+              </div>
+              <div class="info">
+                <h3>Dress</h3>
+                <span class="price">80.000 RSD</span>
+              </div>
+            </div>
+
+            <div class="card" data-category="shoes" data-price="85000" data-id="shoe">
+              <div class="img-wrap">
+                <img src="images/slides/shoes.jpg" class="img-main">
+                <img src="images/slides/shoes2.jpg" class="img-hover">
+              </div>
+              <div class="info">
+                <h3>Shoe</h3>
+                <span class="price">85.000 RSD</span>
+              </div>
+            </div>
+
+            <div class="card" data-category="skirts" data-price="65000" data-id="skirt">
+              <div class="img-wrap">
+                <img src="images/slides/skirts.jpg" class="img-main">
+                <img src="images/slides/skirts2.jpg" class="img-hover">
+              </div>
+              <div class="info">
+                <h3>Skirt</h3>
+                <span class="price">65.000 RSD</span>
+              </div>
+            </div>
+
+            <div class="card" data-category="tops" data-price="70000" data-id="top">
+              <div class="img-wrap">
+                <img src="images/slides/tops.jpg" class="img-main">
+                <img src="images/slides/tops2.jpg" class="img-hover">
+              </div>
+              <div class="info">
+                <h3>Top</h3>
+                <span class="price">70.000 RSD</span>
+              </div>
+            </div>
+
+            <div class="card" data-category="accessories" data-price="100000" data-id="accessorie">
+              <div class="img-wrap">
+                <img src="images/slides/accessories.jpg" class="img-main">
+                <img src="images/slides/accessories2.jpg" class="img-hover">
+              </div>
+              <div class="info">
+                <h3>Accessorie</h3>
+                <span class="price">100.000 RSD</span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="big-card" data-category="newin" data-price="78710" data-id="newin">
+            <div class="img-wrap">
+              <img src="images/1ed7274c7b3b47e88c123d451096a0c4.HD-1080p-7.2Mbps-61559299.gif" class="img-main">
+              <img src="images/slides/newin.jpg" class="img-hover">
+            </div>
+            <div class="info">
+              <h3>New in</h3>
+              <span class="price">78.710 RSD</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ================= BLOCK 2 ================= -->
+        <div class="block reverse">
+
+          <div class="small-grid">
+            <div class="card" data-category="newin" data-price="170710" data-id="newin-2">
+              <div class="img-wrap">
+                <img src="images/slides/newin4.webp" class="img-main">
+                <img src="images/6d68609872b54ab1a31aebf9f2dcca71.HD-1080p-2.5Mbps-61555374.gif" class="img-hover">
+              </div>
+              <div class="info">
+                <h3>Second New in</h3>
+                <span class="price">170.710 RSD</span>
+              </div>
+            </div>
+
+            <div class="card" data-category="dresses" data-price="86000" data-id="dress-2">
+              <div class="img-wrap">
+                <img src="images/slides/dress4.webp" class="img-main">
+                <img src="images/slides/dress5.webp" class="img-hover">
+              </div>
+              <div class="info">
+                <h3>Second Dress</h3>
+                <span class="price">86.000 RSD</span>
+              </div>
+            </div>
+
+            <div class="card" data-category="shoes" data-price="92000" data-id="shoe-2">
+              <div class="img-wrap">
+                <img src="images/slides/shoe4.webp" class="img-main">
+                <img src="images/slides/shoe5.webp" class="img-hover">
+              </div>
+              <div class="info">
+                <h3>Second Shoe</h3>
+                <span class="price">92.000 RSD</span>
+              </div>
+            </div>
+
+            <div class="card" data-category="skirts" data-price="74000" data-id="skirt-2">
+              <div class="img-wrap">
+                <img src="images/slides/skirt4.webp" class="img-main">
+                <img src="images/slides/skirt5.webp" class="img-hover">
+              </div>
+              <div class="info">
+                <h3>Second Skirt</h3>
+                <span class="price">74.000 RSD</span>
+              </div>
+            </div>
+
+            <div class="card" data-category="tops" data-price="110000" data-id="top-2">
+              <div class="img-wrap">
+                <img src="images/slides/top4.webp" class="img-main">
+                <img src="images/slides/top5.webp" class="img-hover">
+              </div>
+              <div class="info">
+                <h3>Second Top</h3>
+                <span class="price">110.000 RSD</span>
+              </div>
+            </div>
+
+            <div class="card" data-category="jackets" data-price="130000" data-id="jacket">
+              <div class="img-wrap">
+                <img src="images/slides/jackets.jpg" class="img-main">
+                <img src="images/slides/jackets2.jpg" class="img-hover">
+              </div>
+              <div class="info">
+                <h3>Jacket</h3>
+                <span class="price">130.000 RSD</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="big-card" data-category="newin" data-price="170710" data-id="newin-2">
+            <div class="img-wrap">
+              <img src="images/6d68609872b54ab1a31aebf9f2dcca71.HD-1080p-2.5Mbps-61555374.gif" class="img-main">
+              <img src="images/slides/newin4.webp" class="img-hover">
+            </div>
+            <div class="info">
+              <h3>Second New in</h3>
+              <span class="price">170.710 RSD</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-col"> <a href="aboutus.html">About the Brand</a> <a
+          href="contact.html">Contact
+          Us</a> </div>
+      <div class="footer-col"> <a href="https://www.instagram.com/vukotaaaaaa">Instagram</a> <a href="shipping.html">Shipping</a>
+      </div>
+      <div class="footer-col"> <a href="startareturn.html">Start a Return</a> <a href="FAQ.html">FAQ</a> <a href="privacypolicy.html">Legal &
+          Privacy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">asco © 2026</div>
+  </footer>
+
+  <script src="shop.js"></script>
+  <script src="script.js"></script>
+  <script src="search.js"></script>
+  <script src="cart-mini.js"></script>
+
+</body>
+
+</html>

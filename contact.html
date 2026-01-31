@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>asco — Contact</title>
+
+    <link rel="icon" type="image/x-icon" href="images/icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<header class="navbar">
+  <div class="nav-left">
+    <button class="menu-btn hamburger-btn">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="top-dropdown">
+      <div class="menu-header">
+        <button class="close-menu">&times;</button>
+        <h2 class="dropdown-title">asco</h2>
+      </div>
+      <div class="menu-links">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <div class="submenu">
+          <button class="submenu-btn">Categories <i class="fas fa-chevron-right"></i></button>
+          <div class="submenu-content">
+            <a href="shop.html?category=jackets">Jackets</a>
+            <a href="shop.html?category=shoes">Shoes</a>
+            <a href="shop.html?category=newin">New In</a>
+            <a href="shop.html?category=accessories">Accessories</a>
+            <a href="shop.html?category=dresses">Dresses</a>
+            <a href="shop.html?category=tops">Tops</a>
+            <a href="shop.html?category=skirts">Skirts</a>
+          </div>
+        </div>
+        <a href="aboutus.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="startareturn.html">Start a return</a>
+        <a href="https://www.instagram.com/vukotaaaaaa">Instagram</a>
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+  <div class="nav-center">
+    <h1>asco</h1>
+  </div>
+  <div class="nav-right">
+    <button class="icon-btn search-btn"><i class="fas fa-magnifying-glass"></i></button>
+    
+    <!-- Cart with dropdown -->
+    <div class="cart-container">
+        <button class="icon-btn cart-btn-header" onclick="toggleCartDropdown()">
+            <i class="fas fa-cart-shopping"></i>
+            <span class="cart-counter" id="cartCounter" style="display: none;">0</span>
+        </button>
+        
+        <!-- Cart Dropdown -->
+        <div class="cart-dropdown" id="cartDropdown">
+            <div class="cart-header">
+                <h3>Your Cart</h3>
+                <button class="close-cart" onclick="toggleCartDropdown()">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <!-- Items injected here -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cartTotal">0 RSD</span>
+                </div>
+                <a href="checkout.html" class="checkout-btn">Checkout</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="dropdown">
+        <button class="dropbtn">EN <i class="fas fa-chevron-down"></i></button>
+        <div class="dropdown-content">
+            <a href="#">EN</a>
+            <a href="#">RS</a>
+        </div>
+    </div>
+</div>
+ <div class="search-dropdown">
+        <input type="text" class="search-input" placeholder="Search...">
+    </div>
+</header>
+
+<section class="contact">
+    <div class="contact-wrapper">
+
+        <h2 class="contact-title">Contact Us</h2>
+        <p class="contact-subtitle">
+            We’d love to hear from you. For questions, orders, or collaborations,
+            reach out anytime.
+        </p>
+
+        <div class="contact-content">
+
+            <div class="contact-info">
+                <p><strong>Email</strong><br>support@asco.com</p>
+                <p><strong>Phone</strong><br>+381 62 151 3085</p>
+                <p><strong>Address</strong><br>Užice, Serbia</p>
+            </div>
+
+            <form class="contact-form" onsubmit="showSuccess(event)">
+                <input type="text" placeholder="Your name" required>
+                <input type="email" placeholder="Your email" required>
+                <textarea placeholder="Your message" rows="4" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+<p class="form-success">
+    Thank you. Your message has been sent.
+    <i class="fa-regular fa-envelope"></i>
+</p>
+        </div>
+    </div>
+</section>
+
+
+<footer class="footer">
+            <!--/*<h2 class="dropdown-title2">asco</h2>-->
+     <div class="footer-inner">
+
+            <div class="footer-col"> <a href="aboutus.html">About the Brand</a> <a href="contact.html">Contact
+                    Us</a> </div>
+            <div class="footer-col"> <a href="https://www.instagram.com/vukotaaaaaa">Instagram</a> <a href="shipping.html">Shipping</a>
+            </div>
+            <div class="footer-col"> <a href="startareturn.html">Start a Return</a> <a href="FAQ.html">FAQ</a> <a href="privacypolicy.html">Legal & Privacy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">asco © 2026</div>
+</footer>
+
+<script src="script.js"></script>
+  <script src="search.js"></script>
+   <script src="cart-mini.js"></script>
+</body>
+</html>
