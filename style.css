@@ -882,6 +882,22 @@ img {
     height: 420px;
     background: url("images/rma.jpg") center/cover no-repeat;
 }
+.about-text2 h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #3f352c;
+    margin-bottom: 24px;
+}
+
+.about-text2 p {
+    font-size: 16px;
+    line-height: 1.75;
+    color: #4b4036;
+    margin-bottom: 16px;
+    max-width: 480px;
+}
 
 .about-values {
     background: linear-gradient(0deg,
