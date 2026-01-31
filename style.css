@@ -673,6 +673,7 @@ img {
 @media (max-width: 768px) {
     .about-inner {
         text-align: center;
+        width: 100%;
     }
 
     .about-text p {
