@@ -1,10 +1,8 @@
-// Universal Search functionality
 document.addEventListener('DOMContentLoaded', () => {
     const searchBtn = document.querySelector('.search-btn');
     const searchDropdown = document.querySelector('.search-dropdown');
     const searchInput = document.querySelector('.search-input');
 
-    // Your product database (same as shop.js but accessible everywhere)
     const allProducts = [
         
         { id: 'newin', name: 'New in', price: '78.710 RSD', category: 'newin', image: 'images/slides/newin.jpg' },
@@ -36,45 +34,31 @@ document.addEventListener('DOMContentLoaded', () => {
         'top-2': ['images/slides/top4.webp', 'images/slides/top5.webp', 'images/slides/top6.webp']
     };
 
-    // Create search results dropdown
     const searchResults = document.createElement('div');
     searchResults.className = 'search-results';
     searchResults.style.display = 'none';
     searchDropdown.appendChild(searchResults);
 
-    /* =========================
-       TOGGLE SEARCH
-    ========================= */
     searchBtn.addEventListener('click', (e) => {
-        e.stopPropagation(); // 🔑 prevents instant close
+        e.stopPropagation();
         searchDropdown.classList.toggle('active');
 
         if (searchDropdown.classList.contains('active')) {
             searchInput.focus();
         }
 
-        // close cart if open
         document.getElementById('cartDropdown')?.classList.remove('active');
     });
 
-    /* =========================
-       PREVENT SELF-CLOSE
-    ========================= */
     searchDropdown.addEventListener('click', (e) => {
         e.stopPropagation();
     });
 
-    /* =========================
-       CLOSE ON OUTSIDE CLICK
-    ========================= */
     document.addEventListener('click', () => {
         searchDropdown.classList.remove('active');
         searchResults.style.display = 'none';
     });
 
-    /* =========================
-       SEARCH ON TYPE
-    ========================= */
     searchInput.addEventListener('input', (e) => {
         const query = e.target.value.toLowerCase().trim();
 
@@ -91,9 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
         displayResults(matches);
     });
 
-    /* =========================
-       DISPLAY RESULTS
-    ========================= */
     function displayResults(results) {
         searchResults.innerHTML = '';
 

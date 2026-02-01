@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    
-    // Check if category is in URL (from dropdown menu)
+
     const urlParams = new URLSearchParams(window.location.search);
     const initialCategory = urlParams.get('category');
     
@@ -11,19 +10,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const productsWrapper = document.querySelector("#productsGrid");
     
-    // Collect ALL cards from both blocks (including big-cards)
     const allProducts = Array.from(productsWrapper.querySelectorAll(".card, .big-card"));
     
-    // Store original parent containers to restore later
     const originalBlocks = Array.from(document.querySelectorAll(".block"));
     
-    // Create unified grid for filtered/sorted views
     const unifiedGrid = document.createElement("div");
     unifiedGrid.className = "small-grid unified-grid";
     unifiedGrid.style.display = "none";
     productsWrapper.parentElement.appendChild(unifiedGrid);
 
-    // Track current mode
     let isUnifiedMode = false;
 
    const productImages = {
@@ -41,14 +36,12 @@ document.addEventListener("DOMContentLoaded", () => {
         'top-2': ['images/slides/top4.webp', 'images/slides/top5.webp', 'images/slides/top6.webp']
     };
 
-    // DROPDOWN toggle
     filterBtn.addEventListener("click", e => {
         e.stopPropagation();
         dropdown.classList.toggle("active");
     });
     document.addEventListener("click", () => dropdown.classList.remove("active"));
 
-    // SHOW ORIGINAL EDITORIAL LAYOUT (blocks with big cards)
     function showEditorial() {
         isUnifiedMode = false;
         unifiedGrid.style.display = "none";
@@ -61,7 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
         window.history.replaceState({}, '', newUrl);
     }
 
-    // SHOW UNIFIED GRID (all cards same size, mixed together)
     function showUnified(category) {
         isUnifiedMode = true;
         unifiedGrid.innerHTML = "";
@@ -80,15 +72,13 @@ document.addEventListener("DOMContentLoaded", () => {
         return unifiedGrid;
     }
 
-    // Convert any card (big or small) to unified small card
     function createUnifiedCard(original) {
          const wrapper = document.createElement("div");
     wrapper.className = "card unified-card";
     wrapper.dataset.category = original.dataset.category;
     wrapper.dataset.price = original.dataset.price;
     
-    // ❌ MISSING: This line fixes the image issue!
-    wrapper.dataset.id = original.dataset.id;  // <-- ADD THIS
+    wrapper.dataset.id = original.dataset.id;
     
     const imgWrap = original.querySelector(".img-wrap").cloneNode(true);
     const info = original.querySelector(".info").cloneNode(true);
@@ -99,7 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return wrapper;
     }
 
-    // CATEGORY CLICK
     categoryItems.forEach(item => {
         item.addEventListener("click", () => {
             const category = item.dataset.category;
@@ -114,7 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // SORTING
     sortSelect.addEventListener("change", () => {
         const order = sortSelect.value;
         
@@ -139,9 +127,6 @@ document.addEventListener("DOMContentLoaded", () => {
         items.forEach(item => container.appendChild(item));
     }
 
-    // =============================
-    // MAKE CARDS CLICKABLE - Navigate to Product Page
-    // =============================
 
     function makeCardClickable(card) {
     if (card.tagName === 'A') return;
@@ -155,7 +140,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const price = card.querySelector('.price')?.textContent || '';
         const category = card.dataset.category || 'all';
         
-        // USE data-id INSTEAD of generating from name!
         const productId = card.dataset.id || name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
         
         const images = productImages[productId] || productImages[category] || ['images/slides/newin.jpg'];
@@ -164,20 +148,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     }
 
-    // Apply to original cards
     document.querySelectorAll('.card, .big-card').forEach(makeCardClickable);
     
-    // Override createUnifiedCard to make clones clickable too
     const originalCreateUnifiedCard = createUnifiedCard;
     createUnifiedCard = function(original) {
         const card = originalCreateUnifiedCard(original);
         makeCardClickable(card);
         return card;
     };
-
-    // =============================
-    // INITIAL FILTER FROM URL (dropdown menu)
-    // =============================
     
     if (initialCategory) {
         const categoryNames = {

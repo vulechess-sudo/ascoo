@@ -1,4 +1,3 @@
-// Get URL params
 const params = new URLSearchParams(window.location.search);
 const productName = params.get('name');
 const productPrice = params.get('price');
@@ -19,7 +18,6 @@ const productImages = {
         'skirt-2': ['images/slides/skirt4.webp', 'images/slides/skirt5.webp', 'images/slides/skirt6.webp'],
         'top-2': ['images/slides/top4.webp', 'images/slides/top5.webp', 'images/slides/top6.webp']
     };
-// Set text content
 if (productName) {
     document.getElementById('productName').textContent = decodeURIComponent(productName);
     document.title = decodeURIComponent(productName) + ' - Asco Shop';
@@ -29,7 +27,6 @@ if (productPrice) {
     document.getElementById('productPrice').textContent = decodeURIComponent(productPrice);
 }
 
-// Build image slider
 const sliderContainer = document.getElementById('sliderContainer');
 const dotsContainer = document.getElementById('sliderDots');
 
@@ -58,7 +55,6 @@ images.forEach((src, index) => {
     sliderContainer.appendChild(img);
 });
 
-// Slider functionality
 let currentSlide = 0;
 let totalSlides = images.length;
 
@@ -90,21 +86,15 @@ images.forEach((_, index) => {
 updateSlider();
 setInterval(() => changeSlide(1), 5000);
 
-// Size selection
 function selectSize(btn) {
     if (btn.classList.contains('disabled')) return;
     document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
     btn.classList.add('selected');
 }
 
-// Toggle details
 function toggleDetail(header) {
     header.parentElement.classList.toggle('active');
 }
-
-// =========================
-// CART FUNCTIONS (merged here)
-// =========================
 
 let cart = JSON.parse(localStorage.getItem('ascoCart')) || [];
 
@@ -135,7 +125,6 @@ function goToCart() {
     window.location.href = 'cart.html';
 }
 
-// MAIN addToCart function - ONLY ONE
 function addToCart() {
     const params = new URLSearchParams(window.location.search);
     const size = document.querySelector('.size-btn.selected')?.textContent || 'M';
@@ -148,8 +137,6 @@ function addToCart() {
         size: size,
         quantity: 1
     };
-    
-    // Check if already in cart
     const existing = cart.find(item => item.id === product.id && item.size === product.size);
     
     if (existing) {
@@ -172,14 +159,8 @@ function addToCart() {
     }, 2000);
 }
 
-// Initialize on load
 updateCartCounter();
 
-// =========================
-// RELATED PRODUCTS LOGIC
-// =========================
-
-// Product database (match your shop inventory)
 const productDatabase = [
      { id: 'newin', name: 'New in', price: '78.710 RSD', category: 'newin', image: 'images/slides/newin.jpg' },
         { id: 'newin-2', name: 'Second New in', price: '170.710 RSD', category: 'newin', image: 'images/slides/newin4.webp' },
@@ -199,19 +180,16 @@ function loadRelatedProducts() {
     const currentId = new URLSearchParams(window.location.search).get('id');
     const currentCategory = new URLSearchParams(window.location.search).get('category') || 'all';
     
-    // Filter: same category, exclude current, get 4 random
     let related = productDatabase.filter(p => 
         p.category === currentCategory && p.id !== currentId
     );
     
-    // If less than 4, fill with random others
     if (related.length < 5) {
         const others = productDatabase.filter(p => 
             p.id !== currentId && !related.includes(p)
         );
         related = related.concat(others).slice(0, 5);
     } else {
-        // Shuffle and take 4
         related = related.sort(() => 0.5 - Math.random()).slice(0, 5);
     }
     
@@ -219,7 +197,6 @@ function loadRelatedProducts() {
     if (!grid || related.length === 0) return;
     
     grid.innerHTML = related.map(product => {
-        // Get images array (reuse your productImages object or define per product)
         const images = productImages[product.id] || [product.image];
         
         return `
@@ -240,10 +217,6 @@ function goToProduct(id, category, name, price, images) {
     window.location.href = `product.html?id=${id}&category=${category}&name=${name}&price=${price}&images=${images}`;
 }
 
-// Initialize
 document.addEventListener('DOMContentLoaded', () => {
-    // ... your existing init code ...
-    
-    // Load related products
     loadRelatedProducts();
 });

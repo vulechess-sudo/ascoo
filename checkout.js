@@ -1,7 +1,3 @@
-// =========================
-// CHECKOUT LOGIC
-// =========================
-
 let cart = [];
 let shippingCost = 0;
 
@@ -220,7 +216,6 @@ async function handleCheckout(e) {
     const btn = document.getElementById('placeOrderBtn');
     const form = e.target;
     
-    // Get form data
     const email = form.querySelector('input[name="email"]').value;
     const fullname = form.querySelector('input[name="fullname"]').value;
     const address = form.querySelector('input[name="address"]').value;
@@ -232,14 +227,12 @@ async function handleCheckout(e) {
         'si': 'Slovenia', 'me': 'Montenegro', 'mk': 'Macedonia', 'other': 'International'
     };
     
-    // Validation
     if (shippingCost === 0) {
         alert('Please select a country to calculate shipping');
         form.querySelector('select[name="country"]').focus();
         return;
     }
     
-    // Calculate totals
     const subtotal = cart.reduce((sum, item) => {
         const price = parseInt(item.price.replace(/[.\sRSD]/g, "")) || 0;
         return sum + (price * (item.quantity || 1));
@@ -248,24 +241,18 @@ async function handleCheckout(e) {
     const orderNum = 'ASCO-' + Math.random().toString(36).substr(2, 6).toUpperCase();
     const orderDate = new Date().toLocaleString('sr-RS');
     
-    // Simulate processing
     btn.disabled = true;
     btn.textContent = 'Processing...';
     
     try {
-        // Prepare items list
         const itemsList = cart.map(item => {
             return `${item.name} (Size: ${item.size}) x${item.quantity || 1} - ${item.price}`;
         }).join('\n');
         
-        // Prepare admin items list (more detailed)
         const adminItemsList = cart.map((item, index) => {
             return `${index + 1}. ${item.name} | Size: ${item.size} | Qty: ${item.quantity || 1} | Price: ${item.price} | ID: ${item.id}`;
         }).join('\n\n');
-        
-        // SEND BOTH EMAILS SIMULTANEOUSLY
-        
-        // 1. Email to Customer (prettier, confirmation style)
+
         const customerEmail = emailjs.send("service_yumu8xj", "template_43g70ll", {
             to_email: email,
             to_name: fullname,
@@ -282,9 +269,8 @@ async function handleCheckout(e) {
             reply_to: "vulechess@gmail.com" 
         });
         
-        // 2. Email to Admin (you) - notification style
         const adminEmail = emailjs.send("service_yumu8xj", "template_wwcxf88", {
-            to_email: "vulechess@gmail.com", // <-- PUT YOUR EMAIL HERE
+            to_email: "vulechess@gmail.com", 
             to_name: "Admin",
             from_name: "Asco Shop System",
             subject: `🛒 NEW ORDER #${orderNum}`,
@@ -302,14 +288,11 @@ async function handleCheckout(e) {
             payment_method: form.querySelector('input[name="payment"]:checked').value.toUpperCase()
         });
         
-        // Wait for both to send (faster than sequential)
         await Promise.all([customerEmail, adminEmail]);
         
-        // Clear cart
         localStorage.removeItem('ascoCart');
         if (typeof renderCart === 'function') renderCart();
         
-        // Show success
         document.getElementById('orderNumber').textContent = '#' + orderNum;
         document.getElementById('confirmEmail').textContent = email;
         document.getElementById('successModal').classList.add('active');
@@ -318,11 +301,9 @@ async function handleCheckout(e) {
         console.error('Email failed:', error);
         alert('Order placed but email notification failed. Please save this order number: ' + orderNum);
         
-        // Still clear cart and show success (order went through)
         localStorage.removeItem('ascoCart');
         document.getElementById('successModal').classList.add('active');
     }
 }
 
-// Initialize on load
 document.addEventListener('DOMContentLoaded', initCheckout);

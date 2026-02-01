@@ -90,7 +90,6 @@ img {
     position: absolute;
     top: 60px;
     right: 140px;
-    /* move it left so it doesn't overlap cart */
     background: #d8cfc4;
     border-radius: 12px 12px 0 0;
     padding: 15px;
@@ -99,7 +98,6 @@ img {
     pointer-events: none;
     transition: opacity 0.3s ease;
     z-index: 10003;
-    /* HIGHER than cart (10001) */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
@@ -273,7 +271,6 @@ img {
     gap: 0;
 }
 
-/* BIG DROPDOWN TITLE */
 .dropdown-title {
     font-family: 'Playfair Display', serif;
     font-size: 42px;
@@ -282,7 +279,6 @@ img {
     margin: 0 auto;
 }
 
-/* X BUTTON TOP LEFT */
 .close-menu {
     position: absolute;
     top: -10px;
@@ -395,7 +391,6 @@ img {
     pointer-events: auto;
 }
 
-/* RESPONSIVE */
 @media (max-width: 600px) {
     .top-dropdown {
         width: 95%;
@@ -491,19 +486,16 @@ img {
     margin-top: 0;
 }
 
-/* Visible area */
 .slider-window {
     width: 100%;
     overflow: hidden;
 }
 
-/* Moving row */
 .slider-track {
     display: flex;
     transition: transform 0.6s ease;
 }
 
-/* Single slide */
 .slide {
     flex: 0 0 20%;
     height: 340px;
@@ -585,7 +577,6 @@ img {
     height: auto;
 }
 
-/* Inner layout */
 .about-inner {
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
@@ -595,7 +586,6 @@ img {
     margin: 0 auto;
 }
 
-/* Text */
 .about-text h2 {
     font-family: 'Playfair Display', serif;
     font-size: 38px;
@@ -613,7 +603,6 @@ img {
     max-width: 480px;
 }
 
-/* Image */
 .about-image {
     width: 100%;
     height: 400px;
@@ -636,7 +625,6 @@ img {
     transition: transform 0.25s ease;
 }
 
-/* Underline animation */
 .about-link::after {
     content: "";
     position: absolute;
@@ -657,8 +645,6 @@ img {
 .about-link:hover::after {
     transform: scaleX(1);
 }
-
-/* ========================= RESPONSIVE ========================= */
 @media (max-width: 1100px) {
     .about-inner {
         grid-template-columns: 1fr;
@@ -667,11 +653,11 @@ img {
     }
     
     .about-text {
-        order: 2; /* Text below image */
+        order: 2; 
     }
     
     .about-image {
-        order: 1; /* Image on top */
+        order: 1; 
         height: 350px;
         max-width: 600px;
         margin: 0 auto;
@@ -685,10 +671,9 @@ img {
     }
 }
 
-/* MOBILE - Compact & No Scroll */
 @media (max-width: 768px) {
     .about-us {
-        padding: 40px 20px; /* Reduced from 90px 100px */
+        padding: 40px 20px;
     }
     
     .about-inner {
@@ -696,22 +681,20 @@ img {
     }
     
     .about-text h2 {
-        font-size: 28px; /* Smaller */
+        font-size: 28px; 
         margin-bottom: 15px;
         line-height: 1.2;
     }
     
     .about-text p {
-        font-size: 14px; /* Smaller */
-        line-height: 1.6; /* Tighter */
+        font-size: 14px; 
+        line-height: 1.6;
         margin-bottom: 12px;
-        max-width: 100%; /* Full width text */
+        max-width: 100%;
     }
-    
-    /* Better image proportions - 16:9 aspect ratio */
     .about-image {
         height: auto;
-        aspect-ratio: 16/9; /* Wide cinematic look */
+        aspect-ratio: 16/9; 
         min-height: 200px;
         max-height: 250px;
         border-radius: 8px;
@@ -723,7 +706,6 @@ img {
     }
 }
 
-/* SMALL PHONES */
 @media (max-width: 480px) {
     .about-us {
         padding: 30px 15px;
@@ -739,7 +721,7 @@ img {
     }
     
     .about-image {
-        aspect-ratio: 4/3; /* Slightly taller on very small screens */
+        aspect-ratio: 4/3;
         max-height: 220px;
     }
 }
@@ -755,8 +737,6 @@ img {
     background-repeat: no-repeat;
     overflow: hidden;
 }
-
-/* Dark overlay for readability */
 .down-hero::before {
     content: "";
     position: absolute;
@@ -1057,19 +1037,6 @@ img {
     letter-spacing: 0.5px;
     text-align: center;
 }
-
-/* BIG DROPDOWN TITLE */
-/*.dropdown-title2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 60px;
-    font-weight: 700;
-    color: #3f352c;
-    text-align: center;
-    margin-bottom: 40px;
-    margin-top: -30px;
-}*/
-
-/* MOBILE */
 @media (max-width: 900px) {
     .contact {
         padding: 80px 30px;
@@ -1091,7 +1058,6 @@ img {
 .privacy-container {
     max-width: 900px;
     margin: 120px auto 80px;
-    /* space from fixed header */
     background: #f6f4f1;
     border-radius: 12px;
     box-shadow: 0 20px 40px rgba(195, 183, 148, 0.599);
@@ -1131,9 +1097,6 @@ img {
 /* =========================
    SHOP PAGE ONLY
 ========================= */
-/* =============================
-   PRODUCTS WRAPPER
-============================= */
 .products {
     max-width: 1400px;
     margin: 0 auto;
@@ -1144,7 +1107,6 @@ img {
     padding-top: 40px;
 }
 
-/* GRID THAT HOLDS BLOCKS */
 .products-grid {
     display: flex;
     flex-direction: column;
@@ -1158,7 +1120,6 @@ img {
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-template-rows: repeat(2, auto);
-    /* 2 rows */
     gap: 40px;
     align-items: start;
 }
@@ -1167,19 +1128,15 @@ img {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, auto);
-    /* 2 rows, 3 items each = 6 items */
     gap: 32px;
     grid-row: span 2;
 }
 
 .big-card {
     grid-row: span 2;
-    /* Spans 2 rows */
     aspect-ratio: 3 / 4;
-    /* Same aspect as small cards but scaled */
 }
 
-/* Or make big card image square/taller */
 .big-card .img-wrap {
     aspect-ratio: 3 / 4;
     height: 100%;
@@ -1187,10 +1144,7 @@ img {
 
 .big-card .img-wrap {
     aspect-ratio: 3 / 8;
-    /* Double height of 3/4 */
-    /* or */
-    height: calc(137%);
-    /* 2 rows + gap */
+    height: calc(137%);/
 }
 
 .block.reverse {
@@ -1201,9 +1155,6 @@ img {
     order: -1;
 }
 
-/* =============================
-   SMALL GRID (6 ITEMS)
-============================= */
 .small-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1211,9 +1162,6 @@ img {
     margin-top: 0;
 }
 
-/* =============================
-   CARDS (GLOBAL)
-============================= */
 .card,
 .big-card {
     width: 100%;
@@ -1222,9 +1170,6 @@ img {
     background: transparent;
 }
 
-/* =============================
-   IMAGE WRAPPER (CRITICAL FIX)
-============================= */
 .img-wrap {
     position: relative;
     width: 100%;
@@ -1250,9 +1195,6 @@ img {
     opacity: 0;
 }
 
-/* =============================
-   INFO
-============================= */
 .info {
     margin-top: 10px;
     display: flex;
@@ -1270,10 +1212,6 @@ img {
     font-size: 13px;
     color: #555;
 }
-
-/* =============================
-   HOVER EFFECT (DESKTOP)
-============================= */
 @media (hover: hover) {
 
     .card,
@@ -1303,11 +1241,6 @@ img {
         color: #000;
     }
 }
-
-/* =============================
-   FILTER MODE (IMPORTANT)
-   when JS hides blocks
-============================= */
 .product-hidden {
     display: none !important;
 }
@@ -1315,10 +1248,6 @@ img {
 .product-visible {
     display: flex;
 }
-
-/* =============================
-   TABLET
-============================= */
 @media (max-width: 1024px) {
 
     .block,
@@ -1334,10 +1263,6 @@ img {
         grid-template-columns: repeat(2, 1fr);
     }
 }
-
-/* =============================
-   MOBILE
-============================= */
 @media (max-width: 600px) {
     .products {
         gap: 60px;
@@ -1348,14 +1273,9 @@ img {
         gap: 20px;
     }
 }
-
-/* =============================
-   SHOP BAR (UNCHANGED, CLEAN)
-============================= */
 .shop-bar {
     position: sticky;
     top: 90px;
-    /* below navbar */
     z-index: 50;
 
     max-width: 1400px;
@@ -1367,7 +1287,6 @@ img {
     align-items: center;
 
     background: #f6f4ef;
-    /* optional but recommended */
 }
 
 /* FILTER */
@@ -1437,7 +1356,6 @@ img {
     margin-top: 0;
 }
 
-/* Unified grid - always 3 columns, all cards same size */
 .unified-grid {
     grid-template-columns: repeat(4, 1fr) !important;
     width: 100%;
@@ -1447,7 +1365,6 @@ img {
 .unified-grid .card,
 .unified-grid .unified-card {
     width: 100%;
-    /* Force same aspect ratio as small cards */
 }
 
 .unified-grid .img-wrap {
@@ -1465,7 +1382,6 @@ img {
         grid-template-columns: 1fr !important;
     }
 }
-/* On phone - stack them */
 @media (max-width: 768px) {
     .shop-bar {
         flex-direction: column;
@@ -1511,7 +1427,6 @@ img {
     overflow: hidden;
     background: #fff;
     max-width: 500px;
-    /* adjust this number */
 }
 
 .slider-container {
@@ -1670,7 +1585,6 @@ img {
     font-size: 13px;
 }
 
-/* Popup background */
 .size-guide-popup {
     position: fixed;
     inset: 0;
@@ -1681,7 +1595,6 @@ img {
     z-index: 999;
 }
 
-/* Popup box */
 .size-guide-content {
     background: #fff;
     padding: 30px;
@@ -1708,7 +1621,6 @@ img {
     cursor: pointer;
 }
 
-/* Table */
 .size-guide-table {
     width: 100%;
     border-collapse: collapse;
@@ -1757,7 +1669,6 @@ img {
     color: #f6f4ef;
 }
 
-/* Product Details Accordion */
 .product-details {
     margin-top: 60px;
     border-top: 1px solid #ddd;
@@ -1799,7 +1710,6 @@ img {
     padding-top: 15px;
 }
 
-/* Responsive */
 @media (max-width: 1024px) {
     .product-layout {
         grid-template-columns: 1fr;
@@ -1830,7 +1740,6 @@ img {
 /* =========================
    SEARCH ONLY
 ========================= */
-/* Search Results Dropdown */
 .search-results {
     position: absolute;
     top: 100%;
@@ -1975,7 +1884,6 @@ img {
     color: #111;
 }
 
-/* Cart Counter in Header */
 .cart-counter {
     position: absolute;
     top: -8px;
@@ -1992,19 +1900,13 @@ img {
     font-weight: bold;
 }
 
-/* Add position relative to cart button */
 .icon-btn {
     position: relative;
-    /* add this */
-    /* keep other styles */
 }
-
-/* Cart Container */
 .cart-container {
     position: relative;
 }
 
-/* Cart Dropdown */
 .cart-dropdown {
     position: absolute;
     top: 50px;
@@ -2156,7 +2058,6 @@ img {
     box-shadow: inset 0 0 0 2px #111;
 }
 
-/* Responsive */
 @media (max-width: 500px) {
     .cart-dropdown {
         width: 90vw;
@@ -2167,7 +2068,6 @@ img {
 /* =========================
    FAQ ONLY
 ========================= */
-/* ================= FAQ ACCORDION ================= */
 .faq-container {
     max-width: 900px;
     margin: 120px auto 80px;
@@ -2264,7 +2164,6 @@ img {
 /* =========================
    RETURN ONLY
 ========================= */
-/* ================= RETURN FORM ================= */
 .return-container {
     max-width: 800px;
     margin: 120px auto 80px;
@@ -2339,7 +2238,6 @@ img {
     border-color: #3f352c;
 }
 
-/* Item rows */
 .items-container {
     display: flex;
     flex-direction: column;
@@ -2390,7 +2288,6 @@ img {
     color: #fff;
 }
 
-/* Radio buttons */
 .radio-group {
     display: flex;
     gap: 20px;
@@ -2535,7 +2432,6 @@ img {
 /* =========================
    SHIPPING ONLY
 ========================= */
-/* ================= SHIPPING PAGE ================= */
 .shipping-container {
     max-width: 1000px;
     margin: 120px auto 80px;
@@ -2562,7 +2458,6 @@ img {
     font-size: 14px;
 }
 
-/* Shipping Cards Grid */
 .shipping-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -2746,9 +2641,9 @@ img {
     }
 
     .shipping-grid {
-        grid-template-columns: 1fr; /* Single column */
-        max-width: 400px; /* Limit width */
-        margin: 0 auto 60px; /* Center the grid */
+        grid-template-columns: 1fr; 
+        max-width: 400px; 
+        margin: 0 auto 60px; 
         gap: 20px;
     }
 
@@ -2756,29 +2651,27 @@ img {
         width: 100%;
         text-align: center;
     }
-
-    /* Timeline fixes too */
     .timeline {
         flex-direction: column;
         gap: 30px;
-        align-items: center; /* Center timeline items */
+        align-items: center; 
     }
 
     .timeline-item {
-        max-width: 300px; /* Prevent stretching */
+        max-width: 300px; 
     }
 
     .contact-options {
         flex-direction: column;
         gap: 15px;
-        align-items: center; /* Center contact links */
+        align-items: center; 
     }
 }
 
 
 /* =========================
-           CHECKOUT PAGE STYLES
-        ========================= */
+CHECKOUT PAGE STYLES
+========================= */
 .checkout-page {
     max-width: 1200px;
     margin: 0 auto;
@@ -2923,7 +2816,6 @@ select:focus {
     opacity: 0.7;
 }
 
-/* Order Summary Sidebar */
 .order-summary {
     border: 2px solid #111;
     padding: 30px;
@@ -3037,7 +2929,7 @@ select:focus {
     gap: 8px;
 }
 
-/* Empty Cart State */
+/* Empty Cart */
 .empty-checkout {
     text-align: center;
     padding: 100px 40px;
@@ -3134,8 +3026,6 @@ select:focus {
     font-size: 18px;
     letter-spacing: 2px;
 }
-
-/* Responsive */
 @media (max-width: 1024px) {
     .checkout-page {
         grid-template-columns: 1fr;
@@ -3187,14 +3077,14 @@ select:focus {
 .related-products {
     max-width: 2000px;
     margin: 0 auto;
-    padding: 40px 40px 60px;  /* Less vertical padding */
+    padding: 40px 40px 60px;
     margin-top: 40px;
     border-top: 2px solid #111;
 }
 
 .section-title {
     font-family: 'Playfair Display', serif;
-    font-size: 20px;          /* Was 32px */
+    font-size: 20px;
     margin-bottom: 25px; 
     text-align: center;
     font-weight: 400;
@@ -3203,12 +3093,11 @@ select:focus {
 .related-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 30px;                /* Was 30px */
-    max-width: 1500px;         /* Constrain width so cards are smaller */
+    gap: 30px;
+    max-width: 1500px;
     margin: 0 auto;
 }
 
-/* Card styling (matches your shop) */
 .related-card {
     border: 2px solid #111;
     background: #fff;
@@ -3253,7 +3142,7 @@ select:focus {
 
 .related-card h3 {
     font-family: 'Playfair Display', serif;
-     font-size: 13px;          /* Was 16px */
+     font-size: 13px;
     margin-bottom: 4px;
     font-weight: 400;
 }
@@ -3264,7 +3153,6 @@ select:focus {
     font-weight: 600;
 }
 
-/* Responsive */
 @media (max-width: 1024px) {
     .related-grid {
         grid-template-columns: repeat(1, 1fr);

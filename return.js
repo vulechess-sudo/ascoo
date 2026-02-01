@@ -1,4 +1,3 @@
-// Return Form Functionality
 let itemCount = 1;
 
 function addItem() {
@@ -36,11 +35,9 @@ function submitReturn(e) {
     const form = document.getElementById('returnForm');
     const successMessage = document.getElementById('successMessage');
     
-    // Simulate form submission
     form.style.display = 'none';
     successMessage.style.display = 'block';
     
-    // In real life, you'd send this data to your server
     console.log('Return submitted:', new FormData(form));
 }
 
@@ -50,7 +47,6 @@ function resetForm() {
     document.getElementById('returnForm').reset();
 }
 
-// Close cart/search when opening return page
 document.addEventListener('click', (e) => {
     if (!e.target.closest('.cart-container')) {
         document.getElementById('cartDropdown')?.classList.remove('active');

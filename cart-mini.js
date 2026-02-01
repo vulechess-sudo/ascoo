@@ -1,4 +1,4 @@
-// cart-mini.js - ONLY cart dropdown functionality, NO addToCart
+
 
 const cartDropdown = document.getElementById("cartDropdown");
 const cartItemsEl = document.getElementById("cartItems");
@@ -8,23 +8,19 @@ const cartTotalEl = document.getElementById("cartTotal");
 function toggleCartDropdown() {
     cartDropdown.classList.toggle("active");
     
-    // Close search if open
     document.querySelector('.search-dropdown')?.classList.remove('active');
     
     renderCart();
 }
 
-/* Get cart from localStorage - MUST match product.js key */
 function getCart() {
     return JSON.parse(localStorage.getItem("ascoCart")) || [];
 }
 
-/* Save cart */
 function saveCart(cart) {
     localStorage.setItem("ascoCart", JSON.stringify(cart));
 }
 
-/* Render cart */
 function renderCart() {
     const cart = getCart();
     if (cartItemsEl) cartItemsEl.innerHTML = "";
@@ -67,7 +63,6 @@ function renderCart() {
     if (cartTotalEl) cartTotalEl.textContent = `${total.toLocaleString('de-DE')} RSD`;
 }
 
-/* Remove item */
 function removeFromCart(index) {
     const cart = getCart();
     cart.splice(index, 1);
@@ -75,12 +70,10 @@ function removeFromCart(index) {
     renderCart();
 }
 
-/* Close when clicking outside */
 document.addEventListener("click", (e) => {
     if (!e.target.closest(".cart-container")) {
         cartDropdown?.classList.remove("active");
     }
 });
 
-/* Initial render */
 document.addEventListener('DOMContentLoaded', renderCart);
