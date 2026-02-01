@@ -806,8 +806,6 @@ img {
         gap: 24px;
     }
 }
-
-
 /* =========================
    ABOUT PAGE ONLY
 ========================= */
@@ -3152,6 +3150,7 @@ select:focus {
     color: #555;
     font-weight: 600;
 }
+
 
 @media (max-width: 1024px) {
     .related-grid {
