@@ -3610,3 +3610,54 @@ select:focus {
         height: 18px;
     }
 }
+/* =========================
+   MINI CART MOBILE FIX
+========================= */
+@media (max-width: 768px) {
+    .cart-dropdown {
+        position: fixed; /* Change from absolute to fixed */
+        top: 70px;       /* Position below navbar */
+        right: 0.5rem;   /* Small gap from right edge instead of -1rem */
+        left: 0.5rem;    /* Constrain left side too */
+        width: auto;     /* Let it fill the space between left/right */
+        max-width: none; /* Remove max-width constraint */
+        border-radius: 12px;
+    }
+    
+    /* Alternative: if you want it right-aligned like desktop but smaller */
+    /*
+    .cart-dropdown {
+        right: 0.5rem;
+        width: calc(100vw - 1rem);
+        max-width: 360px;
+    }
+    */
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+    .cart-dropdown {
+        top: 65px;
+        right: 0.5rem;
+        left: 0.5rem;
+        width: auto;
+        border-radius: 12px;
+    }
+    
+    .cart-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    .cart-item img {
+        width: 60px;
+        height: 75px;
+    }
+    
+    .cart-item-name {
+        font-size: 0.9rem;
+    }
+    
+    .cart-total {
+        font-size: 1rem;
+    }
+}
