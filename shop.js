@@ -5,8 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const filterBtn = document.querySelector(".filter-btn");
     const dropdown = document.querySelector(".filter-dropdown");
+    const filterContainer = document.querySelector(".filter");
     const categoryItems = dropdown.querySelectorAll("li");
-    const sortSelect = document.getElementById("priceSort");
+    const sortBtn = document.getElementById('sortBtn');
+    const sortDropdown = document.getElementById('sortDropdown');
+    const sortContainer = document.getElementById('sortContainer');
+    const sortItems = sortDropdown ? sortDropdown.querySelectorAll('li') : [];
 
     const productsWrapper = document.querySelector("#productsGrid");
     
@@ -36,18 +40,73 @@ document.addEventListener("DOMContentLoaded", () => {
         'top-2': ['images/slides/top4.webp', 'images/slides/top5.webp', 'images/slides/top6.webp']
     };
 
+    // MODERN FILTER DROPDOWN
     filterBtn.addEventListener("click", e => {
         e.stopPropagation();
         dropdown.classList.toggle("active");
+        filterContainer.classList.toggle("active");
     });
-    document.addEventListener("click", () => dropdown.classList.remove("active"));
+    
+    document.addEventListener("click", () => {
+        dropdown.classList.remove("active");
+        filterContainer.classList.remove("active");
+    });
+
+    // MODERN SORT DROPDOWN
+    if (sortBtn && sortDropdown) {
+        sortBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            sortDropdown.classList.toggle("active");
+            sortContainer.classList.toggle("active");
+            
+            // Close filter if open
+            dropdown.classList.remove("active");
+            filterContainer.classList.remove("active");
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', () => {
+            sortDropdown.classList.remove("active");
+            sortContainer.classList.remove("active");
+        });
+
+        // Handle sort selection
+        sortItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const sortValue = item.dataset.sort;
+                const sortText = item.textContent;
+                
+                // Update button text
+                sortBtn.innerHTML = `${sortText} <span>▾</span>`;
+                
+                // Close dropdown
+                sortDropdown.classList.remove("active");
+                sortContainer.classList.remove("active");
+                
+                // Apply sorting
+                if (!sortValue) return;
+
+                if (!isUnifiedMode) {
+                    showUnified("all");
+                    filterBtn.innerHTML = `All <span>▾</span>`;
+                }
+
+                sortGrid(unifiedGrid, sortValue);
+            });
+        });
+    }
 
     function showEditorial() {
         isUnifiedMode = false;
         unifiedGrid.style.display = "none";
         unifiedGrid.innerHTML = "";
         originalBlocks.forEach(block => block.style.display = "");
-        sortSelect.value = "";
+        
+        // Re-attach click handlers to original cards
+        setTimeout(() => {
+            document.querySelectorAll('.card, .big-card').forEach(makeCardClickable);
+        }, 0);
+        
         filterBtn.innerHTML = `Category <span>▾</span>`;
         
         const newUrl = window.location.pathname;
@@ -69,30 +128,35 @@ document.addEventListener("DOMContentLoaded", () => {
             unifiedGrid.appendChild(clone);
         });
 
+        // Attach click handlers to new cards
+        setTimeout(() => {
+            unifiedGrid.querySelectorAll('.card, .unified-card').forEach(makeCardClickable);
+        }, 0);
+
         return unifiedGrid;
     }
 
     function createUnifiedCard(original) {
-         const wrapper = document.createElement("div");
-    wrapper.className = "card unified-card";
-    wrapper.dataset.category = original.dataset.category;
-    wrapper.dataset.price = original.dataset.price;
-    
-    wrapper.dataset.id = original.dataset.id;
-    
-    const imgWrap = original.querySelector(".img-wrap").cloneNode(true);
-    const info = original.querySelector(".info").cloneNode(true);
-    
-    wrapper.appendChild(imgWrap);
-    wrapper.appendChild(info);
-    
-    return wrapper;
+        const wrapper = document.createElement("div");
+        wrapper.className = "card unified-card";
+        wrapper.dataset.category = original.dataset.category;
+        wrapper.dataset.price = original.dataset.price;
+        wrapper.dataset.id = original.dataset.id;
+        
+        const imgWrap = original.querySelector(".img-wrap").cloneNode(true);
+        const info = original.querySelector(".info").cloneNode(true);
+        
+        wrapper.appendChild(imgWrap);
+        wrapper.appendChild(info);
+        
+        return wrapper;
     }
 
     categoryItems.forEach(item => {
         item.addEventListener("click", () => {
             const category = item.dataset.category;
             dropdown.classList.remove("active");
+            filterContainer.classList.remove("active");
 
             if (category === "all") {
                 showEditorial();
@@ -101,19 +165,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 filterBtn.innerHTML = `${item.textContent} <span>▾</span>`;
             }
         });
-    });
-
-    sortSelect.addEventListener("change", () => {
-        const order = sortSelect.value;
-        
-        if (!order) return;
-
-        if (!isUnifiedMode) {
-            showUnified("all");
-            filterBtn.innerHTML = `All <span>▾</span>`;
-        }
-
-        sortGrid(unifiedGrid, order);
     });
 
     function sortGrid(container, order) {
@@ -127,36 +178,36 @@ document.addEventListener("DOMContentLoaded", () => {
         items.forEach(item => container.appendChild(item));
     }
 
-
+    // MAKE CARDS CLICKABLE - FIXED VERSION
     function makeCardClickable(card) {
-    if (card.tagName === 'A') return;
-    
-    card.style.cursor = 'pointer';
-    
-    card.addEventListener('click', (e) => {
-        if (e.target.closest('button')) return;
+        if (card.dataset.clickable === 'true') return; // Prevent double binding
+        card.dataset.clickable = 'true';
         
-        const name = card.querySelector('h3')?.textContent || 'product';
-        const price = card.querySelector('.price')?.textContent || '';
-        const category = card.dataset.category || 'all';
+        card.style.cursor = 'pointer';
         
-        const productId = card.dataset.id || name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-        
-        const images = productImages[productId] || productImages[category] || ['images/slides/newin.jpg'];
-        
-        window.location.href = `product.html?id=${productId}&category=${category}&name=${encodeURIComponent(name)}&price=${encodeURIComponent(price)}&images=${encodeURIComponent(JSON.stringify(images))}`;
-    });
+        card.addEventListener('click', (e) => {
+            // Don't navigate if clicking buttons or interactive elements
+            if (e.target.closest('button') || 
+                e.target.closest('a') || 
+                e.target.closest('.remove-item')) {
+                return;
+            }
+            
+            const name = card.querySelector('h3')?.textContent || 'product';
+            const price = card.querySelector('.price')?.textContent || '';
+            const category = card.dataset.category || 'all';
+            const productId = card.dataset.id || name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+            
+            const images = productImages[productId] || productImages[category] || ['images/slides/newin.jpg'];
+            
+            window.location.href = `product.html?id=${productId}&category=${category}&name=${encodeURIComponent(name)}&price=${encodeURIComponent(price)}&images=${encodeURIComponent(JSON.stringify(images))}`;
+        });
     }
 
+    // Attach handlers to initial cards
     document.querySelectorAll('.card, .big-card').forEach(makeCardClickable);
     
-    const originalCreateUnifiedCard = createUnifiedCard;
-    createUnifiedCard = function(original) {
-        const card = originalCreateUnifiedCard(original);
-        makeCardClickable(card);
-        return card;
-    };
-    
+    // Handle URL category on load
     if (initialCategory) {
         const categoryNames = {
             'jackets': 'Jackets',

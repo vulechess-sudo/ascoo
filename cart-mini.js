@@ -1,5 +1,3 @@
-
-
 const cartDropdown = document.getElementById("cartDropdown");
 const cartItemsEl = document.getElementById("cartItems");
 const cartCounter = document.getElementById("cartCounter");
@@ -27,7 +25,7 @@ function renderCart() {
 
     if (cart.length === 0) {
         if (cartItemsEl) cartItemsEl.innerHTML = `<div class="cart-empty">Your cart is empty</div>`;
-        if (cartCounter) cartCounter.style.display = "none";
+        updateCartCounterDisplay(0);
         if (cartTotalEl) cartTotalEl.textContent = "0 RSD";
         return;
     }
@@ -56,11 +54,20 @@ function renderCart() {
         }
     });
 
-    if (cartCounter) {
-        cartCounter.textContent = itemCount;
-        cartCounter.style.display = "flex";
-    }
+    updateCartCounterDisplay(itemCount);
     if (cartTotalEl) cartTotalEl.textContent = `${total.toLocaleString('de-DE')} RSD`;
+}
+
+function updateCartCounterDisplay(count) {
+    if (!cartCounter) return;
+    
+    cartCounter.textContent = count;
+    
+    if (count > 0) {
+        cartCounter.classList.add('visible');
+    } else {
+        cartCounter.classList.remove('visible');
+    }
 }
 
 function removeFromCart(index) {
@@ -70,10 +77,14 @@ function removeFromCart(index) {
     renderCart();
 }
 
+// Close cart when clicking outside
 document.addEventListener("click", (e) => {
     if (!e.target.closest(".cart-container")) {
         cartDropdown?.classList.remove("active");
     }
 });
 
-document.addEventListener('DOMContentLoaded', renderCart);
+// Initialize cart on page load
+document.addEventListener('DOMContentLoaded', () => {
+    renderCart();
+});
