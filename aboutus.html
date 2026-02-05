@@ -6,14 +6,14 @@
     <title>asco — About</title>
 
     <link rel="icon" type="image/x-icon" href="images/icon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-<header class="navbar">
+    <!-- YOUR EXACT HEADER (DO NOT TOUCH) -->
+    <header class="navbar">
         <div class="nav-left">
             <button class="menu-btn hamburger-btn" aria-label="Menu">
                 <span></span>
@@ -93,66 +93,175 @@
         </div>
         
         <div class="search-dropdown">
-    <div class="search-container">
-        <i class="fas fa-magnifying-glass search-icon"></i>
-        <input type="text" class="search-input" placeholder="Search products..." autocomplete="off">
-    </div>
+            <div class="search-container">
+                <i class="fas fa-magnifying-glass search-icon"></i>
+                <input type="text" class="search-input" placeholder="Search products..." autocomplete="off">
+            </div>
         </div>
     </header>
 
-<section class="about-hero">
-    <div class="about-hero-text">
-        <h2>About asco</h2>
-        <p>Designed slowly. Made honestly.</p>
-    </div>
-</section>
-
-<section class="about-story">
-    <div class="about-text2">
-        <h2>Our Story</h2>
-        <p>
-            asco was created from a desire to slow fashion down.
-            We believe clothing should feel intentional, timeless,
-            and quietly confident.
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod sequi laboriosam voluptates illum quo voluptate architecto beatae dolor odit provident, cumque debitis commodi quisquam numquam porro tenetur quos explicabo alias?
-        </p>
-        <p>
-            Every piece is designed to live longer than trends
-            and to feel natural on the body.
-        </p>
-    </div>
-
-    <div class="about-image2"></div>
-</section>
-
-<section class="about-values">
-    <h2 class="values-title">Our Values</h2>
-
-    <div class="values-grid">
-        <div class="value-item">
-             <i class="fa-solid fa-gem"></i>
-            <h3>Quality</h3>
-            <p>Pieces made to last beyond seasons.</p>
+    <!-- NEW MODERN CONTENT STARTS HERE -->
+    
+    <!-- Hero Section -->
+    <section class="about-hero-wrapper" id="heroWrapper">
+        <div class="about-hero-bg"></div>
+        <div class="about-hero-content">
+            <span class="about-hero-label reveal">Est. 2020 • Užice, Serbia
+            </span>
+            <h1 class="about-hero-title reveal">The Art of<br>Slow Fashion</h1>
+            <p class="about-hero-subtitle reveal">Where intention meets elegance. We create garments that tell stories, not follow trends.</p>
         </div>
-
-        <div class="value-item">
-            <i class="fa-solid fa-circle-notch"></i>
-            <h3>Simplicity</h3>
-            <p>Clean silhouettes with purpose.</p>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <i class="fas fa-chevron-down"></i>
         </div>
+    </section>
 
-        <div class="value-item">
-             <i class="fa-solid fa-leaf"></i>
-            <h3>Responsibility</h3>
-            <p>Thoughtful sourcing and production.</p>
+    <!-- Manifesto / Story Section -->
+    <section class="manifesto-section">
+        <div class="manifesto-image reveal-scale">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1000&auto=format&fit=crop" alt="Fashion atelier">
         </div>
-    </div>
-</section>
+        <div class="manifesto-content">
+            <span class="section-tag reveal-left">Our Philosophy</span>
+            <h2 class="reveal-left">Designed slowly.<br>Made honestly.</h2>
+            <p class="reveal">
+                asco was born from a desire to rebel against the chaos of fast fashion. In a world obsessed with speed, we choose patience. Each garment is conceived over months, not weeks—refined through countless iterations until it achieves that rare quality of timelessness.
+            </p>
+            <p class="reveal">
+                We believe clothing should feel like a second skin, not a costume. Our pieces are created for those who move through the world with quiet confidence, who understand that true style is never loud, but always present.
+            </p>
+            <div class="manifesto-quote reveal">
+                "Fashion fades, only style remains."
+            </div>
+        </div>
+    </section>
 
+    <!-- Stats Strip -->
+    <section class="stats-strip">
+        <div class="stat-item reveal">
+            <h3>12</h3>
+            <p>Collections</p>
+        </div>
+        <div class="stat-item reveal">
+            <h3>100%</h3>
+            <p>Local Production</p>
+        </div>
+        <div class="stat-item reveal">
+            <h3>∞</h3>
+            <p>Timeless Pieces</p>
+        </div>
+    </section>
 
-<section class="about-break"></section>
+    <!-- Modern Values Section -->
+    <section class="values-modern">
+        <div class="values-header reveal">
+            <h2>Our Values</h2>
+            <p>Three pillars guide every decision we make, from the first sketch to the final stitch.</p>
+        </div>
+        
+        <div class="values-grid-modern">
+            <div class="value-card reveal">
+                <div class="value-icon">
+                    <i class="fas fa-gem"></i>
+                </div>
+                <h3>Quality Over Quantity</h3>
+                <p>We produce limited runs of each design, ensuring every piece receives the attention it deserves. No mass production. No compromises.</p>
+            </div>
+            
+            <div class="value-card reveal">
+                <div class="value-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h3>Conscious Creation</h3>
+                <p>From deadstock fabrics to biodegradable packaging, sustainability isn't a marketing angle—it's our foundation. We create with the future in mind.</p>
+            </div>
+            
+            <div class="value-card reveal">
+                <div class="value-icon">
+                    <i class="fas fa-hand-sparkles"></i>
+                </div>
+                <h3>Human Touch</h3>
+                <p>Every garment is cut and sewn by artisans in our Belgrade atelier. Machines assist, but humans decide. This is luxury with a soul.</p>
+            </div>
+        </div>
+    </section>
 
- <footer class="footer">
+    <!-- Atelier Section -->
+    <section class="atelier-section">
+        <div class="atelier-header reveal">
+            <span class="section-tag" style="justify-content: center;">The Atelier</span>
+            <h2 style="font-family: var(--font-serif); font-size: 2.5rem; color: var(--color-accent);">Where Magic Happens</h2>
+        </div>
+        
+        <div class="atelier-grid">
+            <div class="atelier-image reveal-left">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1000&auto=format&fit=crop" alt="Atelier work">
+            </div>
+            <div class="atelier-text reveal">
+                <h3>Small Team, Big Vision</h3>
+                <p>Our atelier is home to just seven master craftspeople, each with decades of experience in haute couture techniques. Here, traditional methods meet contemporary design.</p>
+                <p>We work in small batches, allowing us to maintain an obsessive attention to detail that factory production simply cannot match. When you wear asco, you're wearing the work of hands that care.</p>
+                <p style="margin-top: 2rem; font-style: italic; color: var(--color-accent);">"We don't make clothes. We craft garments for life's meaningful moments."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+            
+            <div class="timeline-item reveal">
+                <div class="timeline-year">2020</div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>The Beginning</h4>
+                    <p>asco founded in a small studio in Belgrade with a single sewing machine and a vision to slow fashion down.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item reveal">
+                <div class="timeline-year">2021</div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>First Collection</h4>
+                    <p>"Origin" debuts to critical acclaim. Sold exclusively through our website, establishing our direct-to-consumer model.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item reveal">
+                <div class="timeline-year">2023</div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>Expansion</h4>
+                    <p>Moved to our current atelier space and expanded the team to include specialists in pattern-making and textile sourcing.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-item reveal">
+                <div class="timeline-year">2026</div>
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h4>Today</h4>
+                    <p>Continuing to grow while staying true to our roots. Every piece still made by hand, every design still considered.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Full Bleed Parallax -->
+    <section class="fullbleed-section">
+        <div class="fullbleed-overlay"></div>
+        <div class="fullbleed-text reveal-scale">
+            <h2>Join the Slow Movement</h2>
+            <p>Discover pieces that last a lifetime</p>
+            <a href="shop.html" style="display: inline-block; margin-top: 2rem; padding: 1rem 3rem; border: 1px solid white; color: white; text-decoration: none; font-family: var(--font-sans); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.875rem; transition: all 0.3s;">Shop Collection</a>
+        </div>
+    </section>
+
+    <!-- YOUR EXACT FOOTER (DO NOT TOUCH) -->
+    <footer class="footer">
         <div class="footer-main">
             <div class="footer-brand">
                 <h3>asco</h3>
@@ -202,8 +311,45 @@
         </div>
     </footer>
 
-<script src="script.js"></script>
-<script src="search.js"></script>
-<script src="cart-mini.js"></script>
+    <script src="script.js"></script>
+    <script src="search.js"></script>
+    <script src="cart-mini.js"></script>
+    
+    <!-- Scroll Animation Script -->
+    <script>
+        // Trigger hero animation on load
+        window.addEventListener('load', () => {
+            document.getElementById('heroWrapper').classList.add('loaded');
+        });
+
+        // Intersection Observer for scroll reveals
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all reveal elements
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-scale').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
