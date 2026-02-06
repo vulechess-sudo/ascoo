@@ -99,123 +99,156 @@
 
 <!-- ================= RETURN FORM ================= -->
 <section class="return-container">
-    <div class="return-header">
-        <h2>Start a Return</h2>
-        <p class="return-subtitle">We accept returns within 14 days of delivery</p>
-    </div>
-
-    <form class="return-form" id="returnForm" onsubmit="submitReturn(event)">
-        
-        <!-- Step 1 -->
-        <div class="form-section">
-            <h3>Order Information</h3>
+        <div class="return-header">
+            <h2>Start a Return</h2>
+            <p class="return-subtitle">We accept returns within 14 days of delivery</p>
             
-            <div class="form-group">
-                <label>Order Number *</label>
-                <input type="text" name="orderNumber" required placeholder="e.g. ASCO-2024-001">
-            </div>
-
-            <div class="form-group">
-                <label>Email Address *</label>
-                <input type="email" name="email" required placeholder="your@email.com">
-            </div>
-
-            <div class="form-group">
-                <label>Order Date *</label>
-                <input type="date" name="orderDate" required max="2024-12-31">
+            <div class="progress-steps">
+                <div class="step active" id="step1">
+                    <div class="step-number">1</div>
+                    <span class="step-label">Details</span>
+                </div>
+                <div class="step" id="step2">
+                    <div class="step-number">2</div>
+                    <span class="step-label">Items</span>
+                </div>
+                <div class="step" id="step3">
+                    <div class="step-number">3</div>
+                    <span class="step-label">Submit</span>
+                </div>
             </div>
         </div>
 
-        <!-- Step 2 -->
-        <div class="form-section">
-            <h3>Items to Return</h3>
+        <form class="return-form" id="returnForm" onsubmit="submitReturn(event)">
             
-            <div class="items-container" id="itemsContainer">
-                <div class="item-row">
-                    <select name="item1" required>
-                        <option value="">Select Item</option>
-                        <option value="jacket">Jacket - 78.710 RSD</option>
-                        <option value="dress">Dress - 80.000 RSD</option>
-                        <option value="shoes">Shoes - 65.000 RSD</option>
-                        <option value="accessories">Accessories - 45.000 RSD</option>
-                    </select>
-                    <select name="reason1" required>
-                        <option value="">Reason</option>
-                        <option value="too-small">Too Small</option>
-                        <option value="too-large">Too Large</option>
-                        <option value="defective">Defective</option>
-                        <option value="not-as-described">Not as Described</option>
-                        <option value="changed-mind">Changed Mind</option>
-                    </select>
-                    <button type="button" class="remove-item" onclick="removeItem(this)">&times;</button>
+            <!-- Step 1 -->
+            <div class="form-section" data-step="1">
+                <div class="form-section-header">
+                    <div class="form-section-icon">
+                        <i class="fas fa-file-invoice"></i>
+                    </div>
+                    <h3>Order Information</h3>
+                    <span class="form-section-number">Step 1</span>
+                </div>
+                
+                <div class="form-group">
+                    <label>Order Number *</label>
+                    <input type="text" name="orderNumber" required placeholder="e.g. ASCO-2024-001">
+                </div>
+
+                <div class="form-group">
+                    <label>Email Address *</label>
+                    <input type="email" name="email" required placeholder="your@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label>Order Date *</label>
+                    <input type="date" name="orderDate" required>
                 </div>
             </div>
-            
-            <button type="button" class="add-item-btn" onclick="addItem()">
-                <i class="fas fa-plus"></i> Add Another Item
+
+            <!-- Step 2 -->
+            <div class="form-section" data-step="2">
+                <div class="form-section-header">
+                    <div class="form-section-icon">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h3>Items to Return</h3>
+                    <span class="form-section-number">Step 2</span>
+                </div>
+                
+                <div class="items-container" id="itemsContainer">
+                    <div class="item-row">
+                        <select name="item1" required>
+                            <option value="">Select Item</option>
+                            <option value="jacket">Jacket — 78.710 RSD</option>
+                            <option value="dress">Dress — 80.000 RSD</option>
+                            <option value="shoes">Shoes — 65.000 RSD</option>
+                            <option value="accessories">Accessories — 45.000 RSD</option>
+                        </select>
+                        <select name="reason1" required>
+                            <option value="">Return Reason</option>
+                            <option value="too-small">Too Small</option>
+                            <option value="too-large">Too Large</option>
+                            <option value="defective">Defective</option>
+                            <option value="not-as-described">Not as Described</option>
+                            <option value="changed-mind">Changed Mind</option>
+                        </select>
+                        <button type="button" class="remove-item" onclick="removeItem(this)">&times;</button>
+                    </div>
+                </div>
+                
+                <button type="button" class="add-item-btn" onclick="addItem()">
+                    <i class="fas fa-plus"></i> Add Another Item
+                </button>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="form-section" data-step="3">
+                <div class="form-section-header">
+                    <div class="form-section-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Return Details</h3>
+                    <span class="form-section-number">Step 3</span>
+                </div>
+                
+                <div class="form-group">
+                    <label>Return Method</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="returnMethod" value="pickup" checked>
+                            <span>Home Pickup (Free)</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="returnMethod" value="dropoff">
+                            <span>Drop Off</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Additional Comments</label>
+                    <textarea name="comments" rows="4" placeholder="Tell us more about why you're returning..."></textarea>
+                </div>
+            </div>
+
+            <!-- Terms -->
+            <div class="terms-box">
+                <label class="checkbox-option">
+                    <input type="checkbox" required>
+                    <span>I confirm items are unworn, unwashed, with original tags attached</span>
+                </label>
+                <label class="checkbox-option">
+                    <input type="checkbox" required>
+                    <span>I understand refunds are processed within 5-7 business days</span>
+                </label>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="submit-return-btn" id="submitBtn">
+                <i class="fas fa-paper-plane"></i> Submit Return Request
             </button>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="form-section">
-            <h3>Return Details</h3>
-            
-            <div class="form-group">
-                <label>Return Method</label>
-                <div class="radio-group">
-                    <label class="radio-option">
-                        <input type="radio" name="returnMethod" value="pickup" checked>
-                        <span>Pickup (Free)</span>
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="returnMethod" value="dropoff">
-                        <span>Drop Off</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Additional Comments</label>
-                <textarea name="comments" rows="4" placeholder="Tell us more about why you're returning..."></textarea>
-            </div>
-        </div>
-
-        <!-- Terms -->
-        <div class="terms-box">
-            <label class="checkbox-option">
-                <input type="checkbox" required>
-                <span>I agree that items are unworn, unwashed, and in original condition</span>
-            </label>
-            <label class="checkbox-option">
-                <input type="checkbox" required>
-                <span>I understand returns are processed within 5-7 business days</span>
-            </label>
-        </div>
-
-        <!-- Submit -->
-        <button type="submit" class="submit-return-btn">
-            <i class="fas fa-paper-plane"></i> Submit Return Request
-        </button>
+        </form>
 
         <div class="success-message" id="successMessage">
             <i class="fas fa-check-circle"></i>
-            <h4>Return Request Submitted!</h4>
-            <p>We'll email you return instructions within 24 hours.</p>
-            <button type="button" onclick="resetForm()">Start New Return</button>
+            <h4>Return Request Received!</h4>
+            <p>We've emailed you a prepaid return label.<br>Check your inbox for next steps.</p>
+            <button type="button" onclick="resetForm()">Start Another Return</button>
         </div>
-    </form>
 
-    <div class="return-info">
-        <h4>Return Policy</h4>
-        <ul>
-            <li>Items must be returned within 14 days of delivery</li>
-            <li>Items must be unworn, unwashed, and in original condition</li>
-            <li>Original packaging and tags must be included</li>
-            <li>Refunds are processed within 5-7 business days</li>
-            <li>Shipping costs are non-refundable</li>
-        </ul>
-    </div>
-</section>
+        <div class="return-info">
+            <h4><i class="fas fa-shield-alt"></i> Return Policy</h4>
+            <ul>
+                <li>Items must be returned within 14 days of delivery</li>
+                <li>All items must be in original condition with tags attached</li>
+                <li>Free returns on all orders over 15.000 RSD</li>
+                <li>Exchanges available for different sizes when in stock</li>
+                <li>Final sale items cannot be returned</li>
+            </ul>
+        </div>
+    </section>
  <footer class="footer">
         <div class="footer-main">
             <div class="footer-brand">

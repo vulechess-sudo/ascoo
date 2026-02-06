@@ -1592,3 +1592,67 @@ body {
         font-size: 1rem;
     }
 }
+@media (max-width: 768px) {
+    /* ... existing mobile styles ... */
+    
+    /* Full screen dropdown on mobile */
+    .top-dropdown {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        max-width: 100vw;
+        height: 100vh;
+        max-height: 100vh;
+        padding: 2rem;
+        z-index: 100000; /* Higher than everything */
+        overflow-y: auto;
+        background: var(--color-bg);
+    } 
+    /* Hide navbar when menu is open */
+    .navbar:has(.top-dropdown.active) {
+        background: transparent;
+        backdrop-filter: none;
+    }
+    
+    .navbar:has(.top-dropdown.active) .nav-center,
+    .navbar:has(.top-dropdown.active) .nav-right {
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    /* Keep hamburger hidden when menu open */
+    .navbar:has(.top-dropdown.active) .hamburger-btn {
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    /* Menu header adjustments */
+    .menu-header {
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--color-border);
+    }
+    
+    .dropdown-title {
+        font-size: 2rem;
+    }
+    
+    .close-menu {
+        font-size: 2.5rem;
+        left: -10px;
+        top: -10px;
+    }
+    
+    /* Larger menu items for mobile */
+    .menu-links a,
+    .submenu-btn {
+        font-size: 1.25rem;
+        padding: 1.25rem 0;
+    }
+    
+    .submenu-content a {
+        font-size: 1.1rem;
+        padding: 1rem 0 1rem 1.5rem;
+    }
+}

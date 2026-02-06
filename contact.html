@@ -101,35 +101,56 @@
     </header>
 
 <section class="contact">
-    <div class="contact-wrapper">
+        <div class="contact-wrapper">
 
-        <h2 class="contact-title">Contact Us</h2>
-        <p class="contact-subtitle">
-            We’d love to hear from you. For questions, orders, or collaborations,
-            reach out anytime.
-        </p>
+            <h2 class="contact-title reveal">Get in Touch</h2>
+            <p class="contact-subtitle reveal">
+                We'd love to hear from you. For questions, orders, or collaborations,<br>
+                reach out anytime.
+            </p>
 
-        <div class="contact-content">
+            <div class="contact-content">
 
-            <div class="contact-info">
-                <p><strong>Email</strong><br>support@asco.com</p>
-                <p><strong>Phone</strong><br>+381 62 151 3085</p>
-                <p><strong>Address</strong><br>Užice, Serbia</p>
+                <div class="contact-info reveal">
+                    <div class="contact-item">
+                        <i class="fa-regular fa-envelope"></i>
+                        <div class="contact-item-content">
+                            <strong>Email</strong>
+                            <a href="mailto:support@asco.com">support@asco.com</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <div class="contact-item-content">
+                            <strong>Phone</strong>
+                            <a href="tel:+381621513085">+381 62 151 3085</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div class="contact-item-content">
+                            <strong>Atelier</strong>
+                            <span>Užice, Serbia</span>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form reveal" id="contactForm" onsubmit="showSuccess(event)">
+                    <input type="text" name="name" placeholder="Your name" required>
+                    <input type="email" name="email" placeholder="Your email" required>
+                    <textarea name="message" placeholder="Your message" rows="5" required></textarea>
+                    <button type="submit" id="submitBtn">Send Message</button>
+                </form>
+
+                <p class="form-success" id="successMsg">
+                    Thank you. Your message has been sent.
+                    <i class="fa-regular fa-envelope-open"></i>
+                </p>
             </div>
-
-            <form class="contact-form" onsubmit="showSuccess(event)">
-                <input type="text" placeholder="Your name" required>
-                <input type="email" placeholder="Your email" required>
-                <textarea placeholder="Your message" rows="4" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-<p class="form-success">
-    Thank you. Your message has been sent.
-    <i class="fa-regular fa-envelope"></i>
-</p>
         </div>
-    </div>
-</section>
+    </section>
 
 
  <footer class="footer">
@@ -185,5 +206,6 @@
 <script src="script.js"></script>
   <script src="search.js"></script>
    <script src="cart-mini.js"></script>
+   <script src="contact.js"></script>
 </body>
 </html>
