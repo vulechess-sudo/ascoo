@@ -77,14 +77,12 @@ function removeFromCart(index) {
     renderCart();
 }
 
-// Close cart when clicking outside
 document.addEventListener("click", (e) => {
     if (!e.target.closest(".cart-container")) {
         cartDropdown?.classList.remove("active");
     }
 });
 
-// Initialize cart on page load
 document.addEventListener('DOMContentLoaded', () => {
     renderCart();
 });

@@ -1,7 +1,3 @@
-/* =========================
-   INDEX.CSS - Homepage Only
-   ========================= */
-
 /* CSS Variables */
 :root {
     --color-bg: #faf9f7;
@@ -596,7 +592,7 @@ body {
     font-weight: 600;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--color-text-light);
+    color: black;
     margin-bottom: 2rem;
     border-bottom: 1px solid var(--color-text-light);
     padding-bottom: 0.5rem;
@@ -613,7 +609,7 @@ body {
 
 .hero-subtitle {
     font-size: 1.25rem;
-    color: var(--color-text-light);
+    color: black;
     margin-bottom: 3rem;
     font-weight: 300;
 }
@@ -648,7 +644,7 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    color: var(--color-text-light);
+    color: black;
     font-size: 0.75rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -1362,8 +1358,6 @@ body {
         width: 100%;
     }
 }
-
-/* Cart counter visibility */
 .cart-counter:empty,
 .cart-counter[style*="display: none"] {
     display: none !important;
@@ -1452,22 +1446,18 @@ body {
 @media (max-width: 768px) {
     .navbar {
         padding: 1rem;
-        position: relative; /* Ensure proper stacking context */
+        position: relative;
     }
     
     .navbar.scrolled {
         padding: 0.75rem 1rem;
     }
-    
-    /* Hide desktop absolute center on mobile */
     .nav-center {
         position: static;
         transform: none;
-        order: 2; /* Move to middle in flex order */
-        margin: 0 auto; /* Center naturally */
+        order: 2;
+        margin: 0 auto;
     }
-    
-    /* Make navbar use flex properly on mobile */
     .nav-left {
         order: 1;
         flex: 0 0 auto;
@@ -1481,28 +1471,20 @@ body {
         gap: 0.75rem;
         z-index: 10002;
     }
-    
-    /* Resize logo for mobile */
     .nav-center h1 {
         font-size: 1.25rem;
         letter-spacing: 0.15em;
         white-space: nowrap;
     }
-    
-    /* Adjust icon sizes */
     .icon-btn {
         font-size: 1.1rem;
         padding: 0.4rem;
     }
-    
-    /* Fix cart dropdown for mobile */
     .cart-dropdown {
         width: calc(100vw - 2rem);
         right: -0.5rem;
         max-height: 80vh;
     }
-    
-    /* Fix search for mobile */
     .search-dropdown {
         width: calc(100vw - 2rem);
         left: 1rem;
@@ -1517,15 +1499,11 @@ body {
     .search-container {
         padding: 0.5rem 1rem;
     }
-    
-    /* Ensure side menu doesn't break */
     .top-dropdown {
         width: 85vw;
         padding: 2rem 1.5rem;
     }
 }
-
-/* Extra small devices */
 @media (max-width: 380px) {
     .nav-center h1 {
         font-size: 1.1rem;
@@ -1546,26 +1524,15 @@ body {
 ========================= */
 @media (max-width: 768px) {
     .cart-dropdown {
-        position: fixed; /* Change from absolute to fixed */
-        top: 70px;       /* Position below navbar */
-        right: 0.5rem;   /* Small gap from right edge instead of -1rem */
-        left: 0.5rem;    /* Constrain left side too */
-        width: auto;     /* Let it fill the space between left/right */
-        max-width: none; /* Remove max-width constraint */
+        position: fixed;
+        top: 70px;
+        right: 0.5rem;
+        left: 0.5rem;
+        width: auto;
+        max-width: none;
         border-radius: 12px;
     }
-    
-    /* Alternative: if you want it right-aligned like desktop but smaller */
-    /*
-    .cart-dropdown {
-        right: 0.5rem;
-        width: calc(100vw - 1rem);
-        max-width: 360px;
-    }
-    */
 }
-
-/* Very small screens */
 @media (max-width: 480px) {
     .cart-dropdown {
         top: 65px;
@@ -1593,9 +1560,6 @@ body {
     }
 }
 @media (max-width: 768px) {
-    /* ... existing mobile styles ... */
-    
-    /* Full screen dropdown on mobile */
     .top-dropdown {
         position: fixed;
         top: 0;
@@ -1605,11 +1569,10 @@ body {
         height: 100vh;
         max-height: 100vh;
         padding: 2rem;
-        z-index: 100000; /* Higher than everything */
+        z-index: 100000;
         overflow-y: auto;
         background: var(--color-bg);
     } 
-    /* Hide navbar when menu is open */
     .navbar:has(.top-dropdown.active) {
         background: transparent;
         backdrop-filter: none;
@@ -1620,14 +1583,10 @@ body {
         opacity: 0;
         pointer-events: none;
     }
-    
-    /* Keep hamburger hidden when menu open */
     .navbar:has(.top-dropdown.active) .hamburger-btn {
         opacity: 0;
         pointer-events: none;
     }
-    
-    /* Menu header adjustments */
     .menu-header {
         margin-bottom: 2rem;
         padding-bottom: 1rem;
@@ -1643,8 +1602,6 @@ body {
         left: -10px;
         top: -10px;
     }
-    
-    /* Larger menu items for mobile */
     .menu-links a,
     .submenu-btn {
         font-size: 1.25rem;

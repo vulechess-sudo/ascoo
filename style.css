@@ -86,7 +86,6 @@ img {
     gap: 1.5rem;
     position: relative;
     z-index: 10002;
-    /* Add this */
 }
 
 /* Logo */
@@ -155,8 +154,6 @@ img {
     pointer-events: none;
     transition: opacity 0.3s ease;
 }
-
-/* Alternative: if the above doesn't work, try this more specific selector */
 .menu-btn {
     transition: opacity 0.3s ease;
 }
@@ -575,12 +572,6 @@ img {
 }
 
 /* Search */
-/* =========================
-   SEARCH (Fixed)
-========================= */
-/* =========================
-   SEARCH (Fixed)
-========================= */
 .search-dropdown {
     position: absolute;
     top: 100%;
@@ -841,7 +832,6 @@ img {
 .payment-methods {
     display: flex;
     flex-direction: row;
-    /* Add this - ensures horizontal layout */
     gap: 1rem;
     font-size: 1.5rem;
 }
@@ -911,7 +901,7 @@ img {
 }
 
 /* =========================
-   HERO SECTION (FULL SCREEN) - ORIGINAL
+   HERO SECTION
 ========================= */
 .hero {
     height: 80vh;
@@ -1263,7 +1253,6 @@ img {
 /* =========================
    ABOUT PAGE ONLY
 ========================= */
-/* Utility for fade-in animations */
 .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -1299,7 +1288,7 @@ img {
 
 /* =========================
            STICKY HERO SECTION
-        ========================= */
+========================= */
 .about-hero-wrapper {
     position: relative;
     height: 100vh;
@@ -1397,8 +1386,8 @@ img {
 }
 
 /* =========================
-           MANIFESTO SECTION (Split Layout)
-        ========================= */
+MANIFESTO SECTION (Split Layout)
+========================= */
 .manifesto-section {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1477,8 +1466,8 @@ img {
 }
 
 /* =========================
-           STATS STRIP
-        ========================= */
+STATS STRIP
+========================= */
 .stats-strip {
     background: var(--color-accent);
     color: white;
@@ -1505,8 +1494,8 @@ img {
 }
 
 /* =========================
-           VALUES SECTION (Cards)
-        ========================= */
+VALUES SECTION (Cards)
+========================= */
 .values-modern {
     padding: 8rem 2rem;
     background: linear-gradient(180deg, var(--color-bg) 0%, #f5f3f0 100%);
@@ -1592,8 +1581,8 @@ img {
 }
 
 /* =========================
-           ATELIER / TEAM SECTION
-        ========================= */
+ ATELIER / TEAM SECTION
+========================= */
 .atelier-section {
     padding: 8rem 2rem;
     background: var(--color-bg);
@@ -1644,8 +1633,8 @@ img {
 }
 
 /* =========================
-           TIMELINE SECTION
-        ========================= */
+TIMELINE SECTION
+========================= */
 .timeline-section {
     background: var(--color-bg-alt);
     padding: 8rem 2rem;
@@ -1722,8 +1711,8 @@ img {
 }
 
 /* =========================
-           FULL BLEED IMAGE
-        ========================= */
+FULL BLEED IMAGE
+========================= */
 .fullbleed-section {
     height: 60vh;
     background: url("https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=2000&auto=format&fit=crop") center/cover no-repeat fixed;
@@ -1762,8 +1751,8 @@ img {
 }
 
 /* =========================
-           MOBILE RESPONSIVE
-        ========================= */
+MOBILE RESPONSIVE
+========================= */
 @media (max-width: 968px) {
     .manifesto-section {
         grid-template-columns: 1fr;
@@ -1834,10 +1823,6 @@ img {
 /* =========================
    CONTRACT PAGE ONLY
 ========================= */
-/* =========================
-           CONTACT PAGE MODERN STYLES
-        ========================= */
-
 :root {
     --color-bg: #faf9f7;
     --color-accent: #3f352c;
@@ -1849,10 +1834,8 @@ img {
 
 .contact {
     background: #ebe7e2;
-    /* Slightly warmer, lighter beige */
     padding: 120px 80px;
     min-height: calc(100vh - 200px);
-    /* Ensure it fills screen nicely */
 }
 
 .contact-wrapper {
@@ -1865,10 +1848,8 @@ img {
 .contact-title {
     font-family: var(--font-serif);
     font-size: 52px;
-    /* Was 34px */
     font-weight: 400;
     letter-spacing: -0.5px;
-    /* Tighter, more elegant */
     margin-bottom: 16px;
     color: var(--color-accent);
     line-height: 1.1;
@@ -1877,11 +1858,9 @@ img {
 .contact-subtitle {
     font-family: var(--font-sans);
     font-size: 15px;
-    /* Slightly bigger */
     color: var(--color-text-light);
     max-width: 500px;
     margin: 0 auto 70px;
-    /* More breathing room */
     line-height: 1.7;
     font-weight: 300;
 }
@@ -1891,10 +1870,8 @@ img {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 100px;
-    /* Increased gap */
     text-align: left;
     align-items: start;
-    /* Align to top */
 }
 
 /* INFO - With Icons */
@@ -1902,9 +1879,7 @@ img {
     display: flex;
     flex-direction: column;
     gap: 32px;
-    /* Consistent spacing */
     padding-top: 10px;
-    /* Align visually with form */
 }
 
 .contact-item {
@@ -1919,7 +1894,6 @@ img {
     margin-top: 3px;
     opacity: 0.7;
     width: 24px;
-    /* Fixed width for alignment */
     text-align: center;
 }
 
@@ -1960,14 +1934,12 @@ img {
     padding: 16px 18px;
     border: 1px solid var(--color-border);
     background: rgba(255, 255, 255, 0.4);
-    /* Subtle depth */
     font-family: var(--font-sans);
     font-size: 14px;
     color: var(--color-accent);
     outline: none;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 2px;
-    /* Slight radius for modern feel */
 }
 
 .contact-form input::placeholder,
@@ -1980,7 +1952,6 @@ img {
     background: rgba(255, 255, 255, 0.85);
     border-color: var(--color-accent);
     transform: translateY(-2px);
-    /* Slight lift */
     box-shadow: 0 4px 12px rgba(63, 53, 44, 0.08);
 }
 
@@ -2083,8 +2054,8 @@ img {
 }
 
 /* =========================
-           MOBILE RESPONSIVE
-        ========================= */
+MOBILE RESPONSIVE
+========================= */
 @media (max-width: 900px) {
     .contact {
         padding: 80px 24px;
@@ -2455,8 +2426,6 @@ img {
     opacity: 1;
 }
 
-
-/* SORT */
 /* =========================
    MODERN SORT (Custom Dropdown)
 ========================= */
@@ -3124,8 +3093,6 @@ img {
             padding: 0;
             overflow: hidden;
         }
-
-        /* Header with progress */
         .return-header {
             background: linear-gradient(135deg, #f8f6f3 0%, #f0ede8 100%);
             padding: 50px 40px 40px;
@@ -4479,13 +4446,9 @@ select:focus {
 }
 
 @media (max-width: 768px) {
-    /* ... existing mobile styles ... */
-
-    /* Make filter and sort identical on mobile */
     .shop-bar {
         display: flex;
         flex-direction: row !important;
-        /* Side by side, not stacked */
         justify-content: space-between;
         align-items: center;
         gap: 15px;
@@ -4495,19 +4458,16 @@ select:focus {
     .filter,
     .sort {
         flex: 1;
-        /* Equal width */
         position: relative;
     }
 
     .filter-btn,
     .sort-btn {
         width: 100%;
-        /* Full width of container */
         min-width: unset;
         max-width: unset;
         padding: 12px 0;
         font-size: 13px;
-        /* Slightly smaller for mobile */
         justify-content: space-between;
     }
 
@@ -4527,7 +4487,6 @@ select:focus {
     .navbar {
         padding: 1rem;
         position: relative;
-        /* Ensure proper stacking context */
     }
 
     .navbar.scrolled {
@@ -4539,9 +4498,7 @@ select:focus {
         position: static;
         transform: none;
         order: 2;
-        /* Move to middle in flex order */
         margin: 0 auto;
-        /* Center naturally */
     }
 
     /* Make navbar use flex properly on mobile */
@@ -4625,17 +4582,11 @@ select:focus {
 @media (max-width: 768px) {
     .cart-dropdown {
         position: fixed;
-        /* Change from absolute to fixed */
         top: 70px;
-        /* Position below navbar */
         right: 0.5rem;
-        /* Small gap from right edge instead of -1rem */
         left: 0.5rem;
-        /* Constrain left side too */
         width: auto;
-        /* Let it fill the space between left/right */
         max-width: none;
-        /* Remove max-width constraint */
         border-radius: 12px;
     }
 }
@@ -4668,9 +4619,6 @@ select:focus {
     }
 }
 @media (max-width: 768px) {
-    /* ... existing mobile styles ... */
-    
-    /* Full screen dropdown on mobile */
     .top-dropdown {
         position: fixed;
         top: 0;
@@ -4680,7 +4628,7 @@ select:focus {
         height: 100vh;
         max-height: 100vh;
         padding: 2rem;
-        z-index: 100000; /* Higher than everything */
+        z-index: 100000;
         overflow-y: auto;
         background: var(--color-bg);
     } 

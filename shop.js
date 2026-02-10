@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
         'top-2': ['images/slides/top4.webp', 'images/slides/top5.webp', 'images/slides/top6.webp']
     };
 
-    // MODERN FILTER DROPDOWN
     filterBtn.addEventListener("click", e => {
         e.stopPropagation();
         dropdown.classList.toggle("active");
@@ -52,38 +51,31 @@ document.addEventListener("DOMContentLoaded", () => {
         filterContainer.classList.remove("active");
     });
 
-    // MODERN SORT DROPDOWN
     if (sortBtn && sortDropdown) {
         sortBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             sortDropdown.classList.toggle("active");
             sortContainer.classList.toggle("active");
             
-            // Close filter if open
             dropdown.classList.remove("active");
             filterContainer.classList.remove("active");
         });
 
-        // Close when clicking outside
         document.addEventListener('click', () => {
             sortDropdown.classList.remove("active");
             sortContainer.classList.remove("active");
         });
 
-        // Handle sort selection
         sortItems.forEach(item => {
             item.addEventListener('click', () => {
                 const sortValue = item.dataset.sort;
                 const sortText = item.textContent;
                 
-                // Update button text
                 sortBtn.innerHTML = `${sortText} <span>▾</span>`;
                 
-                // Close dropdown
                 sortDropdown.classList.remove("active");
                 sortContainer.classList.remove("active");
                 
-                // Apply sorting
                 if (!sortValue) return;
 
                 if (!isUnifiedMode) {
@@ -102,7 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
         unifiedGrid.innerHTML = "";
         originalBlocks.forEach(block => block.style.display = "");
         
-        // Re-attach click handlers to original cards
         setTimeout(() => {
             document.querySelectorAll('.card, .big-card').forEach(makeCardClickable);
         }, 0);
@@ -128,7 +119,6 @@ document.addEventListener("DOMContentLoaded", () => {
             unifiedGrid.appendChild(clone);
         });
 
-        // Attach click handlers to new cards
         setTimeout(() => {
             unifiedGrid.querySelectorAll('.card, .unified-card').forEach(makeCardClickable);
         }, 0);
@@ -178,15 +168,13 @@ document.addEventListener("DOMContentLoaded", () => {
         items.forEach(item => container.appendChild(item));
     }
 
-    // MAKE CARDS CLICKABLE - FIXED VERSION
     function makeCardClickable(card) {
-        if (card.dataset.clickable === 'true') return; // Prevent double binding
+        if (card.dataset.clickable === 'true') return;
         card.dataset.clickable = 'true';
         
         card.style.cursor = 'pointer';
         
         card.addEventListener('click', (e) => {
-            // Don't navigate if clicking buttons or interactive elements
             if (e.target.closest('button') || 
                 e.target.closest('a') || 
                 e.target.closest('.remove-item')) {
@@ -204,10 +192,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Attach handlers to initial cards
     document.querySelectorAll('.card, .big-card').forEach(makeCardClickable);
     
-    // Handle URL category on load
     if (initialCategory) {
         const categoryNames = {
             'jackets': 'Jackets',

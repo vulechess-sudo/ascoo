@@ -32,7 +32,6 @@ let itemCount = 1;
         }
 
         function updateProgress() {
-            // Simple progress update based on form interaction
             const orderNum = document.querySelector('input[name="orderNumber"]').value;
             const email = document.querySelector('input[name="email"]').value;
             const items = document.querySelectorAll('.item-row').length;
@@ -48,23 +47,19 @@ let itemCount = 1;
             const form = document.getElementById('returnForm');
             const successMessage = document.getElementById('successMessage');
             
-            // Add loading state
             btn.classList.add('sending');
             btn.innerHTML = '';
             
-            // Simulate API call
             setTimeout(() => {
                 btn.classList.remove('sending');
                 form.style.display = 'none';
                 successMessage.style.display = 'block';
                 
-                // Mark all steps complete
                 document.querySelectorAll('.step').forEach(step => {
                     step.classList.add('completed');
                     step.classList.remove('active');
                 });
                 
-                // Scroll to top
                 document.querySelector('.return-container').scrollIntoView({ behavior: 'smooth' });
             }, 1500);
         }
@@ -105,7 +100,6 @@ let itemCount = 1;
             itemCount = 1;
         }
 
-        // Update progress on input
         document.querySelectorAll('input, select').forEach(input => {
             input.addEventListener('change', updateProgress);
             input.addEventListener('input', updateProgress);

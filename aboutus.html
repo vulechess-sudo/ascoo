@@ -78,7 +78,6 @@
                             <span id="cartTotal">0 RSD</span>
                         </div>
                         <a href="checkout.html" class="checkout-btn">Checkout</a>
-                        <button class="continue-btn" onclick="toggleCartDropdown()">Continue Shopping</button>
                     </div>
                 </div>
             </div>
@@ -98,10 +97,7 @@
                 <input type="text" class="search-input" placeholder="Search products..." autocomplete="off">
             </div>
         </div>
-    </header>
-
-    <!-- NEW MODERN CONTENT STARTS HERE -->
-    
+    </header>  
     <!-- Hero Section -->
     <section class="about-hero-wrapper" id="heroWrapper">
         <div class="about-hero-bg"></div>
@@ -315,14 +311,11 @@
     <script src="search.js"></script>
     <script src="cart-mini.js"></script>
     
-    <!-- Scroll Animation Script -->
     <script>
-        // Trigger hero animation on load
         window.addEventListener('load', () => {
             document.getElementById('heroWrapper').classList.add('loaded');
         });
 
-        // Intersection Observer for scroll reveals
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -336,12 +329,10 @@
             });
         }, observerOptions);
 
-        // Observe all reveal elements
         document.querySelectorAll('.reveal, .reveal-left, .reveal-scale').forEach(el => {
             observer.observe(el);
         });
 
-        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();

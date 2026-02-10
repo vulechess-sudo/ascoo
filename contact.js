@@ -5,11 +5,9 @@
             const successMsg = document.getElementById('successMsg');
             const form = document.getElementById('contactForm');
             
-            // Add loading state
             btn.classList.add('sending');
             btn.textContent = 'Sending...';
             
-            // Simulate send delay
             setTimeout(() => {
                 btn.classList.remove('sending');
                 btn.textContent = 'Send Message';
@@ -18,7 +16,6 @@
             }, 1500);
         }
 
-        // Scroll reveal animation
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'

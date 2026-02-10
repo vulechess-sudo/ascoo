@@ -101,22 +101,22 @@ const overlay = document.querySelector('.overlay');
 menuBtn.addEventListener('click', () => {
     topDropdown.classList.add('active');
     overlay.classList.add('active');
-    menuBtn.style.opacity = '0';           // Hide hamburger
-    menuBtn.style.pointerEvents = 'none';  // Disable clicks
+    menuBtn.style.opacity = '0';
+    menuBtn.style.pointerEvents = 'none';
 });
 
 closeMenuBtn.addEventListener('click', () => {
     topDropdown.classList.remove('active');
     overlay.classList.remove('active');
-    menuBtn.style.opacity = '1';           // Show hamburger
-    menuBtn.style.pointerEvents = 'auto';  // Enable clicks
+    menuBtn.style.opacity = '1';
+    menuBtn.style.pointerEvents = 'auto';
 });
 
 overlay.addEventListener('click', () => {
     topDropdown.classList.remove('active');
     overlay.classList.remove('active');
-    menuBtn.style.opacity = '1';           // Show hamburger
-    menuBtn.style.pointerEvents = 'auto';  // Enable clicks
+    menuBtn.style.opacity = '1';
+    menuBtn.style.pointerEvents = 'auto';
 });
 
 const submenuBtn = document.querySelector('.submenu-btn');
