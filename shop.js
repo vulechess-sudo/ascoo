@@ -162,6 +162,10 @@ document.addEventListener("DOMContentLoaded", () => {
         items.sort((a, b) => {
             const aPrice = parseInt(a.dataset.price) || 0;
             const bPrice = parseInt(b.dataset.price) || 0;
+            if(order == "srt")
+            {
+                showEditorial();
+            }
             return order === "asc" ? aPrice - bPrice : bPrice - aPrice;
         });
         
