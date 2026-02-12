@@ -169,27 +169,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function makeCardClickable(card) {
-        if (card.dataset.clickable === 'true') return;
-        card.dataset.clickable = 'true';
+       if (card.dataset.clickable === 'true') return;
+    card.dataset.clickable = 'true';
+    
+    card.style.cursor = 'pointer';
+    
+    card.addEventListener('click', (e) => {
+        if (e.target.closest('button') || 
+            e.target.closest('a') || 
+            e.target.closest('.remove-item')) {
+            return;
+        }
         
-        card.style.cursor = 'pointer';
+        const productId = card.dataset.id;
         
-        card.addEventListener('click', (e) => {
-            if (e.target.closest('button') || 
-                e.target.closest('a') || 
-                e.target.closest('.remove-item')) {
-                return;
-            }
-            
-            const name = card.querySelector('h3')?.textContent || 'product';
-            const price = card.querySelector('.price')?.textContent || '';
-            const category = card.dataset.category || 'all';
-            const productId = card.dataset.id || name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-            
-            const images = productImages[productId] || productImages[category] || ['images/slides/newin.jpg'];
-            
-            window.location.href = `product.html?id=${productId}&category=${category}&name=${encodeURIComponent(name)}&price=${encodeURIComponent(price)}&images=${encodeURIComponent(JSON.stringify(images))}`;
-        });
+        if (!productId) {
+            console.error('Product ID not found on card');
+            return;
+        }
+        
+        window.location.href = `product.html?id=${productId}`;
+    });
     }
 
     document.querySelectorAll('.card, .big-card').forEach(makeCardClickable);

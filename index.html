@@ -132,39 +132,48 @@
     </div>
 
     <!-- Category Slider (Preserved Exactly) -->
-    <section class="category-slider">
-        <button class="slider-btn left" aria-label="Previous">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <div class="slider-window">
-            <div class="slider-track">
-                <div class="slide" style="background-image:url('images/slides/dresses.jpg');" data-label="Dresses">
-                    <a href="shop.html?category=dresses" class="slide-label">Dresses</a>
-                </div>
-                <div class="slide" style="background-image:url('images/slides/shoes.jpg');" data-label="Shoes">
-                    <a href="shop.html?category=shoes" class="slide-label">Shoes</a>
-                </div>
-                <div class="slide" style="background-image:url('images/slides/jackets.jpg');" data-label="Jackets">
-                    <a href="shop.html?category=jackets" class="slide-label">Jackets</a>
-                </div>
-                <div class="slide" style="background-image:url('images/slides/skirts.jpg');" data-label="Skirts">
-                    <a href="shop.html?category=skirts" class="slide-label">Skirts</a>
-                </div>
-                <div class="slide" style="background-image:url('images/slides/tops.jpg');" data-label="Tops">
-                    <a href="shop.html?category=tops" class="slide-label">Tops</a>
-                </div>
-                <div class="slide" style="background-image:url('images/slides/accessories.jpg');" data-label="Accessories">
-                    <a href="shop.html?category=accessories" class="slide-label">Accessories</a>
-                </div>
-                <div class="slide" style="background-image:url('images/slides/newin.jpg');" data-label="New In">
-                    <a href="shop.html?category=newin" class="slide-label">New In</a>
-                </div>
-            </div>
+  <section class="category-slider">
+    <button class="slider-btn left" aria-label="Previous">
+        <i class="fas fa-chevron-left"></i>
+    </button>
+    <div class="slider-window">
+        <div class="slider-track">
+            
+            <!-- Wrap entire slide in anchor -->
+            <a href="shop.html?category=dresses" class="slide" style="background-image:url('images/slides/dresses.jpg');">
+                <span class="slide-label">Dresses</span>
+            </a>
+            
+            <a href="shop.html?category=shoes" class="slide" style="background-image:url('images/slides/shoes.jpg');">
+                <span class="slide-label">Shoes</span>
+            </a>
+            
+            <a href="shop.html?category=jackets" class="slide" style="background-image:url('images/slides/jackets.jpg');">
+                <span class="slide-label">Jackets</span>
+            </a>
+            
+            <a href="shop.html?category=skirts" class="slide" style="background-image:url('images/slides/skirts.jpg');">
+                <span class="slide-label">Skirts</span>
+            </a>
+            
+            <a href="shop.html?category=tops" class="slide" style="background-image:url('images/slides/tops.jpg');">
+                <span class="slide-label">Tops</span>
+            </a>
+            
+            <a href="shop.html?category=accessories" class="slide" style="background-image:url('images/slides/accessories.jpg');">
+                <span class="slide-label">Accessories</span>
+            </a>
+            
+            <a href="shop.html?category=newin" class="slide" style="background-image:url('images/slides/newin.jpg');">
+                <span class="slide-label">New In</span>
+            </a>
+            
         </div>
-        <button class="slider-btn right" aria-label="Next">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-    </section>
+    </div>
+    <button class="slider-btn right" aria-label="Next">
+        <i class="fas fa-chevron-right"></i>
+    </button>
+</section>
 
     <!-- About Preview -->
     <section class="about-preview">
@@ -276,7 +285,6 @@
     <script src="script.js"></script>
     <script src="search.js"></script>
     <script src="cart-mini.js"></script>
-    <script src="product.js"></script>
 </body>
 
 </html>

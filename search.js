@@ -85,23 +85,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         results.forEach(product => {
-            const item = document.createElement('a');
-            item.className = 'search-item';
+           const item = document.createElement('a');
+    item.className = 'search-item';
+    item.href = `product.html?id=${product.id}`;
 
-            const images = productImages[product.id] || productImages[product.category] || ['images/slides/newin.jpg'];
+    item.innerHTML = `
+        <img src="${product.image}" alt="${product.name}">
+        <div class="search-item-info">
+            <span class="search-item-name">${product.name}</span>
+            <span class="search-item-price">${product.price}</span>
+            <span class="search-item-cat">${product.category}</span>
+        </div>
+    `;
 
-            item.href = `product.html?id=${product.id}&category=${product.category}&name=${encodeURIComponent(product.name)}&price=${encodeURIComponent(product.price)}&images=${encodeURIComponent(JSON.stringify(images))}`;
-
-            item.innerHTML = `
-                <img src="${product.image}" alt="${product.name}">
-                <div class="search-item-info">
-                    <span class="search-item-name">${product.name}</span>
-                    <span class="search-item-price">${product.price}</span>
-                    <span class="search-item-cat">${product.category}</span>
-                </div>
-            `;
-
-            searchResults.appendChild(item);
+    searchResults.appendChild(item);
         });
 
         searchResults.style.display = 'block';
