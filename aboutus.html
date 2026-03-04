@@ -12,7 +12,6 @@
 </head>
 
 <body>
-    <!-- YOUR EXACT HEADER (DO NOT TOUCH) -->
     <header class="navbar">
         <div class="nav-left">
             <button class="menu-btn hamburger-btn" aria-label="Menu">
@@ -26,226 +25,230 @@
                     <h2 class="dropdown-title">asco</h2>
                 </div>
                 <nav class="menu-links">
-                    <a href="index.html">Home</a>
-                    <a href="shop.html">Shop</a>
+                    <a href="index.html" data-translate="nav_home">Home</a>
+                    <a href="shop.html" data-translate="nav_shop">Shop</a>
                     <div class="submenu">
-                        <button class="submenu-btn">Categories <i class="fas fa-chevron-right"></i></button>
+                        <button class="submenu-btn">
+                            <span data-translate="nav_categories">Categories</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
                         <div class="submenu-content">
-                            <a href="shop.html?category=jackets">Jackets</a>
-                            <a href="shop.html?category=shoes">Shoes</a>
-                            <a href="shop.html?category=newin">New In</a>
-                            <a href="shop.html?category=accessories">Accessories</a>
-                            <a href="shop.html?category=dresses">Dresses</a>
-                            <a href="shop.html?category=tops">Tops</a>
-                            <a href="shop.html?category=skirts">Skirts</a>
+                            <a href="shop.html?category=jackets" data-translate="cat_jackets">Jackets</a>
+                            <a href="shop.html?category=shoes" data-translate="cat_shoes">Shoes</a>
+                            <a href="shop.html?category=newin" data-translate="cat_newin">New In</a>
+                            <a href="shop.html?category=accessories" data-translate="cat_accessories">Accessories</a>
+                            <a href="shop.html?category=dresses" data-translate="cat_dresses">Dresses</a>
+                            <a href="shop.html?category=tops" data-translate="cat_tops">Tops</a>
+                            <a href="shop.html?category=skirts" data-translate="cat_skirts">Skirts</a>
                         </div>
                     </div>
-                    <a href="aboutus.html">About</a>
-                    <a href="contact.html">Contact</a>
-                    <a href="startareturn.html">Returns</a>
-                    <a href="https://www.instagram.com/vukotaaaaaa" target="_blank" rel="noopener">Instagram</a>
+                    <a href="aboutus.html" data-translate="nav_about">About</a>
+                    <a href="contact.html" data-translate="nav_contact">Contact</a>
+                    <a href="startareturn.html" data-translate="nav_returns">Returns</a>
+                    <a href="https://www.instagram.com/vukotaaaaaa" target="_blank" rel="noopener"
+                        data-translate="nav_instagram">Instagram</a>
                 </nav>
             </div>
         </div>
         <div class="overlay"></div>
-        
+
         <div class="nav-center">
             <a href="index.html" class="logo-link">
                 <h1>asco</h1>
             </a>
         </div>
-        
+
         <div class="nav-right">
             <button class="icon-btn search-btn" aria-label="Search">
                 <i class="fas fa-magnifying-glass"></i>
             </button>
-            
+
             <div class="cart-container">
                 <button class="icon-btn cart-btn-header" onclick="toggleCartDropdown()" aria-label="Cart">
                     <i class="fas fa-bag-shopping"></i>
                     <span class="cart-counter" id="cartCounter">0</span>
                 </button>
-                
+
                 <div class="cart-dropdown" id="cartDropdown">
                     <div class="cart-header">
-                        <h3>Your Cart</h3>
-                        <button class="close-cart" onclick="toggleCartDropdown()" aria-label="Close cart">&times;</button>
+                        <h3 data-translate="cart_title">Your Cart</h3>
+                        <button class="close-cart" onclick="toggleCartDropdown()"
+                            aria-label="Close cart">&times;</button>
                     </div>
                     <div class="cart-items" id="cartItems"></div>
                     <div class="cart-footer">
                         <div class="cart-total">
-                            <span>Subtotal</span>
+                            <span data-translate="cart_subtotal">Subtotal</span>
                             <span id="cartTotal">0 RSD</span>
                         </div>
-                        <a href="checkout.html" class="checkout-btn">Checkout</a>
+                        <a href="checkout.html" class="checkout-btn" data-translate="checkout">Checkout</a>
                     </div>
                 </div>
             </div>
-            
+
             <div class="dropdown language-dropdown">
                 <button class="dropbtn">EN <i class="fas fa-chevron-down"></i></button>
                 <div class="dropdown-content">
-                    <a href="#">EN</a>
-                    <a href="#">RS</a>
+                    <a href="#" onclick="setLanguage('en'); return false;">EN</a>
+                    <a href="#" onclick="setLanguage('rs'); return false;">RS</a>
                 </div>
             </div>
         </div>
-        
+
         <div class="search-dropdown">
             <div class="search-container">
                 <i class="fas fa-magnifying-glass search-icon"></i>
-                <input type="text" class="search-input" placeholder="Search products..." autocomplete="off">
+                <input type="text" class="search-input" data-translate-placeholder="search_placeholder"
+                    placeholder="Search products..." autocomplete="off">
             </div>
         </div>
-    </header>  
+    </header>
     <!-- Hero Section -->
     <section class="about-hero-wrapper" id="heroWrapper">
-        <div class="about-hero-bg"></div>
-        <div class="about-hero-content">
-            <span class="about-hero-label reveal">Est. 2020 • Užice, Serbia
-            </span>
-            <h1 class="about-hero-title reveal">The Art of<br>Slow Fashion</h1>
-            <p class="about-hero-subtitle reveal">Where intention meets elegance. We create garments that tell stories, not follow trends.</p>
-        </div>
-        <div class="scroll-indicator">
-            <span>Scroll</span>
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </section>
+    <div class="about-hero-bg"></div>
+    <div class="about-hero-content">
+        <span class="about-hero-label reveal" data-translate="about_hero_label">Est. 2020 • Užice, Serbia</span>
+        <h1 class="about-hero-title reveal" data-translate="about_hero_title">The Art of<br>Slow Fashion</h1>
+        <p class="about-hero-subtitle reveal" data-translate="about_hero_subtitle">Where intention meets elegance. We create garments that tell stories, not follow trends.</p>
+    </div>
+    <div class="scroll-indicator">
+        <span data-translate="about_scroll">Scroll</span>
+        <i class="fas fa-chevron-down"></i>
+    </div>
+</section>
 
-    <!-- Manifesto / Story Section -->
-    <section class="manifesto-section">
-        <div class="manifesto-image reveal-scale">
-            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1000&auto=format&fit=crop" alt="Fashion atelier">
+<!-- Manifesto / Story Section -->
+<section class="manifesto-section">
+    <div class="manifesto-image reveal-scale">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1000&auto=format&fit=crop" alt="Fashion atelier">
+    </div>
+    <div class="manifesto-content">
+        <span class="section-tag reveal-left" data-translate="about_philosophy_tag">Our Philosophy</span>
+        <h2 class="reveal-left" data-translate="about_philosophy_title">Designed slowly.<br>Made honestly.</h2>
+        <p class="reveal" data-translate="about_philosophy_p1">
+            asco was born from a desire to rebel against the chaos of fast fashion. In a world obsessed with speed, we choose patience. Each garment is conceived over months, not weeks—refined through countless iterations until it achieves that rare quality of timelessness.
+        </p>
+        <p class="reveal" data-translate="about_philosophy_p2">
+            We believe clothing should feel like a second skin, not a costume. Our pieces are created for those who move through the world with quiet confidence, who understand that true style is never loud, but always present.
+        </p>
+        <div class="manifesto-quote reveal" data-translate="about_philosophy_quote">
+            "Fashion fades, only style remains."
         </div>
-        <div class="manifesto-content">
-            <span class="section-tag reveal-left">Our Philosophy</span>
-            <h2 class="reveal-left">Designed slowly.<br>Made honestly.</h2>
-            <p class="reveal">
-                asco was born from a desire to rebel against the chaos of fast fashion. In a world obsessed with speed, we choose patience. Each garment is conceived over months, not weeks—refined through countless iterations until it achieves that rare quality of timelessness.
-            </p>
-            <p class="reveal">
-                We believe clothing should feel like a second skin, not a costume. Our pieces are created for those who move through the world with quiet confidence, who understand that true style is never loud, but always present.
-            </p>
-            <div class="manifesto-quote reveal">
-                "Fashion fades, only style remains."
+    </div>
+</section>
+
+<!-- Stats Strip -->
+<section class="stats-strip">
+    <div class="stat-item reveal">
+        <h3>12</h3>
+        <p data-translate="about_stat_collections">Collections</p>
+    </div>
+    <div class="stat-item reveal">
+        <h3>100%</h3>
+        <p data-translate="about_stat_local">Local Production</p>
+    </div>
+    <div class="stat-item reveal">
+        <h3>∞</h3>
+        <p data-translate="about_stat_timeless">Timeless Pieces</p>
+    </div>
+</section>
+
+<!-- Modern Values Section -->
+<section class="values-modern">
+    <div class="values-header reveal">
+        <h2 data-translate="about_values_title">Our Values</h2>
+        <p data-translate="about_values_subtitle">Three pillars guide every decision we make, from the first sketch to the final stitch.</p>
+    </div>
+    
+    <div class="values-grid-modern">
+        <div class="value-card reveal">
+            <div class="value-icon">
+                <i class="fas fa-gem"></i>
             </div>
-        </div>
-    </section>
-
-    <!-- Stats Strip -->
-    <section class="stats-strip">
-        <div class="stat-item reveal">
-            <h3>12</h3>
-            <p>Collections</p>
-        </div>
-        <div class="stat-item reveal">
-            <h3>100%</h3>
-            <p>Local Production</p>
-        </div>
-        <div class="stat-item reveal">
-            <h3>∞</h3>
-            <p>Timeless Pieces</p>
-        </div>
-    </section>
-
-    <!-- Modern Values Section -->
-    <section class="values-modern">
-        <div class="values-header reveal">
-            <h2>Our Values</h2>
-            <p>Three pillars guide every decision we make, from the first sketch to the final stitch.</p>
+            <h3 data-translate="about_value_quality_title">Quality Over Quantity</h3>
+            <p data-translate="about_value_quality_desc">We produce limited runs of each design, ensuring every piece receives the attention it deserves. No mass production. No compromises.</p>
         </div>
         
-        <div class="values-grid-modern">
-            <div class="value-card reveal">
-                <div class="value-icon">
-                    <i class="fas fa-gem"></i>
-                </div>
-                <h3>Quality Over Quantity</h3>
-                <p>We produce limited runs of each design, ensuring every piece receives the attention it deserves. No mass production. No compromises.</p>
+        <div class="value-card reveal">
+            <div class="value-icon">
+                <i class="fas fa-leaf"></i>
             </div>
-            
-            <div class="value-card reveal">
-                <div class="value-icon">
-                    <i class="fas fa-leaf"></i>
-                </div>
-                <h3>Conscious Creation</h3>
-                <p>From deadstock fabrics to biodegradable packaging, sustainability isn't a marketing angle—it's our foundation. We create with the future in mind.</p>
-            </div>
-            
-            <div class="value-card reveal">
-                <div class="value-icon">
-                    <i class="fas fa-hand-sparkles"></i>
-                </div>
-                <h3>Human Touch</h3>
-                <p>Every garment is cut and sewn by artisans in our Belgrade atelier. Machines assist, but humans decide. This is luxury with a soul.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Atelier Section -->
-    <section class="atelier-section">
-        <div class="atelier-header reveal">
-            <span class="section-tag" style="justify-content: center;">The Atelier</span>
-            <h2 style="font-family: var(--font-serif); font-size: 2.5rem; color: var(--color-accent);">Where Magic Happens</h2>
+            <h3 data-translate="about_value_conscious_title">Conscious Creation</h3>
+            <p data-translate="about_value_conscious_desc">From deadstock fabrics to biodegradable packaging, sustainability isn't a marketing angle—it's our foundation. We create with the future in mind.</p>
         </div>
         
-        <div class="atelier-grid">
-            <div class="atelier-image reveal-left">
-                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1000&auto=format&fit=crop" alt="Atelier work">
+        <div class="value-card reveal">
+            <div class="value-icon">
+                <i class="fas fa-hand-sparkles"></i>
             </div>
-            <div class="atelier-text reveal">
-                <h3>Small Team, Big Vision</h3>
-                <p>Our atelier is home to just seven master craftspeople, each with decades of experience in haute couture techniques. Here, traditional methods meet contemporary design.</p>
-                <p>We work in small batches, allowing us to maintain an obsessive attention to detail that factory production simply cannot match. When you wear asco, you're wearing the work of hands that care.</p>
-                <p style="margin-top: 2rem; font-style: italic; color: var(--color-accent);">"We don't make clothes. We craft garments for life's meaningful moments."</p>
+            <h3 data-translate="about_value_human_title">Human Touch</h3>
+            <p data-translate="about_value_human_desc">Every garment is cut and sewn by artisans in our Belgrade atelier. Machines assist, but humans decide. This is luxury with a soul.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Atelier Section -->
+<section class="atelier-section">
+    <div class="atelier-header reveal">
+        <span class="section-tag" style="justify-content: center;" data-translate="about_atelier_tag">The Atelier</span>
+        <h2 style="font-family: var(--font-serif); font-size: 2.5rem; color: var(--color-accent);" data-translate="about_atelier_title">Where Magic Happens</h2>
+    </div>
+    
+    <div class="atelier-grid">
+        <div class="atelier-image reveal-left">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1000&auto=format&fit=crop" alt="Atelier work">
+        </div>
+        <div class="atelier-text reveal">
+            <h3 data-translate="about_atelier_subtitle">Small Team, Big Vision</h3>
+            <p data-translate="about_atelier_p1">Our atelier is home to just seven master craftspeople, each with decades of experience in haute couture techniques. Here, traditional methods meet contemporary design.</p>
+            <p data-translate="about_atelier_p2">We work in small batches, allowing us to maintain an obsessive attention to detail that factory production simply cannot match. When you wear asco, you're wearing the work of hands that care.</p>
+            <p style="margin-top: 2rem; font-style: italic; color: var(--color-accent);" data-translate="about_atelier_quote">"We don't make clothes. We craft garments for life's meaningful moments."</p>
+        </div>
+    </div>
+</section>
+
+<!-- Timeline Section -->
+<section class="timeline-section">
+    <div class="timeline-container">
+        <div class="timeline-line"></div>
+        
+        <div class="timeline-item reveal">
+            <div class="timeline-year">2020</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <h4 data-translate="about_timeline_2020_title">The Beginning</h4>
+                <p data-translate="about_timeline_2020_desc">asco founded in a small studio in Belgrade with a single sewing machine and a vision to slow fashion down.</p>
             </div>
         </div>
-    </section>
-
-    <!-- Timeline Section -->
-    <section class="timeline-section">
-        <div class="timeline-container">
-            <div class="timeline-line"></div>
-            
-            <div class="timeline-item reveal">
-                <div class="timeline-year">2020</div>
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h4>The Beginning</h4>
-                    <p>asco founded in a small studio in Belgrade with a single sewing machine and a vision to slow fashion down.</p>
-                </div>
-            </div>
-            
-            <div class="timeline-item reveal">
-                <div class="timeline-year">2021</div>
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h4>First Collection</h4>
-                    <p>"Origin" debuts to critical acclaim. Sold exclusively through our website, establishing our direct-to-consumer model.</p>
-                </div>
-            </div>
-            
-            <div class="timeline-item reveal">
-                <div class="timeline-year">2023</div>
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h4>Expansion</h4>
-                    <p>Moved to our current atelier space and expanded the team to include specialists in pattern-making and textile sourcing.</p>
-                </div>
-            </div>
-            
-            <div class="timeline-item reveal">
-                <div class="timeline-year">2026</div>
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h4>Today</h4>
-                    <p>Continuing to grow while staying true to our roots. Every piece still made by hand, every design still considered.</p>
-                </div>
+        
+        <div class="timeline-item reveal">
+            <div class="timeline-year">2021</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <h4 data-translate="about_timeline_2021_title">First Collection</h4>
+                <p data-translate="about_timeline_2021_desc">"Origin" debuts to critical acclaim. Sold exclusively through our website, establishing our direct-to-consumer model.</p>
             </div>
         </div>
-    </section>
-
+        
+        <div class="timeline-item reveal">
+            <div class="timeline-year">2023</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <h4 data-translate="about_timeline_2023_title">Expansion</h4>
+                <p data-translate="about_timeline_2023_desc">Moved to our current atelier space and expanded the team to include specialists in pattern-making and textile sourcing.</p>
+            </div>
+        </div>
+        
+        <div class="timeline-item reveal">
+            <div class="timeline-year">2026</div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+                <h4 data-translate="about_timeline_2026_title">Today</h4>
+                <p data-translate="about_timeline_2026_desc">Continuing to grow while staying true to our roots. Every piece still made by hand, every design still considered.</p>
+            </div>
+        </div>
+    </div>
+</section>
     <!-- Full Bleed Parallax -->
     <section class="fullbleed-section">
         <div class="fullbleed-overlay"></div>
@@ -256,48 +259,51 @@
         </div>
     </section>
 
-    <footer class="footer">
+     <footer class="footer">
         <div class="footer-main">
             <div class="footer-brand">
                 <h3>asco</h3>
                 <p>Contemporary fashion for the modern individual. Designed in Užice, worn everywhere.</p>
                 <div class="social-links">
-                    <a href="https://www.instagram.com/vukotaaaaaa" target="_blank" rel="noopener" aria-label="Instagram">
+                    <a href="https://www.instagram.com/vukotaaaaaa" target="_blank" rel="noopener"
+                        aria-label="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
                 </div>
             </div>
             <div class="footer-links">
                 <div class="footer-column">
-                    <h4>Shop</h4>
+                    <h4 data-translate="footer_shop">Shop</h4>
                     <ul>
-                        <li><a href="shop.html?category=newin">New Arrivals</a></li>
-                        <li><a href="shop.html?category=dresses">Dresses</a></li>
-                        <li><a href="shop.html?category=jackets">Outerwear</a></li>
-                        <li><a href="shop.html?category=accessories">Accessories</a></li>
-                        <li><a href="shop.html">View All</a></li>
+                        <li><a href="shop.html?category=newin" data-translate="footer_new_arrivals">New Arrivals</a>
+                        </li>
+                        <li><a href="shop.html?category=dresses" data-translate="cat_dresses">Dresses</a></li>
+                        <li><a href="shop.html?category=jackets" data-translate="footer_outerwear">Outerwear</a></li>
+                        <li><a href="shop.html?category=accessories" data-translate="cat_accessories">Accessories</a>
+                        </li>
+                        <li><a href="shop.html" data-translate="footer_view_all">View All</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h4>Help</h4>
+                    <h4 data-translate="footer_help">Help</h4>
                     <ul>
-                        <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="shipping.html">Shipping Info</a></li>
-                        <li><a href="startareturn.html">Returns</a></li>
+                        <li><a href="contact.html" data-translate="footer_contact_us">Contact Us</a></li>
+                        <li><a href="shipping.html" data-translate="footer_shipping_info">Shipping Info</a></li>
+                        <li><a href="startareturn.html" data-translate="nav_returns">Returns</a></li>
                         <li><a href="FAQ.html">FAQ</a></li>
-                        <li><a href="privacypolicy.html">Privacy Policy</a></li>
+                        <li><a href="privacypolicy.html" data-translate="footer_privacy">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h4>Company</h4>
+                    <h4 data-translate="footer_company">Company</h4>
                     <ul>
-                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="aboutus.html" data-translate="footer_about_us">About Us</a></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 asco. All rights reserved.</p>
+            <p>&copy; 2026 asco. <span data-translate="footer_rights">All rights reserved.</span></p>
             <div class="payment-methods">
                 <i class="fab fa-cc-visa"></i>
                 <i class="fab fa-cc-mastercard"></i>
@@ -309,7 +315,7 @@
     <script src="script.js"></script>
     <script src="search.js"></script>
     <script src="cart-mini.js"></script>
-    
+        <script src="translation.js"></script>
     <script>
         window.addEventListener('load', () => {
             document.getElementById('heroWrapper').classList.add('loaded');

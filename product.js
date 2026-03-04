@@ -386,6 +386,131 @@ grid.innerHTML = related.map(p => `
     </div>
 `).join('');
 }
+// =========================
+// TOUCH/SWIPE FUNCTIONALITY
+// =========================
+
+function initTouchSlider() {
+    const slider = document.querySelector('.image-slider');
+    if (!slider) return;
+
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
+    let startTime = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let animationID = 0;
+
+    // Touch events
+    slider.addEventListener('touchstart', touchStart, { passive: true });
+    slider.addEventListener('touchmove', touchMove, { passive: true });
+    slider.addEventListener('touchend', touchEnd, { passive: true });
+
+    // Mouse events (for desktop dragging too)
+    slider.addEventListener('mousedown', touchStart);
+    slider.addEventListener('mousemove', touchMove);
+    slider.addEventListener('mouseup', touchEnd);
+    slider.addEventListener('mouseleave', () => {
+        if (isDragging) touchEnd();
+    });
+
+    function touchStart(event) {
+        startTime = new Date().getTime();
+        isDragging = true;
+        startX = getPositionX(event);
+        animationID = requestAnimationFrame(animation);
+        
+        const sliderContainer = document.getElementById('sliderContainer');
+        sliderContainer.style.transition = 'none';
+        sliderContainer.style.cursor = 'grabbing';
+    }
+
+    function touchMove(event) {
+        if (!isDragging) return;
+        currentX = getPositionX(event);
+        const diff = currentX - startX;
+        currentTranslate = prevTranslate + diff;
+        
+        // Add resistance at edges
+        const maxTranslate = 0;
+        const minTranslate = -(window.totalSlides - 1) * slider.offsetWidth;
+        
+        if (currentTranslate > maxTranslate) {
+            currentTranslate = maxTranslate + (diff * 0.3);
+        } else if (currentTranslate < minTranslate) {
+            currentTranslate = minTranslate + (diff * 0.3);
+        }
+        
+        setSliderPosition(currentTranslate);
+    }
+
+    function touchEnd() {
+        isDragging = false;
+        cancelAnimationFrame(animationID);
+        
+        const sliderContainer = document.getElementById('sliderContainer');
+        sliderContainer.style.transition = 'transform 0.4s ease';
+        sliderContainer.style.cursor = 'grab';
+        
+        const movedBy = currentX - startX;
+        const timeTaken = new Date().getTime() - startTime;
+        
+        // Determine if swipe or click
+        const threshold = slider.offsetWidth * 0.25; // 25% of width
+        const velocityThreshold = 0.5; // pixels per ms
+        
+        const velocity = Math.abs(movedBy) / timeTaken;
+        
+        if (Math.abs(movedBy) > threshold || velocity > velocityThreshold) {
+            // Swipe detected
+            if (movedBy > 0 && window.currentSlide > 0) {
+                changeSlide(-1);
+            } else if (movedBy < 0 && window.currentSlide < window.totalSlides - 1) {
+                changeSlide(1);
+            } else {
+                // Snap back if at edges
+                goToSlide(window.currentSlide);
+            }
+        } else {
+            // Snap to nearest slide
+            goToSlide(window.currentSlide);
+        }
+        
+        prevTranslate = -(window.currentSlide * slider.offsetWidth);
+    }
+
+    function getPositionX(event) {
+        return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+    }
+
+    function animation() {
+        if (isDragging) requestAnimationFrame(animation);
+    }
+
+    function setSliderPosition(position) {
+        const sliderContainer = document.getElementById('sliderContainer');
+        sliderContainer.style.transform = `translateX(${position}px)`;
+    }
+}
+
+// Update your existing updateSlider function to track position
+const originalUpdateSlider = updateSlider;
+updateSlider = function() {
+    originalUpdateSlider();
+    const slider = document.querySelector('.image-slider');
+    if (slider) {
+        prevTranslate = -(window.currentSlide * slider.offsetWidth);
+    }
+};
+
+// Initialize touch on DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+    loadProduct();
+    loadRelatedProducts();
+    updateCartCounter();
+    initTouchSlider(); // Add this line
+});
 
 // =========================
 // CLEAN URL NAVIGATION

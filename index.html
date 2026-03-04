@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>asco - Modern Fashion</title>
     <link rel="icon" type="image/x-icon" href="images/icon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
 </head>
@@ -26,89 +28,95 @@
                     <h2 class="dropdown-title">asco</h2>
                 </div>
                 <nav class="menu-links">
-                    <a href="index.html">Home</a>
-                    <a href="shop.html">Shop</a>
+                    <a href="index.html" data-translate="nav_home">Home</a>
+                    <a href="shop.html" data-translate="nav_shop">Shop</a>
                     <div class="submenu">
-                        <button class="submenu-btn">Categories <i class="fas fa-chevron-right"></i></button>
+                        <button class="submenu-btn">
+                            <span data-translate="nav_categories">Categories</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
                         <div class="submenu-content">
-                            <a href="shop.html?category=jackets">Jackets</a>
-                            <a href="shop.html?category=shoes">Shoes</a>
-                            <a href="shop.html?category=newin">New In</a>
-                            <a href="shop.html?category=accessories">Accessories</a>
-                            <a href="shop.html?category=dresses">Dresses</a>
-                            <a href="shop.html?category=tops">Tops</a>
-                            <a href="shop.html?category=skirts">Skirts</a>
+                            <a href="shop.html?category=jackets" data-translate="cat_jackets">Jackets</a>
+                            <a href="shop.html?category=shoes" data-translate="cat_shoes">Shoes</a>
+                            <a href="shop.html?category=newin" data-translate="cat_newin">New In</a>
+                            <a href="shop.html?category=accessories" data-translate="cat_accessories">Accessories</a>
+                            <a href="shop.html?category=dresses" data-translate="cat_dresses">Dresses</a>
+                            <a href="shop.html?category=tops" data-translate="cat_tops">Tops</a>
+                            <a href="shop.html?category=skirts" data-translate="cat_skirts">Skirts</a>
                         </div>
                     </div>
-                    <a href="aboutus.html">About</a>
-                    <a href="contact.html">Contact</a>
-                    <a href="startareturn.html">Returns</a>
-                    <a href="https://www.instagram.com/vukotaaaaaa" target="_blank" rel="noopener">Instagram</a>
+                    <a href="aboutus.html" data-translate="nav_about">About</a>
+                    <a href="contact.html" data-translate="nav_contact">Contact</a>
+                    <a href="startareturn.html" data-translate="nav_returns">Returns</a>
+                    <a href="https://www.instagram.com/vukotaaaaaa" target="_blank" rel="noopener"
+                        data-translate="nav_instagram">Instagram</a>
                 </nav>
             </div>
         </div>
         <div class="overlay"></div>
-        
+
         <div class="nav-center">
             <a href="index.html" class="logo-link">
                 <h1>asco</h1>
             </a>
         </div>
-        
+
         <div class="nav-right">
             <button class="icon-btn search-btn" aria-label="Search">
                 <i class="fas fa-magnifying-glass"></i>
             </button>
-            
+
             <div class="cart-container">
                 <button class="icon-btn cart-btn-header" onclick="toggleCartDropdown()" aria-label="Cart">
                     <i class="fas fa-bag-shopping"></i>
                     <span class="cart-counter" id="cartCounter">0</span>
                 </button>
-                
+
                 <div class="cart-dropdown" id="cartDropdown">
                     <div class="cart-header">
-                        <h3>Your Cart</h3>
-                        <button class="close-cart" onclick="toggleCartDropdown()" aria-label="Close cart">&times;</button>
+                        <h3 data-translate="cart_title">Your Cart</h3>
+                        <button class="close-cart" onclick="toggleCartDropdown()"
+                            aria-label="Close cart">&times;</button>
                     </div>
                     <div class="cart-items" id="cartItems"></div>
                     <div class="cart-footer">
                         <div class="cart-total">
-                            <span>Subtotal</span>
+                            <span data-translate="cart_subtotal">Subtotal</span>
                             <span id="cartTotal">0 RSD</span>
                         </div>
-                        <a href="checkout.html" class="checkout-btn">Checkout</a>
+                        <a href="checkout.html" class="checkout-btn" data-translate="checkout">Checkout</a>
                     </div>
                 </div>
             </div>
-            
+
             <div class="dropdown language-dropdown">
                 <button class="dropbtn">EN <i class="fas fa-chevron-down"></i></button>
                 <div class="dropdown-content">
-                    <a href="#">EN</a>
-                    <a href="#">RS</a>
+                    <a href="#" onclick="setLanguage('en'); return false;">EN</a>
+                    <a href="#" onclick="setLanguage('rs'); return false;">RS</a>
                 </div>
             </div>
         </div>
-        
+
         <div class="search-dropdown">
-    <div class="search-container">
-        <i class="fas fa-magnifying-glass search-icon"></i>
-        <input type="text" class="search-input" placeholder="Search products..." autocomplete="off">
-    </div>
+            <div class="search-container">
+                <i class="fas fa-magnifying-glass search-icon"></i>
+                <input type="text" class="search-input" data-translate-placeholder="search_placeholder"
+                    placeholder="Search products..." autocomplete="off">
+            </div>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <span class="hero-label">Spring / Summer 2026</span>
-            <h2 class="hero-title">Essential<br>Elegance</h2>
-            <p class="hero-subtitle">Timeless pieces for the modern wardrobe</p>
-            <a href="shop.html" class="hero-cta">Explore Collection</a>
+            <span class="hero-label" data-translate="index_hero_label">Spring / Summer 2026</span>
+            <h2 class="hero-title" data-translate="index_hero_title">Essential<br>Elegance</h2>
+            <p class="hero-subtitle" data-translate="index_hero_subtitle">Timeless pieces for the modern wardrobe</p>
+            <a href="shop.html" class="hero-cta" data-translate="index_hero_cta">Explore Collection</a>
         </div>
         <div class="hero-scroll">
-            <span>Scroll</span>
+            <span data-translate="index_scroll">Scroll</span>
             <div class="scroll-line"></div>
         </div>
     </section>
@@ -116,114 +124,123 @@
     <!-- Marquee Section -->
     <div class="marquee-section">
         <div class="marquee-content">
-            <span>Free shipping over 15,000 RSD</span>
+            <span data-translate="index_marquee_free">Free shipping over 15,000 RSD</span>
             <span class="marquee-dot">•</span>
-            <span>Sustainable materials</span>
+            <span data-translate="index_marquee_sustainable">Sustainable materials</span>
             <span class="marquee-dot">•</span>
-            <span>Handcrafted in Užice</span>
+            <span data-translate="index_marquee_handcrafted">Handcrafted in Užice</span>
             <span class="marquee-dot">•</span>
-            <span>Free shipping over 15,000 RSD</span>
+            <span data-translate="index_marquee_free">Free shipping over 15,000 RSD</span>
             <span class="marquee-dot">•</span>
-            <span>Sustainable materials</span>
+            <span data-translate="index_marquee_sustainable">Sustainable materials</span>
             <span class="marquee-dot">•</span>
-            <span>Handcrafted in Užice</span>
+            <span data-translate="index_marquee_handcrafted">Handcrafted in Užice</span>
             <span class="marquee-dot">•</span>
         </div>
     </div>
 
-    <!-- Category Slider (Preserved Exactly) -->
-  <section class="category-slider">
-    <button class="slider-btn left" aria-label="Previous">
-        <i class="fas fa-chevron-left"></i>
-    </button>
-    <div class="slider-window">
-        <div class="slider-track">
-            
-            <!-- Wrap entire slide in anchor -->
-            <a href="shop.html?category=dresses" class="slide" style="background-image:url('images/slides/dresses.jpg');">
-                <span class="slide-label">Dresses</span>
-            </a>
-            
-            <a href="shop.html?category=shoes" class="slide" style="background-image:url('images/slides/shoes.jpg');">
-                <span class="slide-label">Shoes</span>
-            </a>
-            
-            <a href="shop.html?category=jackets" class="slide" style="background-image:url('images/slides/jackets.jpg');">
-                <span class="slide-label">Jackets</span>
-            </a>
-            
-            <a href="shop.html?category=skirts" class="slide" style="background-image:url('images/slides/skirts.jpg');">
-                <span class="slide-label">Skirts</span>
-            </a>
-            
-            <a href="shop.html?category=tops" class="slide" style="background-image:url('images/slides/tops.jpg');">
-                <span class="slide-label">Tops</span>
-            </a>
-            
-            <a href="shop.html?category=accessories" class="slide" style="background-image:url('images/slides/accessories.jpg');">
-                <span class="slide-label">Accessories</span>
-            </a>
-            
-            <a href="shop.html?category=newin" class="slide" style="background-image:url('images/slides/newin.jpg');">
-                <span class="slide-label">New In</span>
-            </a>
-            
+    <!-- Category Slider -->
+    <section class="category-slider">
+        <button class="slider-btn left" aria-label="Previous">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="slider-window">
+            <div class="slider-track">
+                <a href="shop.html?category=dresses" class="slide"
+                    style="background-image:url('images/slides/dresses.jpg');">
+                    <span class="slide-label" data-translate="cat_dresses">Dresses</span>
+                </a>
+                <a href="shop.html?category=shoes" class="slide"
+                    style="background-image:url('images/slides/shoes.jpg');">
+                    <span class="slide-label" data-translate="cat_shoes">Shoes</span>
+                </a>
+                <a href="shop.html?category=jackets" class="slide"
+                    style="background-image:url('images/slides/jackets.jpg');">
+                    <span class="slide-label" data-translate="cat_jackets">Jackets</span>
+                </a>
+                <a href="shop.html?category=skirts" class="slide"
+                    style="background-image:url('images/slides/skirts.jpg');">
+                    <span class="slide-label" data-translate="cat_skirts">Skirts</span>
+                </a>
+                <a href="shop.html?category=tops" class="slide" style="background-image:url('images/slides/tops.jpg');">
+                    <span class="slide-label" data-translate="cat_tops">Tops</span>
+                </a>
+                <a href="shop.html?category=accessories" class="slide"
+                    style="background-image:url('images/slides/accessories.jpg');">
+                    <span class="slide-label" data-translate="cat_accessories">Accessories</span>
+                </a>
+                <a href="shop.html?category=newin" class="slide"
+                    style="background-image:url('images/slides/newin.jpg');">
+                    <span class="slide-label" data-translate="cat_newin">New In</span>
+                </a>
+            </div>
         </div>
-    </div>
-    <button class="slider-btn right" aria-label="Next">
-        <i class="fas fa-chevron-right"></i>
-    </button>
-</section>
+        <button class="slider-btn right" aria-label="Next">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </section>
 
     <!-- About Preview -->
     <section class="about-preview">
         <div class="about-grid">
             <div class="about-visual">
-                <div class="about-image-main" style="background-image: url('https://images.unsplash.com/photo-1520975916090-3105956dac38');"></div>
+                <div class="about-image-main"
+                    style="background-image: url('https://images.unsplash.com/photo-1520975916090-3105956dac38');">
+                </div>
                 <div class="about-image-secondary" style="background-image: url('images/slides/dresses.jpg');"></div>
             </div>
             <div class="about-content">
-                <span class="section-label">Our Story</span>
-                <h2>Crafted with<br>Intention</h2>
-                <p>Founded in Užice, asco represents a new wave of thoughtful fashion. We believe in quality over quantity, creating pieces that transcend seasons and trends.</p>
-                <p>Each garment is designed to be lived in, loved, and lasting—minimal environmental impact, maximum style impact.</p>
-                <a href="aboutus.html" class="text-link">Read Our Story <i class="fas fa-arrow-right"></i></a>
+                <span class="section-label" data-translate="index_about_label">Our Story</span>
+                <h2 data-translate="index_about_title">Crafted with<br>Intention</h2>
+                <p data-translate="index_about_p1">Founded in Užice, asco represents a new wave of thoughtful fashion.
+                    We believe in quality over quantity, creating pieces that transcend seasons and trends.</p>
+                <p data-translate="index_about_p2">Each garment is designed to be lived in, loved, and lasting—minimal
+                    environmental impact, maximum style impact.</p>
+                <a href="aboutus.html" class="text-link"><span data-translate="index_about_link">Read Our Story</span>
+                    <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
+
     <!-- Instagram Feed -->
     <section class="instagram-section">
         <div class="section-header centered">
-            <h2 class="section-title">@asco</h2>
-            <p class="section-subtitle">Follow our journey</p>
+            <h2 class="section-title" data-translate="index_instagram_title">@asco</h2>
+            <p class="section-subtitle" data-translate="index_instagram_subtitle">Follow our journey</p>
         </div>
         <div class="instagram-grid">
-            <a href="https://instagram.com" target="_blank" class="instagram-item" style="background-image: url('images/slides/dresses.jpg');">
+            <a href="https://instagram.com" target="_blank" class="instagram-item"
+                style="background-image: url('images/slides/dresses.jpg');">
                 <div class="instagram-overlay">
                     <i class="fab fa-instagram"></i>
                 </div>
             </a>
-            <a href="https://instagram.com" target="_blank" class="instagram-item" style="background-image: url('images/slides/shoes.jpg');">
+            <a href="https://instagram.com" target="_blank" class="instagram-item"
+                style="background-image: url('images/slides/shoes.jpg');">
                 <div class="instagram-overlay">
                     <i class="fab fa-instagram"></i>
                 </div>
             </a>
-            <a href="https://instagram.com" target="_blank" class="instagram-item" style="background-image: url('images/slides/jackets.jpg');">
+            <a href="https://instagram.com" target="_blank" class="instagram-item"
+                style="background-image: url('images/slides/jackets.jpg');">
                 <div class="instagram-overlay">
                     <i class="fab fa-instagram"></i>
                 </div>
             </a>
-            <a href="https://instagram.com" target="_blank" class="instagram-item" style="background-image: url('images/slides/tops.jpg');">
+            <a href="https://instagram.com" target="_blank" class="instagram-item"
+                style="background-image: url('images/slides/tops.jpg');">
                 <div class="instagram-overlay">
                     <i class="fab fa-instagram"></i>
                 </div>
             </a>
-            <a href="https://instagram.com" target="_blank" class="instagram-item" style="background-image: url('images/slides/skirts.jpg');">
+            <a href="https://instagram.com" target="_blank" class="instagram-item"
+                style="background-image: url('images/slides/skirts.jpg');">
                 <div class="instagram-overlay">
                     <i class="fab fa-instagram"></i>
                 </div>
             </a>
-            <a href="https://instagram.com" target="_blank" class="instagram-item" style="background-image: url('images/slides/newin.jpg');">
+            <a href="https://instagram.com" target="_blank" class="instagram-item"
+                style="background-image: url('images/slides/newin.jpg');">
                 <div class="instagram-overlay">
                     <i class="fab fa-instagram"></i>
                 </div>
@@ -238,42 +255,45 @@
                 <h3>asco</h3>
                 <p>Contemporary fashion for the modern individual. Designed in Užice, worn everywhere.</p>
                 <div class="social-links">
-                    <a href="https://www.instagram.com/vukotaaaaaa" target="_blank" rel="noopener" aria-label="Instagram">
+                    <a href="https://www.instagram.com/vukotaaaaaa" target="_blank" rel="noopener"
+                        aria-label="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
                 </div>
             </div>
             <div class="footer-links">
                 <div class="footer-column">
-                    <h4>Shop</h4>
+                    <h4 data-translate="footer_shop">Shop</h4>
                     <ul>
-                        <li><a href="shop.html?category=newin">New Arrivals</a></li>
-                        <li><a href="shop.html?category=dresses">Dresses</a></li>
-                        <li><a href="shop.html?category=jackets">Outerwear</a></li>
-                        <li><a href="shop.html?category=accessories">Accessories</a></li>
-                        <li><a href="shop.html">View All</a></li>
+                        <li><a href="shop.html?category=newin" data-translate="footer_new_arrivals">New Arrivals</a>
+                        </li>
+                        <li><a href="shop.html?category=dresses" data-translate="cat_dresses">Dresses</a></li>
+                        <li><a href="shop.html?category=jackets" data-translate="footer_outerwear">Outerwear</a></li>
+                        <li><a href="shop.html?category=accessories" data-translate="cat_accessories">Accessories</a>
+                        </li>
+                        <li><a href="shop.html" data-translate="footer_view_all">View All</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h4>Help</h4>
+                    <h4 data-translate="footer_help">Help</h4>
                     <ul>
-                        <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="shipping.html">Shipping Info</a></li>
-                        <li><a href="startareturn.html">Returns</a></li>
+                        <li><a href="contact.html" data-translate="footer_contact_us">Contact Us</a></li>
+                        <li><a href="shipping.html" data-translate="footer_shipping_info">Shipping Info</a></li>
+                        <li><a href="startareturn.html" data-translate="nav_returns">Returns</a></li>
                         <li><a href="FAQ.html">FAQ</a></li>
-                        <li><a href="privacypolicy.html">Privacy Policy</a></li>
+                        <li><a href="privacypolicy.html" data-translate="footer_privacy">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h4>Company</h4>
+                    <h4 data-translate="footer_company">Company</h4>
                     <ul>
-                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="aboutus.html" data-translate="footer_about_us">About Us</a></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 asco. All rights reserved.</p>
+            <p>&copy; 2026 asco. <span data-translate="footer_rights">All rights reserved.</span></p>
             <div class="payment-methods">
                 <i class="fab fa-cc-visa"></i>
                 <i class="fab fa-cc-mastercard"></i>
@@ -285,6 +305,7 @@
     <script src="script.js"></script>
     <script src="search.js"></script>
     <script src="cart-mini.js"></script>
+    <script src="translation.js"></script>
 </body>
 
 </html>

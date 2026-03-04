@@ -3160,6 +3160,59 @@ MOBILE RESPONSIVE
         font-size: 16px;
     }
 }
+/* Touch-friendly slider improvements */
+.image-slider {
+    touch-action: pan-y pinch-zoom; /* Allow vertical scroll, handle horizontal in JS */
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+.slider-container {
+    cursor: grab;
+    will-change: transform; /* Performance optimization */
+}
+
+.slider-container:active {
+    cursor: grabbing;
+}
+
+/* Hide buttons on mobile, rely on swipe */
+@media (max-width: 768px) {
+    .slider-btn {
+        display: none;
+    }
+    
+    .image-slider {
+        aspect-ratio: 1/1; /* Square ratio on mobile like Instagram */
+    }
+    
+    /* Larger touch targets for dots */
+    .dot {
+        width: 8px;
+        height: 8px;
+        margin: 0 4px;
+    }
+    
+    /* Visual swipe hint */
+    .image-slider::after {
+        content: '';
+        position: absolute;
+        bottom: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 4px;
+        background: rgba(255,255,255,0.5);
+        border-radius: 2px;
+        pointer-events: none;
+    }
+}
+
+/* Smooth snap back animation */
+.slider-container.snapping {
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
 
 /* =========================
    CART POPUP (Product Page)
