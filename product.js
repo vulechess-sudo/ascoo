@@ -235,8 +235,6 @@ function goToSlide(index) {
     updateSlider();
 }
 
-setInterval(() => changeSlide(1), 5000);
-
 // =========================
 // SIZE SELECTION
 // =========================
