@@ -1,7 +1,7 @@
 // EmailJS Configuration
 const EMAILJS_CONFIG = {
     SERVICE_ID: 'service_2fm99c2',
-    TEMPLATE_ID: 'template_uu67aav',
+    TEMPLATE_ID: 'template_uu67aav              ',
     PUBLIC_KEY: 'ipmDfONOLnNNY81_y',
     YOUR_EMAIL: 'marcuswill886@gmail.com'
 };

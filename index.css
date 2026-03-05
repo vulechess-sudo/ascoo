@@ -2,7 +2,7 @@
 :root {
     --color-bg: #faf9f7;
     --color-bg-alt: #f0ede8;
-    --color-text: #1a1a1a;
+    --color-text: #2a251a;
     --color-text-light: #666;
     --color-accent: #1a1a1a;
     --color-border: #e0ddd8;
@@ -1147,7 +1147,7 @@ body {
    INSTAGRAM
 ========================= */
 .instagram-section {
-    padding: 6rem 5%;
+    padding: 5rem 5%;
 }
 
 .instagram-grid {
