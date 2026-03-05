@@ -3150,8 +3150,12 @@ MOBILE RESPONSIVE
 }
 
 @media (max-width: 600px) {
-    .product-page {
-        padding: 100px 20px 40px;
+     .product-page {
+        padding: 50px 20px 40px;  /* Reduce from 100px to 60px */
+    }
+    
+    .image-slider {
+        margin-top: 0;  /* Ensure no extra margin */
     }
 
     .size-btn {
