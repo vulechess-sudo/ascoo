@@ -3182,11 +3182,6 @@ MOBILE RESPONSIVE
     .slider-btn {
         display: none;
     }
-    
-    .image-slider {
-        aspect-ratio: 1/1; /* Square ratio on mobile like Instagram */
-    }
-    
     /* Larger touch targets for dots */
     .dot {
         width: 8px;
