@@ -127,7 +127,7 @@ const productsDB = {
     'accessorie': {
         id: 'accessorie',
         name: 'Accessorie',
-        price: '100.000 RSD',
+        price: '45.000 RSD',
         category: 'accessories',
         images: ['images/slides/accessories.jpg', 'images/slides/accessories2.jpg'],
         description: 'Full-grain leather belt with solid brass buckle. Ages beautifully with wear.',

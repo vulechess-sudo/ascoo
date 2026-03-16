@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summer Lookbook - asco</title>
+    <link rel="icon" type="image/x-icon" href="images/icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="navbar">
+        <div class="nav-left">
+            <button class="menu-btn hamburger-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="top-dropdown">
+                <div class="menu-header">
+                    <button class="close-menu" aria-label="Close menu">&times;</button>
+                    <h2 class="dropdown-title">asco</h2>
+                </div>
+                <nav class="menu-links">
+                    <a href="index.html" data-translate="nav_home">Home</a>
+                    <a href="shop.html" data-translate="nav_shop">Shop</a>
+                    <div class="submenu">
+                        <button class="submenu-btn">
+                            <span data-translate="nav_categories">Categories</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <div class="submenu-content">
+                            <a href="shop.html?category=jackets" data-translate="cat_jackets">Jackets</a>
+                            <a href="shop.html?category=shoes" data-translate="cat_shoes">Shoes</a>
+                            <a href="shop.html?category=newin" data-translate="cat_newin">New In</a>
+                            <a href="shop.html?category=accessories" data-translate="cat_accessories">Accessories</a>
+                            <a href="shop.html?category=dresses" data-translate="cat_dresses">Dresses</a>
+                            <a href="shop.html?category=tops" data-translate="cat_tops">Tops</a>
+                            <a href="shop.html?category=skirts" data-translate="cat_skirts">Skirts</a>
+                        </div>
+                    </div>
+                    <a href="aboutus.html" data-translate="nav_about">About</a>
+                    <a href="contact.html" data-translate="nav_contact">Contact</a>
+                    <a href="startareturn.html" data-translate="nav_returns">Returns</a>
+                    <a href="https://www.instagram.com/vukotaaaaaa" target="_blank" rel="noopener"
+                        data-translate="nav_instagram">Instagram</a>
+                </nav>
+            </div>
+        </div>
+        <div class="overlay"></div>
+
+        <div class="nav-center">
+            <a href="index.html" class="logo-link">
+                <h1>asco</h1>
+            </a>
+        </div>
+
+        <div class="nav-right">
+            <button class="icon-btn search-btn" aria-label="Search">
+                <i class="fas fa-magnifying-glass"></i>
+            </button>
+
+            <div class="cart-container">
+                <button class="icon-btn cart-btn-header" onclick="toggleCartDropdown()" aria-label="Cart">
+                    <i class="fas fa-bag-shopping"></i>
+                    <span class="cart-counter" id="cartCounter">0</span>
+                </button>
+
+                <div class="cart-dropdown" id="cartDropdown">
+                    <div class="cart-header">
+                        <h3 data-translate="cart_title">Your Cart</h3>
+                        <button class="close-cart" onclick="toggleCartDropdown()"
+                            aria-label="Close cart">&times;</button>
+                    </div>
+                    <div class="cart-items" id="cartItems"></div>
+                    <div class="cart-footer">
+                        <div class="cart-total">
+                            <span data-translate="cart_subtotal">Subtotal</span>
+                            <span id="cartTotal">0 RSD</span>
+                        </div>
+                        <a href="checkout.html" class="checkout-btn" data-translate="checkout">Checkout</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dropdown language-dropdown">
+                <button class="dropbtn">EN <i class="fas fa-chevron-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="setLanguage('en'); return false;">EN</a>
+                    <a href="#" onclick="setLanguage('rs'); return false;">RS</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="search-dropdown">
+            <div class="search-container">
+                <i class="fas fa-magnifying-glass search-icon"></i>
+                <input type="text" class="search-input" data-translate-placeholder="search_placeholder"
+                    placeholder="Search products..." autocomplete="off">
+            </div>
+        </div>
+    </header>
+    <!-- SUMMER HERO -->
+    <section class="summer-hero" id="hero">
+        <div class="summer-hero-bg"></div>
+        <div class="summer-hero-overlay"></div>
+        <div class="summer-hero-content">
+            <span class="summer-label">Spring / Summer 2026</span>
+            <h1 class="summer-title">Summer<br>Ease</h1>
+            <p class="summer-desc">Light linen, flowing silhouettes, and sun-bleached tones. Designed for golden afternoons and barefoot evenings by the sea.</p>
+            <a href="#movement" class="summer-cta">
+                Discover <i class="fas fa-arrow-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- MOVEMENT SECTION -->
+    <section class="movement-section" id="movement">
+        <div class="movement-container">
+            <div class="movement-image">
+                <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1000&auto=format&fit=crop" alt="Summer movement">
+            </div>
+            <div class="movement-content">
+                <span class="section-tag">Movement</span>
+                <h2 class="movement-title">In Motion</h2>
+                <p class="movement-desc">Clothing should never restrict. It should invite you to walk further, stay longer, live more fully. This season, we celebrate the space between stillness and movement. Every piece is designed to flow with your body, not against it.</p>
+                <p class="movement-quote">"Fashion fades, only style remains the same."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DETAILS MOSAIC -->
+    <section class="details-section">
+        <div class="details-container">
+            <div class="details-header">
+                <h2>The Details</h2>
+                <p>Closer looks at textures, techniques, and the moments that inspired this season.</p>
+            </div>
+            <div class="mosaic-grid">
+                <div class="mosaic-item large">
+                    <img src="https://images.unsplash.com/photo-1558171813-4c088753af8f?q=80&w=800&auto=format&fit=crop" alt="Fabric detail">
+                    <div class="mosaic-overlay">
+                        <a href="shop.html" class="mosaic-cta">Shop Now</a>
+                    </div>
+                </div>
+                <div class="mosaic-item">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=400&auto=format&fit=crop" alt="Stitching">
+                </div>
+                <div class="mosaic-item">
+                    <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?q=80&w=400&auto=format&fit=crop" alt="Natural dyes">
+                </div>
+                <div class="mosaic-item wide">
+                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=800&auto=format&fit=crop" alt="Collection shot">
+                    <div class="mosaic-overlay">
+                        <a href="shop.html" class="mosaic-cta">View Collection</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEO SECTION -->
+    <section class="video-section" onclick="playVideo()">
+        <div class="video-bg"></div>
+        <button class="video-play">
+            <i class="fas fa-play"></i>
+        </button>
+        <div class="video-title">
+            <span>Behind the Scenes</span>
+            <h3>A Day in the Atelier</h3>
+        </div>
+    </section>
+
+    <!-- SHOP THE LOOK -->
+<section class="shop-look-section">
+    <div class="shop-look-container">
+        <div class="shop-look-header">
+            <h2>Shop the Looks</h2>
+            <p>Complete outfits curated by our design team. Every piece works together—mix, match, make it yours.</p>
+        </div>
+        <div class="shop-looks-grid">
+            <div class="shop-look-card" onclick="openLookModal('golden-hour')">
+                <div class="shop-look-image">
+                    <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=600&auto=format&fit=crop" alt="The Golden Hour">
+                </div>
+                <h3 class="shop-look-name">The Golden Hour</h3>
+                <p class="shop-look-items">Linen Dress · Woven Bag · Sandals</p>
+                <button class="shop-look-btn">Shop Look</button>
+            </div>
+            <div class="shop-look-card" onclick="openLookModal('city-morning')">
+                <div class="shop-look-image">
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=600&auto=format&fit=crop" alt="City Morning">
+                </div>
+                <h3 class="shop-look-name">City Morning</h3>
+                <p class="shop-look-items">Blazer · Silk Shirt · Trousers</p>
+                <button class="shop-look-btn">Shop Look</button>
+            </div>
+            <div class="shop-look-card" onclick="openLookModal('weekend-escape')">
+                <div class="shop-look-image">
+                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=600&auto=format&fit=crop" alt="Weekend Escape">
+                </div>
+                <h3 class="shop-look-name">Weekend Escape</h3>
+                <p class="shop-look-items">Knit Dress · Leather Belt · Boots</p>
+                <button class="shop-look-btn">Shop Look</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- LOOK MODAL -->
+<div class="look-modal" id="lookModal">
+    <div class="look-modal-content">
+        <div class="look-modal-header">
+            <h3 id="modalLookName">The Golden Hour</h3>
+            <button class="close-look-modal" onclick="closeLookModal()">&times;</button>
+        </div>
+        
+        <div class="look-items-list" id="lookItemsList">
+            <!-- Populated by JS -->
+        </div>
+        
+        <div class="look-modal-footer">
+            <div class="look-total-row">
+                <span class="look-total-label">Total (selected items)</span>
+                <span class="look-total-price" id="lookTotalPrice">0 RSD</span>
+            </div>
+            <button class="look-add-all-btn" id="addAllBtn" onclick="addAllToCart()">
+                <i class="fas fa-shopping-bag"></i>
+                Add Selected to Cart
+            </button>
+        </div>
+    </div>
+</div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-main">
+            <div class="footer-brand">
+                <h3>asco</h3>
+                <p>Contemporary fashion for the modern individual. Designed in Užice, worn everywhere.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/vukotaaaaaa" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="shop.html?category=newin">New Arrivals</a></li>
+                        <li><a href="shop.html?category=dresses">Dresses</a></li>
+                        <li><a href="shop.html?category=jackets">Outerwear</a></li>
+                        <li><a href="shop.html?category=accessories">Accessories</a></li>
+                        <li><a href="shop.html">View All</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Help</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="shipping.html">Shipping Info</a></li>
+                        <li><a href="startareturn.html">Returns</a></li>
+                        <li><a href="FAQ.html">FAQ</a></li>
+                        <li><a href="privacypolicy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="lookbook.html">Lookbook</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 asco. All rights reserved.</p>
+            <div class="payment-methods">
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-paypal"></i>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="search.js"></script>
+    <script src="cart-mini.js"></script>
+    <script src="lookbook-summer.js"></script>
+    <script src="translation.js"></script>
+
+</body>
+</html>
