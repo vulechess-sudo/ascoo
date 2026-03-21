@@ -130,36 +130,61 @@
         </div>
     </section>
 
-    <!-- DETAILS MOSAIC -->
-    <section class="details-section">
-        <div class="details-container">
-            <div class="details-header">
-                <h2>The Details</h2>
-                <p>Closer looks at textures, techniques, and the moments that inspired this season.</p>
+   <section class="lookbook-catalog">
+    <div class="catalog-wrapper">
+        
+        <!-- ZATVORENA KNJIGA (početno stanje) -->
+        <div class="book-cover" id="bookCover">
+            <div class="cover-front">
+                <div class="cover-content">
+                    <span class="cover-label">Lookbook</span>
+                    <h2 class="cover-title">Spring/Summer<br>2024</h2>
+                    <p class="cover-subtitle">Explore the collection</p>
+                    <button class="open-book-btn" onclick="openBook()">
+                        Open Lookbook
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="cover-spine"></div>
             </div>
-            <div class="mosaic-grid">
-                <div class="mosaic-item large">
-                    <img src="https://images.unsplash.com/photo-1558171813-4c088753af8f?q=80&w=800&auto=format&fit=crop" alt="Fabric detail">
-                    <div class="mosaic-overlay">
-                        <a href="shop.html" class="mosaic-cta">Shop Now</a>
-                    </div>
-                </div>
-                <div class="mosaic-item">
-                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=400&auto=format&fit=crop" alt="Stitching">
-                </div>
-                <div class="mosaic-item">
-                    <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?q=80&w=400&auto=format&fit=crop" alt="Natural dyes">
-                </div>
-                <div class="mosaic-item wide">
-                    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=800&auto=format&fit=crop" alt="Collection shot">
-                    <div class="mosaic-overlay">
-                        <a href="shop.html" class="mosaic-cta">View Collection</a>
-                    </div>
-                </div>
+            <div class="cover-back"></div>
+        </div>
+
+        <!-- OTVORENA KNJIGA (sakriveno na početku) -->
+        <div class="catalog-container hidden" id="catalogContainer">
+            <button class="close-book-btn" onclick="closeBook()" aria-label="Close book">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <!-- Ostatak isti kao pre -->
+            <div class="page left-page">
+                <div class="page-content" id="leftPage"></div>
+                <div class="page-number left-num">01</div>
+                <button class="page-btn prev" onclick="flipPage(-1)" aria-label="Previous">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+            
+            <div class="spine"></div>
+            
+            <div class="page right-page">
+                <div class="page-content" id="rightPage"></div>
+                <div class="page-number right-num">02</div>
+                <button class="page-btn next" onclick="flipPage(1)" aria-label="Next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
         </div>
-    </section>
 
+        <!-- Brojač se pojavi samo kad je otvoreno -->
+        <div class="catalog-controls hidden" id="pageIndicator">
+            <span class="page-indicator">
+                <span id="currentSpread">1</span> / <span id="totalSpreads">3</span>
+            </span>
+        </div>
+        
+    </div>
+</section>
     <!-- VIDEO SECTION -->
     <section class="video-section" onclick="playVideo()">
         <div class="video-bg"></div>
@@ -287,6 +312,7 @@
     <script src="search.js"></script>
     <script src="cart-mini.js"></script>
     <script src="lookbook-summer.js"></script>
+    <script src="catalog-summer.js"></script>
     <script src="translation.js"></script>
 
 </body>

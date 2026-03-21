@@ -185,6 +185,7 @@ document.querySelectorAll('.movement-section, .details-section, .shop-look-card'
 const looksData = {
     'golden-hour': {
         name: 'The Golden Hour',
+        occasions: ['Evening', 'Date Night', 'Wedding Guest'], // <-- novo
         items: [
             {
                 id: 'dress',
@@ -217,6 +218,7 @@ const looksData = {
     },
     'city-morning': {
         name: 'City Morning',
+        occasions: ['Work', 'Brunch', 'Casual Friday'], // <-- novo
         items: [
             {
                 id: 'jacket',
@@ -249,6 +251,7 @@ const looksData = {
     },
     'weekend-escape': {
         name: 'Weekend Escape',
+        occasions: ['Travel', 'Casual', 'Day Trip'], // <-- novo
         items: [
             {
                 id: 'newin',
@@ -292,12 +295,34 @@ function parsePrice(priceString) {
 }
 
 function openLookModal(lookId) {
-    currentLook = looksData[lookId];
+   currentLook = looksData[lookId];
     if (!currentLook) return;
     
     selectedItems = new Set(currentLook.items.map(item => item.id));
     
     document.getElementById('modalLookName').textContent = currentLook.name;
+    
+    // DODAJ OCCASIONS OVDE
+    const modalContent = document.querySelector('.look-modal-content');
+    
+    // Ukloni stare occasions ako postoje
+    const oldOccasions = modalContent.querySelector('.look-occasions');
+    if (oldOccasions) oldOccasions.remove();
+    
+    // Dodaj nove occasions
+    if (currentLook.occasions) {
+        const occasionsHtml = `
+            <div class="look-occasions">
+                <span class="occasions-label">Perfect for:</span>
+                ${currentLook.occasions.map(tag => `<span class="occasion-tag">${tag}</span>`).join('')}
+            </div>
+        `;
+        
+        // Ubaci posle headera
+        const header = modalContent.querySelector('.look-modal-header');
+        header.insertAdjacentHTML('afterend', occasionsHtml);
+    }
+    
     renderLookItems();
     updateTotal();
     
@@ -328,10 +353,16 @@ function renderLookItems() {
     
     container.innerHTML = currentLook.items.map(item => `
         <div class="look-item ${selectedItems.has(item.id) ? '' : 'removed'}" data-id="${item.id}">
-            <img src="${item.image}" alt="${item.name}" class="look-item-img">
+            <div class="look-item-img-wrap">
+                <img src="${item.image}" alt="${item.name}" class="look-item-img" onclick="goToProduct('${item.id}')">
+                <button class="quick-view-btn" onclick="openQuickView('${item.id}', event)">
+                    <i class="fas fa-eye"></i>
+                    <span>Quick View</span>
+                </button>
+            </div>
             
             <div class="look-item-info">
-                <h4>${item.name}</h4>
+                <h4 onclick="goToProduct('${item.id}')">${item.name}</h4>
                 <p>${item.category}</p>
             </div>
             
@@ -509,6 +540,113 @@ function initLookItemClickHandlers() {
         }
     });
 }
+function goToProduct(id) {
+    window.location.href = `product.html?id=${id}`;
+}
+
+function openQuickView(productId, event) {
+    event.stopPropagation();
+    const product = productsDB[productId];
+    if (!product) return;
+    
+    // Zatvori postojeći quick view ako postoji
+    closeQuickView();
+    
+    const modal = document.createElement('div');
+    modal.className = 'quick-view-modal';
+    modal.id = 'quickViewModal';
+    modal.innerHTML = `
+        <div class="quick-view-content" onclick="event.stopPropagation()">
+            <button class="close-quick-view" onclick="closeQuickView()">&times;</button>
+            <div class="quick-view-grid">
+                <div class="quick-view-img">
+                    <img src="${product.images[0]}" alt="${product.name}">
+                </div>
+                <div class="quick-view-info">
+                    <span class="quick-view-category">${product.category}</span>
+                    <h2>${product.name}</h2>
+                    <p class="quick-view-price">${product.price}</p>
+                    <p class="quick-view-desc">${product.description} lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem</p>
+
+                    
+                    <a href="product.html?id=${product.id}" class="view-full-link">View Full Details →</a>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    document.body.style.overflow = 'hidden';
+    
+    setTimeout(() => modal.classList.add('active'), 10);
+}
+
+function closeQuickView() {
+    const modal = document.getElementById('quickViewModal');
+    if (modal) {
+        modal.classList.remove('active');
+        setTimeout(() => {
+            modal.remove();
+            if (!document.getElementById('lookModal').classList.contains('active')) {
+                document.body.style.overflow = '';
+            }
+        }, 300);
+    }
+}
+
+function selectQuickSize(btn) {
+    btn.parentElement.querySelectorAll('.size-bubble').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+}
+
+function quickAddToCart(productId) {
+    const product = productsDB[productId];
+    const size = document.querySelector('.size-bubble.selected')?.textContent;
+    
+    if (!size) {
+        alert('Please select a size');
+        return;
+    }
+    
+    const cartItem = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.images[0],
+        size: size,
+        quantity: 1
+    };
+    
+    const cart = getCart();
+    const existing = cart.find(item => item.id === cartItem.id && item.size === cartItem.size);
+    
+    if (existing) {
+        existing.quantity += 1;
+    } else {
+        cart.push(cartItem);
+    }
+    
+    saveCart(cart);
+    updateCartCounterDisplay(cart.reduce((sum, item) => sum + item.quantity, 0));
+    renderCart();
+    
+    // Feedback
+    const btn = document.querySelector('.quick-add-btn');
+    btn.textContent = 'Added!';
+    btn.style.background = '#4a7c59';
+    
+    setTimeout(() => {
+        closeQuickView();
+    }, 800);
+}
+
+// Close quick view on outside click
+document.addEventListener('click', (e) => {
+    const modal = document.getElementById('quickViewModal');
+    if (modal && e.target === modal) {
+        closeQuickView();
+    }
+});
 
 // Inicijalizuj kad se modal otvori
 const originalOpenLookModal = openLookModal;
