@@ -102,35 +102,31 @@
         </div>
     </header>
     <!-- SUMMER HERO -->
-    <section class="summer-hero" id="hero">
-        <div class="summer-hero-bg"></div>
-        <div class="summer-hero-overlay"></div>
-        <div class="summer-hero-content">
-            <span class="summer-label">Spring / Summer 2026</span>
-            <h1 class="summer-title">Summer<br>Ease</h1>
-            <p class="summer-desc">Light linen, flowing silhouettes, and sun-bleached tones. Designed for golden afternoons and barefoot evenings by the sea.</p>
-            <a href="#movement" class="summer-cta">
-                Discover <i class="fas fa-arrow-down"></i>
-            </a>
-        </div>
-    </section>
+   <section class="summer-hero" id="hero">
+    <div class="summer-hero-gifs">
+        <div class="gif-col" style="background-image: url('images/1ed7274c7b3b47e88c123d451096a0c4.HD-1080p-7.2Mbps-61559299.gif')"></div>
+        <div class="gif-col" style="background-image: url('images/6c24b2f1d818433c8ebd5b959ec748bf.HD-1080p-7.2Mbps-67808246.gif')"></div>
+        <div class="gif-col" style="background-image: url('images/6d68609872b54ab1a31aebf9f2dcca71.HD-1080p-2.5Mbps-61555374.gif')"></div>
+        <div class="gif-col" style="background-image: url('images/1d7a2eae2c6746209213896f79d56eb6.HD-1080p-7.2Mbps-67808453.gif')"></div>
+    </div>
+    
+    <div class="summer-hero-overlay"></div>
+    
+    <div class="summer-hero-content">
+        <h1 class="summer-title">Spring/Summer<br>2026</h1>
+        <a href="#movement" class="summer-cta">Discover</a>
+    </div>
+</section>
 
     <!-- MOVEMENT SECTION -->
     <section class="movement-section" id="movement">
-        <div class="movement-container">
-            <div class="movement-image">
-                <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1000&auto=format&fit=crop" alt="Summer movement">
-            </div>
-            <div class="movement-content">
-                <span class="section-tag">Movement</span>
-                <h2 class="movement-title">In Motion</h2>
-                <p class="movement-desc">Clothing should never restrict. It should invite you to walk further, stay longer, live more fully. This season, we celebrate the space between stillness and movement. Every piece is designed to flow with your body, not against it.</p>
-                <p class="movement-quote">"Fashion fades, only style remains the same."</p>
-            </div>
-        </div>
-    </section>
-
-   <section class="lookbook-catalog">
+    <div class="movement-content-centered">
+        <span class="section-tag">Movement</span>
+        <h2 class="movement-title">In Motion</h2>
+        <p class="movement-desc-short">Clothing should never restrict. It should invite you to walk further, stay longer, live more fully. Every piece flows with your body.</p>
+    </div>
+</section>
+<section class="lookbook-catalog">
     <div class="catalog-wrapper">
         
         <!-- ZATVORENA KNJIGA (početno stanje) -->
@@ -152,29 +148,32 @@
 
         <!-- OTVORENA KNJIGA (sakriveno na početku) -->
         <div class="catalog-container hidden" id="catalogContainer">
-            <button class="close-book-btn" onclick="closeBook()" aria-label="Close book">
-                <i class="fas fa-times"></i>
-            </button>
-            
-            <!-- Ostatak isti kao pre -->
-            <div class="page left-page">
-                <div class="page-content" id="leftPage"></div>
-                <div class="page-number left-num">01</div>
-                <button class="page-btn prev" onclick="flipPage(-1)" aria-label="Previous">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-            </div>
-            
-            <div class="spine"></div>
-            
-            <div class="page right-page">
-                <div class="page-content" id="rightPage"></div>
-                <div class="page-number right-num">02</div>
-                <button class="page-btn next" onclick="flipPage(1)" aria-label="Next">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-        </div>
+    
+    <!-- Levi list -->
+    <div class="page left-page">
+        <button class="page-btn prev" onclick="flipPage(-1)" aria-label="Previous">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="page-content" id="leftPage"></div>
+        <div class="page-number left-num">01</div>
+    </div>
+    
+    <div class="spine"></div>
+    
+    <!-- Desni list -->
+    <div class="page right-page">
+        <!-- X DUGME UNUTAR DESNE STRANE -->
+        <button class="close-book-btn" onclick="closeBook()" aria-label="Close book">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <button class="page-btn next" onclick="flipPage(1)" aria-label="Next">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="page-content" id="rightPage"></div>
+        <div class="page-number right-num">02</div>
+    </div>
+</div>
 
         <!-- Brojač se pojavi samo kad je otvoreno -->
         <div class="catalog-controls hidden" id="pageIndicator">
@@ -185,17 +184,6 @@
         
     </div>
 </section>
-    <!-- VIDEO SECTION -->
-    <section class="video-section" onclick="playVideo()">
-        <div class="video-bg"></div>
-        <button class="video-play">
-            <i class="fas fa-play"></i>
-        </button>
-        <div class="video-title">
-            <span>Behind the Scenes</span>
-            <h3>A Day in the Atelier</h3>
-        </div>
-    </section>
 
     <!-- SHOP THE LOOK -->
 <section class="shop-look-section">

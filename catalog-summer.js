@@ -99,10 +99,7 @@ function renderSpread(index) {
     leftPage.innerHTML = spread.left.items.map(item => `
         <div class="catalog-item">
             <img src="${item.img}" alt="${item.name}" loading="lazy">
-            <div class="catalog-overlay">
-                <h4>${item.name}</h4>
-                <p>${item.price}</p>
-            </div>
+
         </div>
     `).join('');
     
@@ -112,10 +109,7 @@ function renderSpread(index) {
     rightPage.innerHTML = spread.right.items.map(item => `
         <div class="catalog-item">
             <img src="${item.img}" alt="${item.name}" loading="lazy">
-            <div class="catalog-overlay">
-                <h4>${item.name}</h4>
-                <p>${item.price}</p>
-            </div>
+
         </div>
     `).join('');
     

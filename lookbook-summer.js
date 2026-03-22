@@ -549,7 +549,6 @@ function openQuickView(productId, event) {
     const product = productsDB[productId];
     if (!product) return;
     
-    // Zatvori postojeći quick view ako postoji
     closeQuickView();
     
     const modal = document.createElement('div');
@@ -566,10 +565,11 @@ function openQuickView(productId, event) {
                     <span class="quick-view-category">${product.category}</span>
                     <h2>${product.name}</h2>
                     <p class="quick-view-price">${product.price}</p>
-                    <p class="quick-view-desc">${product.description} lorem ipsum dolor sit amet, consectetur adipiscing elit. lorem</p>
-
+                    <p class="quick-view-desc">${product.description}</p>
                     
-                    <a href="product.html?id=${product.id}" class="view-full-link">View Full Details →</a>
+                    <a href="product.html?id=${product.id}" class="view-full-link">
+                        View Full Page <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -587,12 +587,20 @@ function closeQuickView() {
         modal.classList.remove('active');
         setTimeout(() => {
             modal.remove();
-            if (!document.getElementById('lookModal').classList.contains('active')) {
+            if (!document.getElementById('lookModal')?.classList.contains('active')) {
                 document.body.style.overflow = '';
             }
         }, 300);
     }
 }
+
+// Close on outside click
+document.addEventListener('click', (e) => {
+    const modal = document.getElementById('quickViewModal');
+    if (modal && e.target === modal) {
+        closeQuickView();
+    }
+});
 
 function selectQuickSize(btn) {
     btn.parentElement.querySelectorAll('.size-bubble').forEach(b => b.classList.remove('selected'));
@@ -639,12 +647,23 @@ function quickAddToCart(productId) {
         closeQuickView();
     }, 800);
 }
+// SPREČI automatsko zatvaranje modala
+document.getElementById('lookModal').addEventListener('click', (e) => {
+    // Zatvori SAMO ako je klik na pozadinu (ne na sadržaj)
+    if (e.target === e.currentTarget) {
+        closeLookModal();
+    }
+});
 
-// Close quick view on outside click
-document.addEventListener('click', (e) => {
-    const modal = document.getElementById('quickViewModal');
-    if (modal && e.target === modal) {
-        closeQuickView();
+// U renderLookItems funkciji, zaustavi propagaciju na checkbox-ovima:
+// (već imaš ovo, ali proveri da nema duplih event listenera)
+
+// Inicijalizuj samo jednom
+let isInitialized = false;
+document.addEventListener('DOMContentLoaded', () => {
+    if (!isInitialized) {
+        initCatalog(); // Za lookbook
+        isInitialized = true;
     }
 });
 
