@@ -191,20 +191,6 @@ function renderSinglePage(index) {
 }
 
 
-// Swipe
-let touchStartX = 0;
-const catalog = document.querySelector('.catalog-container');
-
-catalog.addEventListener('touchstart', e => {
-    touchStartX = e.changedTouches[0].screenX;
-}, {passive: true});
-
-catalog.addEventListener('touchend', e => {
-    const diff = touchStartX - e.changedTouches[0].screenX;
-    if (Math.abs(diff) > 50) {
-        flipPage(diff > 0 ? 1 : -1);
-    }
-}, {passive: true});
 
 // Init
 document.addEventListener('DOMContentLoaded', () => {
