@@ -6174,20 +6174,21 @@ select:focus {
 .summer-hero-content {
     position: relative;
     z-index: 3;
-    padding-bottom: 50px;
+    padding: 0 30px 100px; /* Dodaj levo/desno */
     text-align: center;
     color: #fff;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .summer-title {
-    font-family: var(--font-serif);
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
+   font-family: var(--font-serif);
+    font-size: clamp(1.75rem, 5vw, 4rem);
     font-weight: 400;
-    line-height: 1;
-    margin-bottom: 2rem;
-    font-style: italic;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .summer-cta {
@@ -6627,6 +6628,15 @@ select:focus {
                 font-size: 1.75rem;
             }
         }
+        @media (max-width: 480px) {
+    .summer-hero-content {
+        padding: 0 20px 80px;
+    }
+    
+    .summer-title {
+        font-size: clamp(1.5rem, 7vw, 2.5rem);
+    }
+}
 /* =========================
    SHOP THE LOOK MODAL - COMPACT
 ========================= */
@@ -7486,9 +7496,13 @@ select:focus {
 }
 
 .cover-content {
-    text-align: center;
+     text-align: center;
     color: white;
     padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .cover-label {
@@ -7518,10 +7532,10 @@ select:focus {
 }
 
 .open-book-btn {
-    background: white;
+     background: white;
     color: var(--color-accent);
     border: none;
-    padding: 1rem 2rem;
+    padding: 1rem 2.5rem;
     font-family: var(--font-sans);
     font-size: 0.875rem;
     text-transform: uppercase;
@@ -7530,8 +7544,11 @@ select:focus {
     transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.75rem;
-    border-radius: 2px;
+    margin: 0 auto; /* Centriraj */
+    width: auto;
+    min-width: 200px;
 }
 
 .open-book-btn:hover {
@@ -7640,6 +7657,18 @@ select:focus {
     100% {
         transform: perspective(1000px) rotateY(0deg);
         opacity: 1;
+    }
+}
+@media (max-width: 480px) {
+    .book-cover {
+        max-width: 300px;
+        height: 450px;
+    }
+    
+    .open-book-btn {
+        padding: 0.875rem 2rem;
+        font-size: 0.8125rem;
+        min-width: 160px;
     }
 }
 /* LOOKBOOK - NOVO */
