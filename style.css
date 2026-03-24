@@ -8127,3 +8127,57 @@ select:focus {
         100% { opacity: 0; }
     }
 }
+@media (max-width: 768px) {
+    .look-item {
+        display: grid;
+        grid-template-columns: 80px 1fr; /* Slika | Sve ostalo */
+        grid-template-rows: auto auto auto;
+        gap: 0.75rem;
+        padding: 1rem;
+    }
+
+    .look-item-img-wrap {
+        grid-row: span 3; /* Slika zauzima sve redove */
+        width: 80px;
+        height: 100px;
+    }
+
+    .look-item-info {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .look-item-info h4 {
+        font-size: 0.9375rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .look-item-info p {
+        font-size: 0.8125rem;
+    }
+
+    /* Toggle u drugom redu */
+    .look-item-toggle {
+        grid-column: 2;
+        grid-row: 2;
+        justify-content: flex-start;
+    }
+
+    /* Size selector u trećem redu */
+    .look-item-size {
+        grid-column: 2;
+        grid-row: 3;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    /* Cena skroz desno u prvom redu */
+    .look-item-price {
+        grid-column: 2;
+        grid-row: 1;
+        text-align: right;
+        font-size: 0.9375rem;
+        align-self: flex-start;
+    }
+}
