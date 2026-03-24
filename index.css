@@ -1954,3 +1954,54 @@ body {
         font-size: 1.125rem;
     }
 }
+/* =========================
+   MOBILE RESPONSIVE - SUSTAINABILITY FIX
+========================= */
+@media (max-width: 768px) {
+    .sustainability-banner {
+        padding: 1.5rem 5%;
+    }
+    
+    .sustainability-container {
+        flex-direction: row; /* Horizontalno umesto vertikalno */
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: nowrap; /* Sprečava prelazak u novi red */
+    }
+    
+    .sustainability-item {
+        flex-direction: column; /* Ikonica iznad teksta */
+        text-align: center;
+        gap: 0.5rem;
+        font-size: 0.625rem; /* Manji font */
+        min-width: 60px; /* Fiksna minimalna širina */
+    }
+    
+    .sustainability-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    /* Sakrij divider tačkice na mobilnom */
+    .sustainability-divider {
+        display: none;
+    }
+}
+
+@media (max-width: 380px) {
+    .sustainability-container {
+        gap: 0.5rem;
+    }
+    
+    .sustainability-item {
+        min-width: 50px;
+        font-size: 0.5625rem;
+    }
+    
+    .sustainability-icon {
+        width: 36px;
+        height: 36px;
+    }
+}
