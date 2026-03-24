@@ -56,12 +56,18 @@ const catalogData = [
 let currentSpread = 0;
 const totalSpreads = catalogData.length;
 
+const flatPages = catalogData.flatMap(spread => [
+    { layout: spread.left.layout, items: spread.left.items },
+    { layout: spread.right.layout, items: spread.right.items }
+]);
 function initCatalog() {
     document.getElementById('totalSpreads').textContent = totalSpreads;
     // Ne renderuj odmah, čeka se otvaranje
 }
 
 function openBook() {
+
+    let isMobile = window.innerWidth < 768;
     // Sakrij cover
     document.getElementById('bookCover').classList.add('hidden');
     
@@ -69,15 +75,15 @@ function openBook() {
     document.getElementById('catalogContainer').classList.remove('hidden');
     document.getElementById('pageIndicator').classList.remove('hidden');
     
-    if (window.innerWidth < 768) {
-        renderAllPagesMobile(); // 🔥 MOBILE MODE
-        document.getElementById('pageIndicator').classList.add('hidden'); // nema page brojanja
+   if (isMobile) {
+        currentSpread = 0;
+        renderSinglePage(currentSpread);
     } else {
-        renderSpread(0); // desktop ostaje isti
+        renderSpread(0);
     }
-    
-    // Opcionalno: skroluj do lookbooka
-    document.querySelector('.lookbook-catalog').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    document.querySelector('.lookbook-catalog')
+        .scrollIntoView({ behavior: 'smooth', block: 'center' });   
 }
 
 function closeBook() {
@@ -130,12 +136,22 @@ function renderSpread(index) {
 }
 
 function flipPage(direction) {
+    if (isMobile) {
+        const newIndex = currentSpread + direction;
+        if (newIndex < 0 || newIndex >= flatPages.length) return;
+
+        currentSpread = newIndex;
+        renderSinglePage(currentSpread);
+        return;
+    }
+
+    // desktop ostaje isti
     const newIndex = currentSpread + direction;
     if (newIndex < 0 || newIndex >= totalSpreads) return;
-    
+
     const leftPage = document.querySelector('.left-page');
     const rightPage = document.querySelector('.right-page');
-    
+
     if (direction > 0) {
         leftPage.classList.add('flipping-forward');
         setTimeout(() => {
@@ -152,18 +168,24 @@ function flipPage(direction) {
         }, 400);
     }
 }
-function renderAllPagesMobile() {
-    const container = document.getElementById('catalogContainer');
+function renderSinglePage(index) {
+    const page = flatPages[index];
 
-    container.innerHTML = catalogData.map(spread => {
-        const allItems = [...spread.left.items, ...spread.right.items];
+    const leftPage = document.getElementById('leftPage');
+    const rightPage = document.getElementById('rightPage');
 
-        return allItems.map(item => `
-            <div class="catalog-item mobile">
-                <img src="${item.img}" alt="${item.name}" loading="lazy">
-            </div>
-        `).join('');
-    }).join('');
+    // koristimo samo jednu stranu
+    leftPage.className = `page-content ${page.layout}`;
+    leftPage.innerHTML = page.items.map(item => `
+        <div class="catalog-item">
+            <img src="${item.img}" alt="${item.name}" loading="lazy">
+        </div>
+    `).join('');
+
+    rightPage.innerHTML = ''; // sakrij drugu
+
+    document.querySelector('.left-num').textContent = (index + 1).toString().padStart(2, '0');
+    document.querySelector('.right-num').textContent = '';
 }
 
 
