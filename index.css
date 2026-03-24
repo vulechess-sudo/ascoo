@@ -1924,36 +1924,6 @@ body {
 /* =========================
    MOBILE RESPONSIVE
 ========================= */
-@media (max-width: 1024px) {
-    .sustainability-container {
-        gap: 2rem;
-    }
-    
-    .sustainability-divider {
-        display: none;
-    }
-}
-
-@media (max-width: 768px) {
-    .sustainability-banner {
-        padding: 3rem 5%;
-    }
-    
-    .sustainability-container {
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-    
-    .sustainability-item {
-        font-size: 0.8125rem;
-    }
-    
-    .sustainability-icon {
-        width: 44px;
-        height: 44px;
-        font-size: 1.125rem;
-    }
-}
 @media (max-width: 768px) {
     .sustainability-banner {
         padding: 1.5rem 5%;
@@ -1962,8 +1932,8 @@ body {
     .sustainability-container {
         flex-direction: row;
         justify-content: center;
-        align-items: flex-start; /* Poravnaj od vrha umesto center */
-        gap: 1rem;
+        align-items: flex-start;
+        gap: 1.5rem; /* Povećan razmak */
         flex-wrap: nowrap;
     }
     
@@ -1972,26 +1942,26 @@ body {
         text-align: center;
         gap: 0.5rem;
         font-size: 0.625rem;
-        min-width: 60px;
-        max-width: 70px; /* Ograniči širinu */
+        min-width: 70px; /* Veća minimalna širina */
+        max-width: 80px; /* Veća maksimalna širina */
         align-items: center;
-        line-height: 1.2; /* Smanji razmak između redova teksta */
+        line-height: 1.2;
     }
     
-    /* Fiksirana visina za tekst - 2 reda uvek */
     .sustainability-item span {
         display: -webkit-box;
-        -webkit-line-clamp: 2; /* Maksimum 2 reda */
+        -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
-        min-height: 2.4em; /* Fiksna visina za 2 reda */
+        min-height: 2.4em;
+        word-break: break-word; /* Prelomi duge reči */
     }
     
     .sustainability-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
-        flex-shrink: 0; /* Spreči skupljanje kruga */
+        width: 44px; /* Malo veći krug */
+        height: 44px;
+        font-size: 1.1rem;
+        flex-shrink: 0;
     }
     
     .sustainability-divider {
@@ -2001,17 +1971,17 @@ body {
 
 @media (max-width: 380px) {
     .sustainability-container {
-        gap: 0.5rem;
+        gap: 1rem; /* I ovde veći razmak */
     }
     
     .sustainability-item {
-        min-width: 55px;
-        max-width: 60px;
+        min-width: 65px;
+        max-width: 75px;
         font-size: 0.5625rem;
     }
     
     .sustainability-icon {
-        width: 36px;
-        height: 36px;
+        width: 40px;
+        height: 40px;
     }
 }
