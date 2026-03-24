@@ -189,9 +189,6 @@ function renderSinglePage(index) {
     document.querySelector('.left-num').textContent = (index + 1).toString().padStart(2, '0');
     document.querySelector('.right-num').textContent = '';
 }
-
-
-
 // Init
 document.addEventListener('DOMContentLoaded', () => {
     initCatalog();

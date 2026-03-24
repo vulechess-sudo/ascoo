@@ -8096,3 +8096,12 @@ select:focus {
         width: 100%;
     }
 }
+@media (max-width: 768px) {
+    #pageIndicator {
+        display: none !important;
+    }
+
+    .page-btn {
+        display: none !important;
+    }
+}
