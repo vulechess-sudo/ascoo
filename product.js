@@ -525,6 +525,283 @@ document.addEventListener('DOMContentLoaded', () => {
 function goToProduct(id) {
     window.location.href = `product.html?id=${id}`;
 }
+// =========================
+// LIGHTBOX / ZOOM FUNCTIONALITY
+// =========================
+
+function initLightbox() {
+    // Kreiraj lightbox elemente ako ne postoje
+    if (!document.getElementById('lightbox')) {
+        const lightbox = document.createElement('div');
+        lightbox.id = 'lightbox';
+        lightbox.innerHTML = `
+            <div class="lightbox-overlay"></div>
+            <button class="lightbox-close">&times;</button>
+            <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+            <div class="lightbox-container">
+                <img src="" alt="" class="lightbox-img">
+                <div class="lightbox-zoom-hint">
+                    <i class="fas fa-search-plus"></i>
+                    <span>Scroll to zoom • Drag to pan</span>
+                </div>
+            </div>
+            <div class="lightbox-counter">1 / 3</div>
+        `;
+        document.body.appendChild(lightbox);
+    }
+    
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('.lightbox-img');
+    const counter = lightbox.querySelector('.lightbox-counter');
+    
+    let currentImages = [];
+    let currentIndex = 0;
+    let scale = 1;
+    let panning = false;
+    let pointX = 0;
+    let pointY = 0;
+    let startX = 0;
+    let startY = 0;
+    
+    // Otvori lightbox
+    function openLightbox(images, index) {
+        currentImages = images;
+        currentIndex = index;
+        scale = 1;
+        pointX = 0;
+        pointY = 0;
+        updateLightboxImage();
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    // Zatvori lightbox
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+        setTimeout(() => {
+            lightboxImg.style.transform = '';
+            lightboxImg.classList.remove('zoomed');
+        }, 300);
+    }
+    
+    // Ažuriraj sliku
+    function updateLightboxImage() {
+        lightboxImg.src = currentImages[currentIndex];
+        counter.textContent = `${currentIndex + 1} / ${currentImages.length}`;
+        // Reset zoom
+        scale = 1;
+        pointX = 0;
+        pointY = 0;
+        lightboxImg.style.transform = '';
+        lightboxImg.classList.remove('zoomed');
+    }
+    
+    // Zoom funkcije
+    function zoomIn() {
+        scale = Math.min(scale * 1.5, 4);
+        updateTransform();
+    }
+    
+    function zoomOut() {
+        scale = Math.max(scale / 1.5, 1);
+        if (scale === 1) {
+            pointX = 0;
+            pointY = 0;
+            lightboxImg.classList.remove('zoomed');
+        }
+        updateTransform();
+    }
+    
+    function updateTransform() {
+        lightboxImg.style.transform = `translate(${pointX}px, ${pointY}px) scale(${scale})`;
+        lightboxImg.classList.toggle('zoomed', scale > 1);
+    }
+    
+    // Event listeneri
+    lightbox.querySelector('.lightbox-close').onclick = closeLightbox;
+    lightbox.querySelector('.lightbox-overlay').onclick = closeLightbox;
+    
+    lightbox.querySelector('.lightbox-prev').onclick = (e) => {
+        e.stopPropagation();
+        currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+        updateLightboxImage();
+    };
+    
+    lightbox.querySelector('.lightbox-next').onclick = (e) => {
+        e.stopPropagation();
+        currentIndex = (currentIndex + 1) % currentImages.length;
+        updateLightboxImage();
+    };
+    
+    // Klik na sliku za zoom
+    lightboxImg.onclick = (e) => {
+        e.stopPropagation();
+        if (scale === 1) {
+            // Zoom in na poziciju klika
+            const rect = lightboxImg.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            scale = 2;
+            pointX = -x;
+            pointY = -y;
+            lightboxImg.classList.add('zoomed');
+            updateTransform();
+        } else {
+            // Zoom out
+            scale = 1;
+            pointX = 0;
+            pointY = 0;
+            lightboxImg.classList.remove('zoomed');
+            updateTransform();
+        }
+    };
+    
+    // Scroll za zoom
+    lightbox.querySelector('.lightbox-container').onwheel = (e) => {
+        e.preventDefault();
+        if (e.deltaY < 0) {
+            zoomIn();
+        } else {
+            zoomOut();
+        }
+    };
+    
+    // Pan (drag) kada je zoomed
+    lightboxImg.onmousedown = (e) => {
+        if (scale === 1) return;
+        e.preventDefault();
+        panning = true;
+        startX = e.clientX - pointX;
+        startY = e.clientY - pointY;
+        lightboxImg.style.cursor = 'grabbing';
+    };
+    
+    window.addEventListener('mousemove', (e) => {
+        if (!panning) return;
+        e.preventDefault();
+        pointX = e.clientX - startX;
+        pointY = e.clientY - startY;
+        updateTransform();
+    });
+    
+    window.addEventListener('mouseup', () => {
+        panning = false;
+        if (lightboxImg.classList.contains('zoomed')) {
+            lightboxImg.style.cursor = 'grab';
+        }
+    });
+    
+    // Touch events za mobilni
+    let touchStartDistance = 0;
+    let touchStartScale = 1;
+    
+    lightbox.querySelector('.lightbox-container').ontouchstart = (e) => {
+        if (e.touches.length === 2) {
+            // Pinch start
+            touchStartDistance = Math.hypot(
+                e.touches[0].pageX - e.touches[1].pageX,
+                e.touches[0].pageY - e.touches[1].pageY
+            );
+            touchStartScale = scale;
+        } else if (e.touches.length === 1 && scale > 1) {
+            // Pan start
+            panning = true;
+            startX = e.touches[0].clientX - pointX;
+            startY = e.touches[0].clientY - pointY;
+        }
+    };
+    
+    lightbox.querySelector('.lightbox-container').ontouchmove = (e) => {
+        e.preventDefault();
+        if (e.touches.length === 2) {
+            // Pinch zoom
+            const distance = Math.hypot(
+                e.touches[0].pageX - e.touches[1].pageX,
+                e.touches[0].pageY - e.touches[1].pageY
+            );
+            scale = Math.min(Math.max(touchStartScale * (distance / touchStartDistance), 1), 4);
+            if (scale === 1) {
+                pointX = 0;
+                pointY = 0;
+                lightboxImg.classList.remove('zoomed');
+            } else {
+                lightboxImg.classList.add('zoomed');
+            }
+            updateTransform();
+        } else if (e.touches.length === 1 && panning) {
+            // Pan
+            pointX = e.touches[0].clientX - startX;
+            pointY = e.touches[0].clientY - startY;
+            updateTransform();
+        }
+    };
+    
+    lightbox.querySelector('.lightbox-container').ontouchend = () => {
+        panning = false;
+    };
+    
+    // Swipe za promenu slike kada nije zoomed
+    let touchStartX = 0;
+    lightbox.querySelector('.lightbox-container').ontouchstart = (e) => {
+        if (e.touches.length === 1 && scale === 1) {
+            touchStartX = e.touches[0].clientX;
+        }
+    };
+    
+    lightbox.querySelector('.lightbox-container').ontouchend = (e) => {
+        if (scale > 1) return;
+        const touchEndX = e.changedTouches[0].clientX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) {
+                currentIndex = (currentIndex + 1) % currentImages.length;
+            } else {
+                currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+            }
+            updateLightboxImage();
+        }
+    };
+    
+    // Keyboard navigacija
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        switch(e.key) {
+            case 'Escape': closeLightbox(); break;
+            case 'ArrowLeft': 
+                currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+                updateLightboxImage();
+                break;
+            case 'ArrowRight':
+                currentIndex = (currentIndex + 1) % currentImages.length;
+                updateLightboxImage();
+                break;
+        }
+    });
+    
+    // Eksportuj funkciju
+    window.openProductLightbox = openLightbox;
+}
+
+// Inicijalizuj lightbox
+document.addEventListener('DOMContentLoaded', () => {
+    initLightbox();
+    
+    // Poveži sa slider slikama
+    const slider = document.querySelector('.image-slider');
+    if (slider) {
+        slider.addEventListener('click', (e) => {
+            if (e.target.tagName === 'IMG') {
+                const product = window.currentProduct;
+                if (product && product.images) {
+                    const clickedIndex = Array.from(slider.querySelectorAll('img')).indexOf(e.target);
+                    window.openProductLightbox(product.images, clickedIndex);
+                }
+            }
+        });
+    }
+});
 
 // =========================
 // INITIALIZE
