@@ -70,28 +70,31 @@ window.addEventListener('resize', () => {
 }); 
 
 function openBook() {
-    // Sakrij cover
     document.getElementById('bookCover').classList.add('hidden');
-    
-    // Pokaži knjigu
     document.getElementById('catalogContainer').classList.remove('hidden');
     document.getElementById('pageIndicator').classList.remove('hidden');
     
-   if (isMobile) {
+    if (isMobile) {
         currentSpread = 0;
         renderSinglePage(currentSpread);
-        const hint = document.getElementById('swipeHint');
-    hint.style.display = 'block';
-
-    setTimeout(() => {
-        hint.style.display = 'none';
-    }, 3000);
     } else {
         renderSpread(0);
     }
 
     document.querySelector('.lookbook-catalog')
-        .scrollIntoView({ behavior: 'smooth', block: 'center' });   
+        .scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    // 👇 SWIPE HINT
+    if (isMobile) {
+        const hint = document.getElementById('swipeHint');
+        if (hint) {
+            hint.style.display = 'block';
+
+            setTimeout(() => {
+                hint.style.display = 'none';
+            }, 3000);
+        }
+    }
 }
 
 function closeBook() {
