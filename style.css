@@ -8105,3 +8105,25 @@ select:focus {
         display: none !important;
     }
 }
+@media (max-width: 768px) {
+    .swipe-hint {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0,0,0,0.6);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 14px;
+        opacity: 0;
+        animation: fadeInOut 3s ease forwards;
+    }
+
+    @keyframes fadeInOut {
+        0% { opacity: 0; transform: translate(-50%, 10px); }
+        20% { opacity: 1; transform: translate(-50%, 0); }
+        80% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+}

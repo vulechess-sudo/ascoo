@@ -80,6 +80,12 @@ function openBook() {
    if (isMobile) {
         currentSpread = 0;
         renderSinglePage(currentSpread);
+        const hint = document.getElementById('swipeHint');
+    hint.style.display = 'block';
+
+    setTimeout(() => {
+        hint.style.display = 'none';
+    }, 3000);
     } else {
         renderSpread(0);
     }
