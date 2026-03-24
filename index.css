@@ -1970,7 +1970,7 @@ body {
     .sustainability-item {
         flex-direction: column;
         text-align: center;
-        gap: 0.5rem;
+        gap: 1rem;
         font-size: 0.625rem;
         min-width: 60px;
         max-width: 70px; /* Ograniči širinu */
