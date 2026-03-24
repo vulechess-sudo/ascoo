@@ -8098,11 +8098,11 @@ select:focus {
 }
 @media (max-width: 768px) {
     #pageIndicator {
-        display: none !important;
+        display: block;
     }
 
     .page-btn {
-        display: none !important;
+        display: none;
     }
 }
 @media (max-width: 768px) {

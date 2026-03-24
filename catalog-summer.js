@@ -62,8 +62,9 @@ const flatPages = catalogData.flatMap(spread => [
     { layout: spread.right.layout, items: spread.right.items }
 ]);
 function initCatalog() {
-    document.getElementById('totalSpreads').textContent = totalSpreads;
-    // Ne renderuj odmah, čeka se otvaranje
+    document.getElementById('totalSpreads').textContent = isMobile 
+    ? flatPages.length 
+    : totalSpreads;
 }
 window.addEventListener('resize', () => {
     isMobile = window.innerWidth < 768;
@@ -73,6 +74,9 @@ function openBook() {
     document.getElementById('bookCover').classList.add('hidden');
     document.getElementById('catalogContainer').classList.remove('hidden');
     document.getElementById('pageIndicator').classList.remove('hidden');
+    document.getElementById('totalSpreads').textContent = isMobile 
+    ? flatPages.length 
+    : totalSpreads;
     
     if (isMobile) {
         currentSpread = 0;
@@ -196,6 +200,7 @@ function renderSinglePage(index) {
     rightPage.innerHTML = ''; // sakrij drugu
 
     document.querySelector('.left-num').textContent = (index + 1).toString().padStart(2, '0');
+    document.getElementById('currentSpread').textContent = index + 1;
     document.querySelector('.right-num').textContent = '';
 }
 // Init
