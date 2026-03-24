@@ -8119,3 +8119,30 @@ select:focus {
         border-radius: 4px 0 0 4px;
     }
 }
+@media (max-width: 768px) {
+    .catalog-container {
+        height: 450px;
+        position: relative;
+    }
+    
+    .page {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    
+    /* Kada je skrivena - potpuno ukloni iz layouta */
+    .left-page[style*="display: none"],
+    .right-page[style*="display: none"] {
+        display: none !important;
+    }
+    
+    /* Kada je vidljiva */
+    .left-page[style*="display: flex"],
+    .right-page[style*="display: flex"] {
+        display: flex !important;
+        flex-direction: column;
+    }
+}

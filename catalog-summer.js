@@ -99,63 +99,54 @@ function renderCurrentView() {
     const leftContent = document.getElementById('leftPage');
     const rightContent = document.getElementById('rightPage');
     
+    // Uvek očisti oba kontejnera prvo
+    leftContent.innerHTML = '';
+    rightContent.innerHTML = '';
+    
     if (isMobile()) {
-        // MOBILE: Prikaži samo jednu stranicu odjednom
+        // MOBILE: Prikaži samo jednu stranicu
         const pageData = allPages[currentPageIndex];
         
-        // Alterniraj između leve i desne strane DOM-a
+        // Kreiraj HTML za trenutnu stranicu
+        const pageHTML = pageData.items.map(item => `
+            <div class="catalog-item">
+                <img src="${item.img}" alt="${item.name}" loading="lazy">
+            </div>
+        `).join('');
+        
         if (currentPageIndex % 2 === 0) {
-            // Parne stranice (0, 2, 4) u levu stranu
-            leftPageContainer.style.opacity = '1';
-            leftPageContainer.style.visibility = 'visible';
-            leftPageContainer.style.position = 'relative';
-            leftPageContainer.style.zIndex = '10';
-            
-            rightPageContainer.style.opacity = '0';
-            rightPageContainer.style.visibility = 'hidden';
-            rightPageContainer.style.position = 'absolute';
-            rightPageContainer.style.zIndex = '1';
-            
+            // PARNE stranice (0, 2, 4) -> LEVA strana
             leftContent.className = `page-content ${pageData.layout}`;
-            leftContent.innerHTML = pageData.items.map(item => `
-                <div class="catalog-item">
-                    <img src="${item.img}" alt="${item.name}" loading="lazy">
-                </div>
-            `).join('');
+            leftContent.innerHTML = pageHTML;
+            
+            // Prikaži levu, sakrij desnu potpuno
+            leftPageContainer.style.display = 'flex';
+            rightPageContainer.style.display = 'none';
+            
         } else {
-            // Ne-parne stranice (1, 3, 5) u desnu stranu
-            rightPageContainer.style.opacity = '1';
-            rightPageContainer.style.visibility = 'visible';
-            rightPageContainer.style.position = 'relative';
-            rightPageContainer.style.zIndex = '10';
-            
-            leftPageContainer.style.opacity = '0';
-            leftPageContainer.style.visibility = 'hidden';
-            leftPageContainer.style.position = 'absolute';
-            leftPageContainer.style.zIndex = '1';
-            
+            // NEPARNE stranice (1, 3, 5) -> DESNA strana  
             rightContent.className = `page-content ${pageData.layout}`;
-            rightContent.innerHTML = pageData.items.map(item => `
-                <div class="catalog-item">
-                    <img src="${item.img}" alt="${item.name}" loading="lazy">
-                </div>
-            `).join('');
+            rightContent.innerHTML = pageHTML;
+            
+            // Prikaži desnu, sakrij levu potpuno
+            rightPageContainer.style.display = 'flex';
+            leftPageContainer.style.display = 'none';
         }
         
-        // Sakrij brojeve strana na mobilnom ili prikaži samo trenutni
+        // Brojač 1-6
         document.querySelector('.left-num').textContent = (currentPageIndex + 1).toString().padStart(2, '0');
         document.querySelector('.right-num').style.display = 'none';
-        document.querySelector('.left-num').style.display = 'block';
         
     } else {
-        // DESKTOP: Klasični prikaz spreda (2 strane)
+        // DESKTOP: Klasični prikaz
         const spreadIndex = Math.floor(currentPageIndex / 2);
         const spread = catalogData[spreadIndex];
         
-        // Resetuj stilove za desktop
-        leftPageContainer.style = '';
-        rightPageContainer.style = '';
+        // Resetuj display
+        leftPageContainer.style.display = '';
+        rightPageContainer.style.display = '';
         
+        // Popuni LEVU stranu
         leftContent.className = `page-content ${spread.left.layout}`;
         leftContent.innerHTML = spread.left.items.map(item => `
             <div class="catalog-item">
@@ -163,6 +154,7 @@ function renderCurrentView() {
             </div>
         `).join('');
         
+        // Popuni DESNU stranu
         rightContent.className = `page-content ${spread.right.layout}`;
         rightContent.innerHTML = spread.right.items.map(item => `
             <div class="catalog-item">
@@ -170,12 +162,11 @@ function renderCurrentView() {
             </div>
         `).join('');
         
-        // Brojevi strana
+        // Brojevi 1-6
         const leftNum = (spreadIndex * 2) + 1;
         const rightNum = (spreadIndex * 2) + 2;
         document.querySelector('.left-num').textContent = leftNum.toString().padStart(2, '0');
         document.querySelector('.right-num').textContent = rightNum.toString().padStart(2, '0');
-        document.querySelector('.left-num').style.display = 'block';
         document.querySelector('.right-num').style.display = 'block';
     }
     
