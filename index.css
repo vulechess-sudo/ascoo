@@ -1954,37 +1954,46 @@ body {
         font-size: 1.125rem;
     }
 }
-/* =========================
-   MOBILE RESPONSIVE - SUSTAINABILITY FIX
-========================= */
 @media (max-width: 768px) {
     .sustainability-banner {
         padding: 1.5rem 5%;
     }
     
     .sustainability-container {
-        flex-direction: row; /* Horizontalno umesto vertikalno */
+        flex-direction: row;
         justify-content: center;
-        align-items: center;
-        gap: 1rem;
-        flex-wrap: nowrap; /* Sprečava prelazak u novi red */
+        align-items: flex-start; /* Poravnaj od vrha umesto center */
+        gap: 0.75rem;
+        flex-wrap: nowrap;
     }
     
     .sustainability-item {
-        flex-direction: column; /* Ikonica iznad teksta */
+        flex-direction: column;
         text-align: center;
         gap: 0.5rem;
-        font-size: 0.625rem; /* Manji font */
-        min-width: 60px; /* Fiksna minimalna širina */
+        font-size: 0.625rem;
+        min-width: 60px;
+        max-width: 70px; /* Ograniči širinu */
+        align-items: center;
+        line-height: 1.2; /* Smanji razmak između redova teksta */
+    }
+    
+    /* Fiksirana visina za tekst - 2 reda uvek */
+    .sustainability-item span {
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* Maksimum 2 reda */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        min-height: 2.4em; /* Fiksna visina za 2 reda */
     }
     
     .sustainability-icon {
         width: 40px;
         height: 40px;
         font-size: 1rem;
+        flex-shrink: 0; /* Spreči skupljanje kruga */
     }
     
-    /* Sakrij divider tačkice na mobilnom */
     .sustainability-divider {
         display: none;
     }
@@ -1996,7 +2005,8 @@ body {
     }
     
     .sustainability-item {
-        min-width: 50px;
+        min-width: 55px;
+        max-width: 60px;
         font-size: 0.5625rem;
     }
     
