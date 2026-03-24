@@ -214,19 +214,28 @@ function generateSizes(sizes) {
 // =========================
 // SLIDER FUNCTIONS
 // =========================
-
+let isAnimating = false;
 function updateSlider() {
-    const sliderContainer = document.getElementById('sliderContainer');
+   const sliderContainer = document.getElementById('sliderContainer');
     sliderContainer.style.transform = `translateX(-${window.currentSlide * 100}%)`;
     
     const dots = document.querySelectorAll('.dot');
     dots.forEach((dot, index) => {
         dot.classList.toggle('active', index === window.currentSlide);
     });
+    
+    // Resetuj flag posle animacije
+    setTimeout(() => {
+        isAnimating = false;
+    }, 400); // Istovremeno sa CSS transition
 }
 
 function changeSlide(direction) {
-     window.currentSlide += direction;
+     // Spreči višestruke klikove
+    if (isAnimating) return;
+    isAnimating = true;
+    
+    window.currentSlide += direction;
     
     // Circular navigation
     if (window.currentSlide < 0) {
@@ -239,6 +248,8 @@ function changeSlide(direction) {
 }
 
 function goToSlide(index) {
+    if (isAnimating || index === window.currentSlide) return;
+    isAnimating = true;
     window.currentSlide = index;
     updateSlider();
 }
