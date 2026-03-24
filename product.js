@@ -226,7 +226,15 @@ function updateSlider() {
 }
 
 function changeSlide(direction) {
-    window.currentSlide = (window.currentSlide + direction + window.totalSlides) % window.totalSlides;
+     window.currentSlide += direction;
+    
+    // Circular navigation
+    if (window.currentSlide < 0) {
+        window.currentSlide = window.totalSlides - 1;
+    } else if (window.currentSlide >= window.totalSlides) {
+        window.currentSlide = 0;
+    }
+    
     updateSlider();
 }
 

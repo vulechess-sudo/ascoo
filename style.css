@@ -8210,3 +8210,40 @@ select:focus {
         align-self: flex-start;
     }
 }
+/* =========================
+   SEARCH GLOBAL FIX
+========================= */
+
+/* Forsiraj isti izgled kao na indexu */
+.search-container {
+    background: #faf9f7 !important;
+    border: 1px solid #e0ddd8 !important;
+    border-radius: 100px !important;
+    padding: 0.2rem 1.5rem !important; /* Smanjeno sa 1rem */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 1rem !important;
+}
+
+.search-icon {
+    color: #666 !important;
+    font-size: 1.125rem !important;
+}
+
+.search-input {
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    font-size: 1rem !important;
+    color: #2a251a !important;
+    flex: 1 !important;
+}
+
+/* Ukloni žuti autofill background */
+.search-input:-webkit-autofill,
+.search-input:-webkit-autofill:hover, 
+.search-input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px #faf9f7 inset !important;
+    -webkit-text-fill-color: #2a251a !important;
+}
