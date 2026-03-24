@@ -55,6 +55,7 @@ const catalogData = [
 
 let currentSpread = 0;
 const totalSpreads = catalogData.length;
+let isMobile = window.innerWidth < 768;
 
 const flatPages = catalogData.flatMap(spread => [
     { layout: spread.left.layout, items: spread.left.items },
@@ -64,10 +65,11 @@ function initCatalog() {
     document.getElementById('totalSpreads').textContent = totalSpreads;
     // Ne renderuj odmah, čeka se otvaranje
 }
+window.addEventListener('resize', () => {
+    isMobile = window.innerWidth < 768;
+}); 
 
 function openBook() {
-
-    let isMobile = window.innerWidth < 768;
     // Sakrij cover
     document.getElementById('bookCover').classList.add('hidden');
     
@@ -205,4 +207,21 @@ catalog.addEventListener('touchend', e => {
 }, {passive: true});
 
 // Init
-document.addEventListener('DOMContentLoaded', initCatalog); 
+document.addEventListener('DOMContentLoaded', () => {
+    initCatalog();
+
+    const catalog = document.querySelector('.catalog-container');
+
+    let touchStartX = 0;
+
+    catalog.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    catalog.addEventListener('touchend', e => {
+        const diff = touchStartX - e.changedTouches[0].screenX;
+        if (Math.abs(diff) > 50) {
+            flipPage(diff > 0 ? 1 : -1);
+        }
+    }, { passive: true });
+});

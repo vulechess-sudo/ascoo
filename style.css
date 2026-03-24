@@ -8083,3 +8083,16 @@ select:focus {
         display: block;
     }
 }
+@media (max-width: 768px) {
+    .right-page {
+        display: none;
+    }
+
+    .left-page {
+        width: 100%;
+    }
+
+    .page-content {
+        width: 100%;
+    }
+}
