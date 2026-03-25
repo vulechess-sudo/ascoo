@@ -127,19 +127,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function createUnifiedCard(original) {
-        const wrapper = document.createElement("div");
-        wrapper.className = "card unified-card";
-        wrapper.dataset.category = original.dataset.category;
-        wrapper.dataset.price = original.dataset.price;
-        wrapper.dataset.id = original.dataset.id;
-        
-        const imgWrap = original.querySelector(".img-wrap").cloneNode(true);
-        const info = original.querySelector(".info").cloneNode(true);
-        
-        wrapper.appendChild(imgWrap);
-        wrapper.appendChild(info);
-        
-        return wrapper;
+       const wrapper = document.createElement("div");
+    // Koristi samo unified-card klasu, ne mešaj sa card
+    wrapper.className = "unified-card";
+    wrapper.dataset.category = original.dataset.category;
+    wrapper.dataset.price = original.dataset.price;
+    wrapper.dataset.id = original.dataset.id;
+    
+    const imgWrap = original.querySelector(".img-wrap").cloneNode(true);
+    const info = original.querySelector(".info").cloneNode(true);
+    
+    wrapper.appendChild(imgWrap);
+    wrapper.appendChild(info);
+    
+    return wrapper;
     }
 
     categoryItems.forEach(item => {

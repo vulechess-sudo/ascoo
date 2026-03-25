@@ -8405,4 +8405,59 @@ select:focus {
                     height: 40px;
                 }
             }
-        
+            /* =========================
+   UNIFIED GRID MOBILE FIX
+========================= */
+
+/* Desktop - 4 kolone */
+.unified-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+    padding: 0 20px;
+}
+
+/* Tablet - 2 kolone */
+@media (max-width: 1024px) {
+    .unified-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+
+/* Mobile - 1 kolona, puna širina */
+@media (max-width: 768px) {
+    .unified-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 15px;
+    }
+    
+    /* Povećaj kartice na mobilnom */
+    .unified-grid .card,
+    .unified-grid .unified-card {
+        width: 100%;
+    }
+    
+    .unified-grid .img-wrap {
+        aspect-ratio: 3 / 4;
+        width: 100%;
+    }
+    
+    .unified-grid .info h3 {
+        font-size: 16px;
+    }
+    
+    .unified-grid .price {
+        font-size: 14px;
+    }
+}
+
+/* Extra small - malo manji gap */
+@media (max-width: 480px) {
+    .unified-grid {
+        gap: 1rem;
+        padding: 0 10px;
+    }
+}
