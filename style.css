@@ -2426,19 +2426,20 @@ MOBILE RESPONSIVE
     grid-row: span 2;
 }
 
+.big-card .img-wrap {
+    aspect-ratio: 3 / 4;
+    height: 100%;
+}
+
+/* ILI ako želiš drugačiji aspect-ratio za big-card: */
 .big-card {
     grid-row: span 2;
     aspect-ratio: 2.9 / 4;
 }
 
 .big-card .img-wrap {
-    aspect-ratio: 3 / 4;
-    height: 100%;
-}
-
-.big-card .img-wrap {
-    aspect-ratio: 3 / 8;
-    height: calc(137%);/
+    aspect-ratio: 3 / 4;  /* ili 3 / 8 ako to želiš */
+    height: 137%;         /* ispravljeno - uklonjen calc i "/" */
 }
 
 .block.reverse {
