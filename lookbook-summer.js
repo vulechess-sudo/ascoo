@@ -329,6 +329,10 @@ function openLookModal(lookId) {
     const modal = document.getElementById('lookModal');
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    const btn = document.getElementById('addAllBtn');
+btn.innerHTML = '<i class="fas fa-shopping-bag"></i> Add Selected to Cart';
+btn.style.background = '';
+btn.disabled = false;
 }
 
 function closeLookModal() {
@@ -391,15 +395,21 @@ function toggleItem(itemId) {
     const item = document.querySelector(`.look-item[data-id="${itemId}"]`);
     const toggle = document.getElementById(`toggle-${itemId}`);
     const label = toggle.parentElement.querySelector('.toggle-label');
+    const sizeSelect = document.getElementById(`size-${itemId}`); // 👈 DODATO
     
     if (selectedItems.has(itemId)) {
         selectedItems.delete(itemId);
         item.classList.add('removed');
         label.textContent = 'Skip';
+        
+        if (sizeSelect) sizeSelect.disabled = true;
+        
     } else {
         selectedItems.add(itemId);
         item.classList.remove('removed');
         label.textContent = 'Include';
+        
+        if (sizeSelect) sizeSelect.disabled = false;
     }
     
     updateTotal();
@@ -479,17 +489,6 @@ function addAllToCart() {
     }, 1200);
 }
     
-    // Feedback
-    const btn = document.getElementById('addAllBtn');
-    const originalText = btn.innerHTML;
-    btn.innerHTML = '<i class="fas fa-check"></i> Added to Cart!';
-    btn.style.background = '#4a7c59';
-    
-    setTimeout(() => {
-        closeLookModal();
-        btn.innerHTML = originalText;
-        btn.style.background = '';
-    }, 1500);
     
     // Update cart counter
     if (typeof updateCartCounter === 'function') {
