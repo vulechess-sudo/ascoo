@@ -105,25 +105,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function showUnified(category) {
-        isUnifiedMode = true;
-        unifiedGrid.innerHTML = "";
-        unifiedGrid.style.display = "grid";
-        originalBlocks.forEach(block => block.style.display = "none");
+         isUnifiedMode = true;
+    unifiedGrid.innerHTML = "";
+    unifiedGrid.style.display = "grid"; // Grid umesto flex
+    originalBlocks.forEach(block => block.style.display = "none");
 
-        let matched = category === "all" 
-            ? [...allProducts] 
-            : allProducts.filter(p => p.dataset.category === category);
+    let matched = category === "all" 
+        ? [...allProducts] 
+        : allProducts.filter(p => p.dataset.category === category);
 
-        matched.forEach(p => {
-            const clone = createUnifiedCard(p);
-            unifiedGrid.appendChild(clone);
-        });
+    matched.forEach(p => {
+        const clone = createUnifiedCard(p);
+        unifiedGrid.appendChild(clone);
+    });
 
-        setTimeout(() => {
-            unifiedGrid.querySelectorAll('.card, .unified-card').forEach(makeCardClickable);
-        }, 0);
+    // Inicijalizuj klikove
+    setTimeout(() => {
+        unifiedGrid.querySelectorAll('.unified-card').forEach(makeCardClickable);
+    }, 0);
 
-        return unifiedGrid;
+    return unifiedGrid;
     }
 
     function createUnifiedCard(original) {
