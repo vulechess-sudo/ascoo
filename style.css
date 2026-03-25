@@ -2779,7 +2779,7 @@ MOBILE RESPONSIVE
 }
 
 .unified-grid {
-    grid-template-columns: repeat(4, 1fr) !important;
+    grid-template-columns: repeat(4, 1fr);
     width: 100%;
     padding: 0 20px;
     margin-top: -60px;
