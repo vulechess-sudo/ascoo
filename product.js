@@ -280,30 +280,49 @@ function toggleDetail(header) {
 // =========================
 // CART FUNCTIONS
 // =========================
+// =========================
+// CART FUNCTIONS - SINHRONIZOVANO SA GLOBALNIM CARTOM
+// =========================
 
-let cart = JSON.parse(localStorage.getItem('ascoCart')) || [];
+// Uvek čitaj direktno iz localStorage, nemoj koristiti lokalnu varijablu
+function getCart() {
+    return JSON.parse(localStorage.getItem("ascoCart")) || [];
+}
+
+function saveCart(cart) {
+    localStorage.setItem("ascoCart", JSON.stringify(cart));
+}
 
 function updateCartCounter() {
     const counter = document.getElementById('cartCounter');
     if (!counter) return;
     
+    const cart = getCart(); // Uvek svež podatak
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
     
+    counter.textContent = totalItems;
+    
     if (totalItems > 0) {
-        counter.textContent = totalItems;
+        counter.classList.add('visible');
         counter.style.display = 'flex';
     } else {
+        counter.classList.remove('visible');
         counter.style.display = 'none';
     }
 }
 
 function showCartPopup(productName) {
-    document.getElementById('cartItemName').textContent = productName;
-    document.getElementById('cartPopup').classList.add('active');
+    const popup = document.getElementById('cartPopup');
+    const itemName = document.getElementById('cartItemName');
+    if (popup && itemName) {
+        itemName.textContent = productName;
+        popup.classList.add('active');
+    }
 }
 
 function closeCartPopup() {
-    document.getElementById('cartPopup').classList.remove('active');
+    const popup = document.getElementById('cartPopup');
+    if (popup) popup.classList.remove('active');
 }
 
 function goToCart() {
@@ -319,6 +338,9 @@ function addToCart() {
         alert('Please select a size');
         return;
     }
+    
+    // Uzmi SVEŽ cart iz localStorage
+    const cart = getCart();
     
     const cartItem = {
         id: product.id,
@@ -337,18 +359,26 @@ function addToCart() {
         cart.push(cartItem);
     }
     
-    localStorage.setItem('ascoCart', JSON.stringify(cart));
+    saveCart(cart);
+    
+    // Odmah update-uj brojač
     updateCartCounter();
+    
+    // Triggeruj custom event da obavestimo druge skripte
+    window.dispatchEvent(new Event('cartUpdated'));
+    
     showCartPopup(product.name);
     
     const btn = document.getElementById('addToCart');
-    const originalText = btn.textContent;
-    btn.textContent = 'ADDED!';
-    btn.classList.add('added');
-    setTimeout(() => {
-        btn.textContent = originalText;
-        btn.classList.remove('added');
-    }, 2000);
+    if (btn) {
+        const originalText = btn.textContent;
+        btn.textContent = 'ADDED!';
+        btn.classList.add('added');
+        setTimeout(() => {
+            btn.textContent = originalText;
+            btn.classList.remove('added');
+        }, 2000);
+    }
 }
 
 // =========================
@@ -525,8 +555,16 @@ updateSlider = function() {
 document.addEventListener('DOMContentLoaded', () => {
     loadProduct();
     loadRelatedProducts();
-    updateCartCounter();
-    initTouchSlider(); // Add this line
+    updateCartCounter(); // Inicijalni update
+    initTouchSlider();
+    initLightbox();
+    
+    // Slušaj promene iz drugih tabova/prozora
+    window.addEventListener('storage', (e) => {
+        if (e.key === 'ascoCart') {
+            updateCartCounter();
+        }
+    });
 });
 
 // =========================
