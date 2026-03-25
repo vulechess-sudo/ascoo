@@ -2426,20 +2426,19 @@ MOBILE RESPONSIVE
     grid-row: span 2;
 }
 
-.big-card .img-wrap {
-    aspect-ratio: 3 / 4;
-    height: 100%;
-}
-
-/* ILI ako želiš drugačiji aspect-ratio za big-card: */
 .big-card {
     grid-row: span 2;
     aspect-ratio: 2.9 / 4;
 }
 
 .big-card .img-wrap {
-    aspect-ratio: 3 / 4;  /* ili 3 / 8 ako to želiš */
-    height: 137%;         /* ispravljeno - uklonjen calc i "/" */
+    aspect-ratio: 3 / 4;
+    height: 100%;
+}
+
+.big-card .img-wrap {
+    aspect-ratio: 3 / 8;
+    height: calc(137%);
 }
 
 .block.reverse {
@@ -2448,13 +2447,6 @@ MOBILE RESPONSIVE
 
 .block.reverse .big-card {
     order: -1;
-}
-
-.small-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-    margin-top: 0;
 }
 
 .card,
@@ -2780,6 +2772,7 @@ MOBILE RESPONSIVE
 }
 
 .unified-grid {
+    display: grid;
     grid-template-columns: repeat(4, 1fr);
     width: 100%;
     padding: 0 20px;
