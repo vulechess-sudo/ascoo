@@ -105,9 +105,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function showUnified(category) {
-         isUnifiedMode = true;
+    isUnifiedMode = true;
     unifiedGrid.innerHTML = "";
-    unifiedGrid.style.display = "grid"; // Grid umesto flex
+    unifiedGrid.style.display = "grid";
+    
+    // Ukloni negativni margin koji može pravit probleme
+    unifiedGrid.style.marginTop = "0";
+    
     originalBlocks.forEach(block => block.style.display = "none");
 
     let matched = category === "all" 
@@ -125,21 +129,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 0);
 
     return unifiedGrid;
-    }
+}
 
     function createUnifiedCard(original) {
-       const wrapper = document.createElement("div");
-    // Koristi samo unified-card klasu, ne mešaj sa card
-    wrapper.className = "unified-card";
-    wrapper.dataset.category = original.dataset.category;
-    wrapper.dataset.price = original.dataset.price;
-    wrapper.dataset.id = original.dataset.id;
+      const wrapper = document.createElement("div");
+    wrapper.className = "unified-card"; // Samo ova klasa, bez .card
     
-    const imgWrap = original.querySelector(".img-wrap").cloneNode(true);
-    const info = original.querySelector(".info").cloneNode(true);
+    // Kopiraj dataset
+    wrapper.dataset.category = original.dataset.category || '';
+    wrapper.dataset.price = original.dataset.price || '0';
+    wrapper.dataset.id = original.dataset.id || '';
     
-    wrapper.appendChild(imgWrap);
-    wrapper.appendChild(info);
+    // Kloniraj img-wrap
+    const originalImgWrap = original.querySelector(".img-wrap");
+    if (originalImgWrap) {
+        const imgWrap = originalImgWrap.cloneNode(true);
+        imgWrap.style.width = '100%';
+        imgWrap.style.maxWidth = 'none';
+        wrapper.appendChild(imgWrap);
+    }
+    
+    // Kloniraj info
+    const originalInfo = original.querySelector(".info");
+    if (originalInfo) {
+        const info = originalInfo.cloneNode(true);
+        wrapper.appendChild(info);
+    }
     
     return wrapper;
     }

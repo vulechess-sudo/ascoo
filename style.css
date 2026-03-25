@@ -8409,55 +8409,94 @@ select:focus {
    UNIFIED GRID MOBILE FIX
 ========================= */
 
+/* =========================
+   UNIFIED GRID MOBILE FIX - BALANCED
+========================= */
+
 /* Desktop - 4 kolone */
 .unified-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    width: 100%;
-    padding: 0 20px;
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 24px !important;
+    width: 100% !important;
+    max-width: 1400px !important;
+    margin: -60px auto 0 !important; /* Zadrži negativni margin */
+    padding: 0 20px 40px !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    z-index: 1 !important;
 }
 
-/* Tablet - 2 kolone */
+/* Kartice pune širine svoje kolone */
+.unified-grid .unified-card,
+.unified-grid .card {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* Slika */
+.unified-grid .img-wrap {
+    width: 100% !important;
+    aspect-ratio: 3 / 4 !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.unified-grid .img-wrap img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+/* ===== TABLET - 2 kolone ===== */
 @media (max-width: 1024px) {
     .unified-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+        padding: 0 15px 30px !important;
     }
 }
 
-/* Mobile - 1 kolona, puna širina */
+/* ===== MOBILE - 2 kolone (ne 1!) ===== */
 @media (max-width: 768px) {
     .unified-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding: 0 15px;
-    }
-    
-    /* Povećaj kartice na mobilnom */
-    .unified-grid .card,
-    .unified-grid .unified-card {
-        width: 100%;
-    }
-    
-    .unified-grid .img-wrap {
-        aspect-ratio: 3 / 4;
-        width: 100%;
+        grid-template-columns: repeat(2, 1fr) !important; /* 2 kolone, ne 4 */
+        gap: 15px !important;
+        padding: 0 10px 30px !important;
+        margin-top: -40px !important; /* Manji negativni margin */
     }
     
     .unified-grid .info h3 {
-        font-size: 16px;
+        font-size: 14px !important;
     }
     
     .unified-grid .price {
-        font-size: 14px;
+        font-size: 13px !important;
     }
 }
 
-/* Extra small - malo manji gap */
+/* ===== SMALL MOBILE - tek onda 1 kolona ===== */
 @media (max-width: 480px) {
     .unified-grid {
-        gap: 1rem;
-        padding: 0 10px;
+        grid-template-columns: 1fr !important; /* Tek sad 1 kolona */
+        gap: 20px !important;
+        padding: 0 15px 30px !important;
+        margin-top: -30px !important; /* Još manji margin */
+    }
+    
+    /* Veće slike kada je 1 kolona */
+    .unified-grid .img-wrap {
+        aspect-ratio: 3 / 4 !important;
+    }
+    
+    .unified-grid .info h3 {
+        font-size: 16px !important;
+    }
+    
+    .unified-grid .price {
+        font-size: 15px !important;
     }
 }
