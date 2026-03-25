@@ -2829,7 +2829,7 @@ MOBILE RESPONSIVE
    RECENTLY VIEWED SECTION
 ========================= */
 .recently-viewed-section {
-    padding: 4rem 5%;
+    padding: 1rem 5%;
     background: var(--color-bg-alt);
     border-top: 1px solid var(--color-border);
     margin-top: 4rem;
