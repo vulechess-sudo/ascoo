@@ -8935,3 +8935,82 @@ select:focus {
   transform: translateY(0) scale(1);
   opacity: 1;
 }
+/* 3D Female Silhouette */
+.model-silhouette-3d {
+  position: relative;
+  width: 120px;
+  height: 240px;
+  margin: auto;
+  perspective: 1000px;
+}
+
+/* Head */
+.model-silhouette-3d .head {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle at 50% 50%, #f0d7c4, #cfa18d);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  box-shadow: inset -2px -2px 6px rgba(0,0,0,0.1);
+}
+
+/* Chest */
+.model-silhouette-3d .chest {
+  position: absolute;
+  top: 35px;
+  left: 50%;
+  width: 80px;
+  height: 60px;
+  background: radial-gradient(circle at 50% 30%, #f2c9b7, #d4a187);
+  border-radius: 50% / 40%;
+  transform: translateX(-50%);
+  box-shadow: inset -5px 0 15px rgba(0,0,0,0.1);
+}
+
+/* Waist */
+.model-silhouette-3d .waist {
+  position: absolute;
+  top: 85px;
+  left: 50%;
+  width: 60px;
+  height: 50px;
+  background: radial-gradient(circle at 50% 50%, #d4a187, #b87b5c);
+  border-radius: 50% / 40%;
+  transform: translateX(-50%);
+  box-shadow: inset -4px 0 12px rgba(0,0,0,0.1);
+}
+
+/* Hips */
+.model-silhouette-3d .hips {
+  position: absolute;
+  top: 130px;
+  left: 50%;
+  width: 90px;
+  height: 60px;
+  background: radial-gradient(circle at 50% 30%, #d4a187, #b87b5c);
+  border-radius: 50% / 45%;
+  transform: translateX(-50%);
+  box-shadow: inset -4px 0 12px rgba(0,0,0,0.1);
+}
+
+/* Legs */
+.model-silhouette-3d .legs {
+  position: absolute;
+  top: 190px;
+  left: 50%;
+  width: 40px;
+  height: 50px;
+  background: linear-gradient(to bottom, #b87b5c, #8a5b3a);
+  border-radius: 20px;
+  transform: translateX(-50%);
+  box-shadow: inset -2px 0 6px rgba(0,0,0,0.1);
+}
+
+/* Hover 3D tilt */
+.model-card:hover .model-silhouette-3d {
+  transform: rotateY(-15deg) scale(1.05);
+  transition: transform 0.5s ease;
+}
