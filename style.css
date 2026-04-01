@@ -3149,15 +3149,6 @@ MOBILE RESPONSIVE
     font-size: 13px;
 }
 
-.size-guide-popup {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
-}
 
 .size-guide-content {
     background: #fff;
@@ -8542,4 +8533,280 @@ select:focus {
     .unified-grid {
         grid-template-columns: 1fr !important;
     }
+}
+/* =========================
+   SIZE GUIDE - PREMIUM UI
+========================= */
+
+.size-guide-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.4s ease;
+  z-index: 9999;
+}
+
+.size-guide-popup.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.size-guide-content {
+  width: 900px;
+  max-width: 95%;
+  border-radius: 20px;
+  padding: 30px;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.2);
+  transform: translateY(30px) scale(0.95);
+  transition: 0.4s ease;
+}
+
+.size-guide-popup.active .size-guide-content {
+  transform: translateY(0) scale(1);
+}
+
+/* HEADER */
+.size-guide-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.size-guide-header h3 {
+  font-family: var(--font-serif);
+  font-size: 28px;
+}
+
+.size-guide-header p {
+  font-size: 14px;
+  color: var(--color-text-light);
+}
+
+/* BODY */
+.size-guide-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+/* =========================
+   LEFT SIDE (3D MODEL)
+========================= */
+
+.model-card {
+  position: relative;
+  height: 320px;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #ffffff, #f0ede8);
+  box-shadow: 20px 20px 40px rgba(0,0,0,0.1),
+              -10px -10px 30px rgba(255,255,255,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: perspective(1000px) rotateY(-8deg);
+}
+
+/* Fake silhouette */
+.model-silhouette {
+  width: 120px;
+  height: 240px;
+  background: linear-gradient(to bottom, #ddd, #bbb);
+  border-radius: 60px;
+  position: relative;
+}
+
+/* measurement lines */
+.measure-lines .line {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: #333;
+}
+
+.line.waist { top: 45%; }
+.line.hips { top: 60%; }
+.line.chest { top: 30%; }
+
+/* =========================
+   TABLE
+========================= */
+
+.size-guide-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.size-guide-table th {
+  background: var(--color-bg-alt);
+  padding: 12px;
+  font-weight: 500;
+}
+
+.size-guide-table td {
+  padding: 12px;
+  text-align: center;
+}
+
+.size-guide-table tr:hover {
+  background: #f6f4f1;
+}
+
+/* CLOSE BUTTON */
+.close-size-guide {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* MOBILE */
+@media(max-width: 768px){
+  .size-guide-body {
+    grid-template-columns: 1fr;
+  }
+
+  .model-card {
+    transform: none;
+  }
+}
+.size-guide-popup {
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(0,0,0,0.5) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+  z-index: 99999 !important;
+}
+
+.size-guide-popup.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.size-guide-content {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 800px;
+  transform: scale(0.9);
+  transition: 0.3s ease;
+}
+
+.size-guide-popup.active .size-guide-content {
+  transform: scale(1);
+}
+.model-card {
+  position: relative;
+  height: 320px;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #ffffff, #eae7e2);
+  box-shadow: 
+    30px 30px 60px rgba(0,0,0,0.15),
+    -10px -10px 30px rgba(255,255,255,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.4s ease;
+}
+
+.model-card:hover {
+  transform: perspective(1000px) rotateY(-10deg) scale(1.03);
+}
+.measure-lines .line {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  opacity: 0.6;
+  transition: 0.3s ease;
+}
+
+.model-card:hover .line {
+  opacity: 1;
+  transform: translateX(-50%) scale(1.1);
+}
+.size-guide-table tr {
+  transition: 0.2s ease;
+}
+
+.size-guide-table tr:hover {
+  background: #f1eee9;
+  transform: scale(1.01);
+}
+.size-guide-content {
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+}
+
+.size-guide-popup.active .size-guide-content {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.size-calculator {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.calc-title {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: var(--color-text-light);
+}
+
+.inputs {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.inputs input {
+  width: 90px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.calc-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background: var(--color-accent);
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.calc-btn:hover {
+  transform: translateY(-2px);
+}
+
+.size-result {
+  margin-top: 10px;
+  font-weight: 500;
+}
+.size-btn.recommended {
+  border: 2px solid black;
+  background: #5e5037;
+  transform: scale(1.05);
 }

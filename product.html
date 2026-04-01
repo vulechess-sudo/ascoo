@@ -129,7 +129,7 @@
 
         <div class="sizes-section">
           <p class="sizes-label">Sizes:</p>
-          <button class="size-guide-btn" onclick="toggleSizeGuide()">Size guide</button>
+          <button class="size-guide-btn" id="openSizeGuide">Size guide</button>
           <div class="sizes-grid">
             <button class="size-btn" onclick="selectSize(this)">XS</button>
             <button class="size-btn" onclick="selectSize(this)">S</button>
@@ -137,49 +137,62 @@
             <button class="size-btn" onclick="selectSize(this)">L</button>
             <button class="size-btn disabled" onclick="selectSize(this)">XL</button>
           </div>
-          <div class="size-guide-popup" id="sizeGuide">
+         <div class="size-guide-popup" id="sizeGuide">
   <div class="size-guide-content">
-    <button class="close-size-guide" onclick="toggleSizeGuide()">&times;</button>
-    <h3>Size Guide</h3>
 
-    <table class="size-guide-table">
-      <tr>
-        <th>Size</th>
-        <th>Waist (cm)</th>
-        <th>Hips (cm)</th>
-        <th>Chest (cm)</th>
-      </tr>
-      <tr>
-        <td>XS</td>
-        <td>60–64</td>
-        <td>84–88</td>
-        <td>78–82</td>
-      </tr>
-      <tr>
-        <td>S</td>
-        <td>65–69</td>
-        <td>89–93</td>
-        <td>83–87</td>
-      </tr>
-      <tr>
-        <td>M</td>
-        <td>70–74</td>
-        <td>94–98</td>
-        <td>88–92</td>
-      </tr>
-      <tr>
-        <td>L</td>
-        <td>75–79</td>
-        <td>99–103</td>
-        <td>93–97</td>
-      </tr>
-      <tr>
-        <td>XL</td>
-        <td>80–84</td>
-        <td>104–108</td>
-        <td>98–102</td>
-      </tr>
-    </table>
+    <button class="close-size-guide" onclick="toggleSizeGuide()">&times;</button>
+
+    <div class="size-guide-header">
+      <div class="size-calculator">
+  <p class="calc-title">Find your size</p>
+
+  <div class="inputs">
+    <input type="number" id="inputWaist" placeholder="Waist (cm)">
+    <input type="number" id="inputHips" placeholder="Hips (cm)">
+    <input type="number" id="inputChest" placeholder="Chest (cm)">
+  </div>
+
+  <button onclick="calculateSize()" class="calc-btn">Calculate</button>
+      <h3>Size Guide</h3>
+      <p>Find your perfect fit</p>
+    </div>
+    
+
+  <p class="size-result" id="sizeResult"></p>
+</div>
+
+    <div class="size-guide-body">
+      
+      <!-- LEFT (3D visual) -->
+      <div class="size-visual">
+        <div class="model-card">
+          <div class="model-silhouette"></div>
+          <div class="measure-lines">
+            <span class="line waist">Waist</span>
+            <span class="line hips">Hips</span>
+            <span class="line chest">Chest</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT (table) -->
+      <div class="size-table-wrapper">
+        <table class="size-guide-table">
+          <tr>
+            <th>Size</th>
+            <th>Waist</th>
+            <th>Hips</th>
+            <th>Chest</th>
+          </tr>
+          <tr><td>XS</td><td>60–64</td><td>84–88</td><td>78–82</td></tr>
+          <tr><td>S</td><td>65–69</td><td>89–93</td><td>83–87</td></tr>
+          <tr><td>M</td><td>70–74</td><td>94–98</td><td>88–92</td></tr>
+          <tr><td>L</td><td>75–79</td><td>99–103</td><td>93–97</td></tr>
+          <tr><td>XL</td><td>80–84</td><td>104–108</td><td>98–102</td></tr>
+        </table>
+      </div>
+
+    </div>
   </div>
 </div>
         </div>

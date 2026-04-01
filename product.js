@@ -266,7 +266,14 @@ function selectSize(btn) {
 
 function toggleSizeGuide() {
     const guide = document.getElementById('sizeGuide');
-    guide.classList.toggle('active');
+
+    if (guide.classList.contains('active')) {
+        guide.classList.remove('active');
+        document.body.style.overflow = '';
+    } else {
+        guide.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
 }
 
 // =========================
@@ -916,3 +923,59 @@ document.addEventListener('DOMContentLoaded', () => {
     loadRelatedProducts();
     updateCartCounter();
 });
+document.addEventListener('DOMContentLoaded', () => {
+    const openBtn = document.getElementById('openSizeGuide');
+    const guide = document.getElementById('sizeGuide');
+
+    if (openBtn && guide) {
+        openBtn.addEventListener('click', () => {
+            guide.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    const closeBtn = document.querySelector('.close-size-guide');
+
+    if (closeBtn && guide) {
+        closeBtn.addEventListener('click', () => {
+            guide.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    }
+});
+function calculateSize() {
+    const waist = parseInt(document.getElementById('inputWaist').value);
+    const hips = parseInt(document.getElementById('inputHips').value);
+    const chest = parseInt(document.getElementById('inputChest').value);
+
+    const resultEl = document.getElementById('sizeResult');
+
+    if (!waist || !hips || !chest) {
+        resultEl.textContent = "Enter all measurements";
+        return;
+    }
+
+    let size = "Custom";
+
+    if (waist <= 64 && hips <= 88 && chest <= 82) size = "XS";
+    else if (waist <= 69 && hips <= 93 && chest <= 87) size = "S";
+    else if (waist <= 74 && hips <= 98 && chest <= 92) size = "M";
+    else if (waist <= 79 && hips <= 103 && chest <= 97) size = "L";
+    else if (waist <= 84 && hips <= 108 && chest <= 102) size = "XL";
+
+    resultEl.textContent = `You are likely ${size}`;
+
+    // Automatski selektuj preporučenu veličinu
+    autoSelectSize(size);
+}
+
+function autoSelectSize(size) {
+    const buttons = document.querySelectorAll('.size-btn');
+    
+    // Pronađi dugme sa tom veličinom i klikni na njega
+    buttons.forEach(btn => {
+        if (btn.textContent.trim() === size) {
+            selectSize(btn); // Pozovi postojeću funkciju za selekciju
+        }
+    });
+}
