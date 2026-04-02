@@ -8892,3 +8892,19 @@ select:focus {
     max-width: 250px;
   }
 }
+@media (max-width: 768px) {
+  .size-guide-content {
+    height: 90vh;
+    max-height: 90vh;
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .size-guide-header {
+    margin-bottom: 15px;
+  }
+
+  .size-guide-body {
+    gap: 15px;
+  }
+}
