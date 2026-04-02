@@ -3167,13 +3167,13 @@ MOBILE RESPONSIVE
 
 /* Close button */
 .close-size-guide {
-    position: absolute;
-    top: 12px;
-    right: 14px;
-    background: none;
-    border: none;
-    font-size: 22px;
-    cursor: pointer;
+      position: sticky; /* umesto absolute */
+  top: 0;
+  right: 0;
+  margin-left: auto;
+  display: block;
+  z-index: 10;
+  background: white;
 }
 
 .size-guide-table {
@@ -8567,6 +8567,9 @@ select:focus {
   box-shadow: 0 40px 80px rgba(0,0,0,0.2);
   transform: translateY(30px) scale(0.95);
   transition: 0.4s ease;
+   max-height: 95vh; /* KLJUČNO */
+  overflow-y: auto; /* omogućava scroll */
+  -webkit-overflow-scrolling: touch; /* smooth scroll na iOS */
 }
 
 .size-guide-popup.active .size-guide-content {
