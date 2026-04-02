@@ -8589,52 +8589,16 @@ select:focus {
   color: var(--color-text-light);
 }
 
-/* BODY */
 .size-guide-body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
+  align-items: stretch; /* KLJUČNO */
 }
 
 /* =========================
    LEFT SIDE (3D MODEL)
 ========================= */
-
-.model-card {
-  position: relative;
-  height: 320px;
-  border-radius: 20px;
-  background: linear-gradient(145deg, #ffffff, #f0ede8);
-  box-shadow: 20px 20px 40px rgba(0,0,0,0.1),
-              -10px -10px 30px rgba(255,255,255,0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: perspective(1000px) rotateY(-8deg);
-}
-
-/* Fake silhouette */
-.model-silhouette {
-  width: 120px;
-  height: 240px;
-  background: linear-gradient(to bottom, #ddd, #bbb);
-  border-radius: 60px;
-  position: relative;
-}
-
-/* measurement lines */
-.measure-lines .line {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 12px;
-  color: #333;
-}
-
-.line.waist { top: 45%; }
-.line.hips { top: 60%; }
-.line.chest { top: 30%; }
-
 /* =========================
    TABLE
 ========================= */
@@ -8714,23 +8678,6 @@ select:focus {
 .size-guide-popup.active .size-guide-content {
   transform: scale(1);
 }
-.model-card {
-  position: relative;
-  height: 320px;
-  border-radius: 20px;
-  background: linear-gradient(145deg, #ffffff, #eae7e2);
-  box-shadow: 
-    30px 30px 60px rgba(0,0,0,0.15),
-    -10px -10px 30px rgba(255,255,255,0.8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.4s ease;
-}
-
-.model-card:hover {
-  transform: perspective(1000px) rotateY(-10deg) scale(1.03);
-}
 .measure-lines .line {
   position: absolute;
   left: 50%;
@@ -8738,11 +8685,6 @@ select:focus {
   font-size: 12px;
   opacity: 0.6;
   transition: 0.3s ease;
-}
-
-.model-card:hover .line {
-  opacity: 1;
-  transform: translateX(-50%) scale(1.1);
 }
 .size-guide-table tr {
   transition: 0.2s ease;
@@ -8834,17 +8776,6 @@ select:focus {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-
-  .model-card {
-    height: 280px;
-    border-radius: 16px;
-    transform: none;
-  }
-
-  .model-card:hover {
-    transform: none;
-  }
-
   .measure-lines .line {
     font-size: 11px;
   }
@@ -8879,10 +8810,6 @@ select:focus {
 
   .size-guide-header p {
     font-size: 12px;
-  }
-
-  .model-card {
-    height: 220px;
   }
 
   .measure-lines .line {
@@ -8935,82 +8862,33 @@ select:focus {
   transform: translateY(0) scale(1);
   opacity: 1;
 }
-/* 3D Female Silhouette */
-.model-silhouette-3d {
-  position: relative;
-  width: 120px;
-  height: 240px;
-  margin: auto;
-  perspective: 1000px;
-}
 
-/* Head */
-.model-silhouette-3d .head {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 40px;
-  height: 40px;
-  background: radial-gradient(circle at 50% 50%, #f0d7c4, #cfa18d);
-  border-radius: 50%;
-  transform: translateX(-50%);
-  box-shadow: inset -2px -2px 6px rgba(0,0,0,0.1);
+.size-guide-image {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  object-fit: contain; /* NE cover */
+  display: block;
 }
-
-/* Chest */
-.model-silhouette-3d .chest {
-  position: absolute;
-  top: 35px;
-  left: 50%;
-  width: 80px;
-  height: 60px;
-  background: radial-gradient(circle at 50% 30%, #f2c9b7, #d4a187);
-  border-radius: 50% / 40%;
-  transform: translateX(-50%);
-  box-shadow: inset -5px 0 15px rgba(0,0,0,0.1);
-}
-
-/* Waist */
-.model-silhouette-3d .waist {
-  position: absolute;
-  top: 85px;
-  left: 50%;
-  width: 60px;
-  height: 50px;
-  background: radial-gradient(circle at 50% 50%, #d4a187, #b87b5c);
-  border-radius: 50% / 40%;
-  transform: translateX(-50%);
-  box-shadow: inset -4px 0 12px rgba(0,0,0,0.1);
-}
-
-/* Hips */
-.model-silhouette-3d .hips {
-  position: absolute;
-  top: 130px;
-  left: 50%;
-  width: 90px;
-  height: 60px;
-  background: radial-gradient(circle at 50% 30%, #d4a187, #b87b5c);
-  border-radius: 50% / 45%;
-  transform: translateX(-50%);
-  box-shadow: inset -4px 0 12px rgba(0,0,0,0.1);
-}
-
-/* Legs */
-.model-silhouette-3d .legs {
-  position: absolute;
-  top: 190px;
-  left: 50%;
-  width: 40px;
-  height: 50px;
-  background: linear-gradient(to bottom, #b87b5c, #8a5b3a);
+.size-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: linear-gradient(145deg, #ffffff, #f3efe9);
   border-radius: 20px;
-  transform: translateX(-50%);
-  box-shadow: inset -2px 0 6px rgba(0,0,0,0.1);
+  padding: 20px;
 }
+@media (max-width: 768px) {
+  .size-guide-body {
+    grid-template-columns: 1fr;
+  }
 
-/* Hover 3D tilt */
-.model-card:hover .model-silhouette-3d {
-  transform: rotateY(-15deg) scale(1.05);
-  transition: transform 0.5s ease;
+  .size-visual {
+    padding: 15px;
+  }
+
+  .size-guide-image {
+    max-width: 250px;
+  }
 }

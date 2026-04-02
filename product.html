@@ -6,103 +6,104 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Product - Asco Shop</title>
   <link rel="icon" type="image/x-icon" href="images/icon.png">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
- <header class="navbar">
-        <div class="nav-left">
-            <button class="menu-btn hamburger-btn" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
+  <header class="navbar">
+    <div class="nav-left">
+      <button class="menu-btn hamburger-btn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="top-dropdown">
+        <div class="menu-header">
+          <button class="close-menu" aria-label="Close menu">&times;</button>
+          <h2 class="dropdown-title">asco</h2>
+        </div>
+        <nav class="menu-links">
+          <a href="index.html" data-translate="nav_home">Home</a>
+          <a href="shop.html" data-translate="nav_shop">Shop</a>
+          <div class="submenu">
+            <button class="submenu-btn">
+              <span data-translate="nav_categories">Categories</span>
+              <i class="fas fa-chevron-right"></i>
             </button>
-            <div class="top-dropdown">
-                <div class="menu-header">
-                    <button class="close-menu" aria-label="Close menu">&times;</button>
-                    <h2 class="dropdown-title">asco</h2>
-                </div>
-                <nav class="menu-links">
-                    <a href="index.html" data-translate="nav_home">Home</a>
-                    <a href="shop.html" data-translate="nav_shop">Shop</a>
-                    <div class="submenu">
-                        <button class="submenu-btn">
-                            <span data-translate="nav_categories">Categories</span>
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                        <div class="submenu-content">
-                            <a href="shop.html?category=jackets" data-translate="cat_jackets">Jackets</a>
-                            <a href="shop.html?category=shoes" data-translate="cat_shoes">Shoes</a>
-                            <a href="shop.html?category=newin" data-translate="cat_newin">New In</a>
-                            <a href="shop.html?category=accessories" data-translate="cat_accessories">Accessories</a>
-                            <a href="shop.html?category=dresses" data-translate="cat_dresses">Dresses</a>
-                            <a href="shop.html?category=tops" data-translate="cat_tops">Tops</a>
-                            <a href="shop.html?category=skirts" data-translate="cat_skirts">Skirts</a>
-                        </div>
-                    </div>
-                    <a href="aboutus.html" data-translate="nav_about">About</a>
-                    <a href="contact.html" data-translate="nav_contact">Contact</a>
-                    <a href="startareturn.html" data-translate="nav_returns">Returns</a>
-                    <a href="https://www.instagram.com/vukotaaaaaa" target="_blank" rel="noopener"
-                        data-translate="nav_instagram">Instagram</a>
-                </nav>
+            <div class="submenu-content">
+              <a href="shop.html?category=jackets" data-translate="cat_jackets">Jackets</a>
+              <a href="shop.html?category=shoes" data-translate="cat_shoes">Shoes</a>
+              <a href="shop.html?category=newin" data-translate="cat_newin">New In</a>
+              <a href="shop.html?category=accessories" data-translate="cat_accessories">Accessories</a>
+              <a href="shop.html?category=dresses" data-translate="cat_dresses">Dresses</a>
+              <a href="shop.html?category=tops" data-translate="cat_tops">Tops</a>
+              <a href="shop.html?category=skirts" data-translate="cat_skirts">Skirts</a>
             </div>
-        </div>
-        <div class="overlay"></div>
+          </div>
+          <a href="aboutus.html" data-translate="nav_about">About</a>
+          <a href="contact.html" data-translate="nav_contact">Contact</a>
+          <a href="startareturn.html" data-translate="nav_returns">Returns</a>
+          <a href="https://www.instagram.com/vukotaaaaaa" target="_blank" rel="noopener"
+            data-translate="nav_instagram">Instagram</a>
+        </nav>
+      </div>
+    </div>
+    <div class="overlay"></div>
 
-        <div class="nav-center">
-            <a href="index.html" class="logo-link">
-                <h1>asco</h1>
-            </a>
-        </div>
+    <div class="nav-center">
+      <a href="index.html" class="logo-link">
+        <h1>asco</h1>
+      </a>
+    </div>
 
-        <div class="nav-right">
-            <button class="icon-btn search-btn" aria-label="Search">
-                <i class="fas fa-magnifying-glass"></i>
-            </button>
+    <div class="nav-right">
+      <button class="icon-btn search-btn" aria-label="Search">
+        <i class="fas fa-magnifying-glass"></i>
+      </button>
 
-            <div class="cart-container">
-                <button class="icon-btn cart-btn-header" onclick="toggleCartDropdown()" aria-label="Cart">
-                    <i class="fas fa-bag-shopping"></i>
-                    <span class="cart-counter" id="cartCounter">0</span>
-                </button>
+      <div class="cart-container">
+        <button class="icon-btn cart-btn-header" onclick="toggleCartDropdown()" aria-label="Cart">
+          <i class="fas fa-bag-shopping"></i>
+          <span class="cart-counter" id="cartCounter">0</span>
+        </button>
 
-                <div class="cart-dropdown" id="cartDropdown">
-                    <div class="cart-header">
-                        <h3 data-translate="cart_title">Your Cart</h3>
-                        <button class="close-cart" onclick="toggleCartDropdown()"
-                            aria-label="Close cart">&times;</button>
-                    </div>
-                    <div class="cart-items" id="cartItems"></div>
-                    <div class="cart-footer">
-                        <div class="cart-total">
-                            <span data-translate="cart_subtotal">Subtotal</span>
-                            <span id="cartTotal">0 RSD</span>
-                        </div>
-                        <a href="checkout.html" class="checkout-btn" data-translate="checkout">Checkout</a>
-                    </div>
-                </div>
+        <div class="cart-dropdown" id="cartDropdown">
+          <div class="cart-header">
+            <h3 data-translate="cart_title">Your Cart</h3>
+            <button class="close-cart" onclick="toggleCartDropdown()" aria-label="Close cart">&times;</button>
+          </div>
+          <div class="cart-items" id="cartItems"></div>
+          <div class="cart-footer">
+            <div class="cart-total">
+              <span data-translate="cart_subtotal">Subtotal</span>
+              <span id="cartTotal">0 RSD</span>
             </div>
-
-            <div class="dropdown language-dropdown">
-                <button class="dropbtn">EN <i class="fas fa-chevron-down"></i></button>
-                <div class="dropdown-content">
-                    <a href="#" onclick="setLanguage('en'); return false;">EN</a>
-                    <a href="#" onclick="setLanguage('rs'); return false;">RS</a>
-                </div>
-            </div>
+            <a href="checkout.html" class="checkout-btn" data-translate="checkout">Checkout</a>
+          </div>
         </div>
+      </div>
 
-        <div class="search-dropdown">
-            <div class="search-container">
-                <i class="fas fa-magnifying-glass search-icon"></i>
-                <input type="text" class="search-input" data-translate-placeholder="search_placeholder"
-                    placeholder="Search products..." autocomplete="off">
-            </div>
+      <div class="dropdown language-dropdown">
+        <button class="dropbtn">EN <i class="fas fa-chevron-down"></i></button>
+        <div class="dropdown-content">
+          <a href="#" onclick="setLanguage('en'); return false;">EN</a>
+          <a href="#" onclick="setLanguage('rs'); return false;">RS</a>
         </div>
-    </header>
+      </div>
+    </div>
+
+    <div class="search-dropdown">
+      <div class="search-container">
+        <i class="fas fa-magnifying-glass search-icon"></i>
+        <input type="text" class="search-input" data-translate-placeholder="search_placeholder"
+          placeholder="Search products..." autocomplete="off">
+      </div>
+    </div>
+  </header>
 
   <section class="product-page">
     <div class="product-layout">
@@ -137,70 +138,82 @@
             <button class="size-btn" onclick="selectSize(this)">L</button>
             <button class="size-btn disabled" onclick="selectSize(this)">XL</button>
           </div>
-         <div class="size-guide-popup" id="sizeGuide">
-  <div class="size-guide-content">
+          <div class="size-guide-popup" id="sizeGuide">
+            <div class="size-guide-content">
 
-    <button class="close-size-guide" onclick="toggleSizeGuide()">&times;</button>
+              <button class="close-size-guide" onclick="toggleSizeGuide()">&times;</button>
 
-    <div class="size-guide-header">
-      <div class="size-calculator">
-  <p class="calc-title">Find your size</p>
+              <div class="size-guide-header">
+                <div class="size-calculator">
+                  <p class="calc-title">Find your size</p>
 
-  <div class="inputs">
-    <input type="number" id="inputWaist" placeholder="Waist (cm)">
-    <input type="number" id="inputHips" placeholder="Hips (cm)">
-    <input type="number" id="inputChest" placeholder="Chest (cm)">
-  </div>
+                  <div class="inputs">
+                    <input type="number" id="inputWaist" placeholder="Waist (cm)">
+                    <input type="number" id="inputHips" placeholder="Hips (cm)">
+                    <input type="number" id="inputChest" placeholder="Chest (cm)">
+                  </div>
 
-  <button onclick="calculateSize()" class="calc-btn">Calculate</button>
-      <h3>Size Guide</h3>
-      <p>Find your perfect fit</p>
-    </div>
-    
+                  <button onclick="calculateSize()" class="calc-btn">Calculate</button>
+                  <h3>Size Guide</h3>
+                  <p>Find your perfect fit</p>
+                </div>
 
-  <p class="size-result" id="sizeResult"></p>
+
+                <p class="size-result" id="sizeResult"></p>
+              </div>
+
+              <div class="size-guide-body">
+
+                <!-- LEFT (3D visual) -->
+   <div class="size-visual">
+  <img src="images/sizeguide.png" class="size-guide-image">
 </div>
 
-    <div class="size-guide-body">
-      
-      <!-- LEFT (3D visual) -->
-      <div class="size-visual">
-        <div class="model-card">
-          <div class="model-silhouette-3d">
-  <div class="head"></div>
-  <div class="chest"></div>
-  <div class="waist"></div>
-  <div class="hips"></div>
-  <div class="legs"></div>
-</div>
-          <div class="measure-lines">
-            <span class="line waist">Waist</span>
-            <span class="line hips">Hips</span>
-            <span class="line chest">Chest</span>
+                <!-- RIGHT (table) -->
+                <div class="size-table-wrapper">
+                  <table class="size-guide-table">
+                    <tr>
+                      <th>Size</th>
+                      <th>Waist</th>
+                      <th>Hips</th>
+                      <th>Chest</th>
+                    </tr>
+                    <tr>
+                      <td>XS</td>
+                      <td>60–64</td>
+                      <td>84–88</td>
+                      <td>78–82</td>
+                    </tr>
+                    <tr>
+                      <td>S</td>
+                      <td>65–69</td>
+                      <td>89–93</td>
+                      <td>83–87</td>
+                    </tr>
+                    <tr>
+                      <td>M</td>
+                      <td>70–74</td>
+                      <td>94–98</td>
+                      <td>88–92</td>
+                    </tr>
+                    <tr>
+                      <td>L</td>
+                      <td>75–79</td>
+                      <td>99–103</td>
+                      <td>93–97</td>
+                    </tr>
+                    <tr>
+                      <td>XL</td>
+                      <td>80–84</td>
+                      <td>104–108</td>
+                      <td>98–102</td>
+                    </tr>
+                  </table>
+                </div>
+
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-
-      <!-- RIGHT (table) -->
-      <div class="size-table-wrapper">
-        <table class="size-guide-table">
-          <tr>
-            <th>Size</th>
-            <th>Waist</th>
-            <th>Hips</th>
-            <th>Chest</th>
-          </tr>
-          <tr><td>XS</td><td>60–64</td><td>84–88</td><td>78–82</td></tr>
-          <tr><td>S</td><td>65–69</td><td>89–93</td><td>83–87</td></tr>
-          <tr><td>M</td><td>70–74</td><td>94–98</td><td>88–92</td></tr>
-          <tr><td>L</td><td>75–79</td><td>99–103</td><td>93–97</td></tr>
-          <tr><td>XL</td><td>80–84</td><td>104–108</td><td>98–102</td></tr>
-        </table>
-      </div>
-
-    </div>
-  </div>
-</div>
         </div>
 
         <p class="making-time">*time of making: 7-14 days.</p>
@@ -255,73 +268,72 @@
     </div>
   </section>
   <!-- Related Products -->
-<section class="related-products">
+  <section class="related-products">
     <h2 class="section-title">You Might Also Like</h2>
     <div class="related-grid" id="relatedGrid">
-        <!-- JS -->
+      <!-- JS -->
     </div>
-</section>
+  </section>
 
   <!-- Same Footer -->
   <footer class="footer">
-        <div class="footer-main">
-            <div class="footer-brand">
-                <h3>asco</h3>
-                <p>Contemporary fashion for the modern individual. Designed in Užice, worn everywhere.</p>
-                <div class="social-links">
-                    <a href="https://www.instagram.com/vukotaaaaaa" target="_blank" rel="noopener"
-                        aria-label="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="footer-links">
-                <div class="footer-column">
-                    <h4 data-translate="footer_shop">Shop</h4>
-                    <ul>
-                        <li><a href="shop.html?category=newin" data-translate="footer_new_arrivals">New Arrivals</a>
-                        </li>
-                        <li><a href="shop.html?category=dresses" data-translate="cat_dresses">Dresses</a></li>
-                        <li><a href="shop.html?category=jackets" data-translate="footer_outerwear">Outerwear</a></li>
-                        <li><a href="shop.html?category=accessories" data-translate="cat_accessories">Accessories</a>
-                        </li>
-                        <li><a href="shop.html" data-translate="footer_view_all">View All</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4 data-translate="footer_help">Help</h4>
-                    <ul>
-                        <li><a href="contact.html" data-translate="footer_contact_us">Contact Us</a></li>
-                        <li><a href="shipping.html" data-translate="footer_shipping_info">Shipping Info</a></li>
-                        <li><a href="startareturn.html" data-translate="nav_returns">Returns</a></li>
-                        <li><a href="FAQ.html">FAQ</a></li>
-                        <li><a href="privacypolicy.html" data-translate="footer_privacy">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4 data-translate="footer_company">Company</h4>
-                    <ul>
-                        <li><a href="aboutus.html" data-translate="footer_about_us">About Us</a></li>
-                        <li><a href="lookbook.html">Lookbook</a></li>
-                    </ul>
-                </div>
-            </div>
+    <div class="footer-main">
+      <div class="footer-brand">
+        <h3>asco</h3>
+        <p>Contemporary fashion for the modern individual. Designed in Užice, worn everywhere.</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/vukotaaaaaa" target="_blank" rel="noopener" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 asco. <span data-translate="footer_rights">All rights reserved.</span></p>
-            <div class="payment-methods">
-                <i class="fab fa-cc-visa"></i>
-                <i class="fab fa-cc-mastercard"></i>
-                <i class="fab fa-cc-paypal"></i>
-            </div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4 data-translate="footer_shop">Shop</h4>
+          <ul>
+            <li><a href="shop.html?category=newin" data-translate="footer_new_arrivals">New Arrivals</a>
+            </li>
+            <li><a href="shop.html?category=dresses" data-translate="cat_dresses">Dresses</a></li>
+            <li><a href="shop.html?category=jackets" data-translate="footer_outerwear">Outerwear</a></li>
+            <li><a href="shop.html?category=accessories" data-translate="cat_accessories">Accessories</a>
+            </li>
+            <li><a href="shop.html" data-translate="footer_view_all">View All</a></li>
+          </ul>
         </div>
-    </footer>
+        <div class="footer-column">
+          <h4 data-translate="footer_help">Help</h4>
+          <ul>
+            <li><a href="contact.html" data-translate="footer_contact_us">Contact Us</a></li>
+            <li><a href="shipping.html" data-translate="footer_shipping_info">Shipping Info</a></li>
+            <li><a href="startareturn.html" data-translate="nav_returns">Returns</a></li>
+            <li><a href="FAQ.html">FAQ</a></li>
+            <li><a href="privacypolicy.html" data-translate="footer_privacy">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4 data-translate="footer_company">Company</h4>
+          <ul>
+            <li><a href="aboutus.html" data-translate="footer_about_us">About Us</a></li>
+            <li><a href="lookbook.html">Lookbook</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 asco. <span data-translate="footer_rights">All rights reserved.</span></p>
+      <div class="payment-methods">
+        <i class="fab fa-cc-visa"></i>
+        <i class="fab fa-cc-mastercard"></i>
+        <i class="fab fa-cc-paypal"></i>
+      </div>
+    </div>
+  </footer>
   <script src="product.js"></script>
-  
+
   <script src="script.js"></script>
   <script src="search.js"></script>
-    <script src="cart-mini.js"></script>
-        <script src="translation.js"></script>
+  <script src="cart-mini.js"></script>
+  <script src="translation.js"></script>
 </body>
 
 </html>
