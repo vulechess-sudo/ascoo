@@ -203,10 +203,11 @@ function notifyMe() {
     const errorEl = document.getElementById('notifyError');
     const successEl = document.getElementById('notifySuccess');
     const box = document.getElementById('notifyBox');
+    const btn = box.querySelector('button');
 
     const email = emailInput.value.trim();
 
-    // reset state
+    // reset
     errorEl.textContent = '';
     box.classList.remove('error');
 
@@ -217,17 +218,29 @@ function notifyMe() {
         return;
     }
 
-    // FAKE SUBMIT (kasnije može API)
-    console.log("Notify:", email);
+    // LOADING STATE
+    btn.classList.add('loading');
+    btn.textContent = "Sending";
+    box.classList.add('loading');
 
-    // sakrij input + dugme
-    box.style.display = 'none';
+    // fake delay (simulate API)
+    setTimeout(() => {
+        console.log("Notify:", email);
 
-    // prikaži success
-    successEl.style.display = 'block';
+        // reset loading
+        btn.classList.remove('loading');
+        btn.textContent = "Notify me";
+        box.classList.remove('loading');
 
-    // opcionalno: očisti input
-    emailInput.value = '';
+        // hide form
+        box.style.display = 'none';
+
+        // show success
+        successEl.style.display = 'block';
+
+        emailInput.value = '';
+
+    }, 1200); // 1.2s delay (feel real)
 }
 
 function loadSlider(images, productName) {
