@@ -127,7 +127,24 @@
       <div class="product-info">
         <h1 class="product-name" id="productName">Vukota nije bugarin</h1>
         <p class="product-price" id="productPrice">78.710 RSD</p>
+        <div class="notify-wrapper" id="notifyWrapper" style="display:none;">
 
+          <p class="not-available-text">Currently unavailable</p>
+
+          <div class="notify-box" id="notifyBox">
+            <input type="email" id="notifyEmail" placeholder="Enter your email">
+            <button class="notify-btn" onclick="notifyMe()">Notify me</button>
+          </div>
+
+          <p class="notify-error" id="notifyError"></p>
+
+          <div class="notify-success" id="notifySuccess">
+            <p>You’ll be notified when it’s back ✨</p>
+          </div>
+
+          <p class="notify-subtext">Get notified when this piece is back in stock</p>
+
+        </div>
         <div class="sizes-section">
           <p class="sizes-label">Sizes:</p>
           <button class="size-guide-btn" id="openSizeGuide">Size guide</button>
@@ -165,9 +182,9 @@
               <div class="size-guide-body">
 
                 <!-- LEFT (3D visual) -->
-   <div class="size-visual">
-  <img src="images/sizeguide.png" class="size-guide-image">
-</div>
+                <div class="size-visual">
+                  <img src="images/sizeguide.png" class="size-guide-image">
+                </div>
 
                 <!-- RIGHT (table) -->
                 <div class="size-table-wrapper">

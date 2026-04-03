@@ -8,6 +8,7 @@ const productsDB = {
         name: 'New In',
         price: '78.710 RSD',
         category: 'newin',
+        available: true,
         images: ['images/slides/newin.jpg', 'images/slides/newin2.jpg', 'images/slides/newin3.jpg'],
         description: 'Our latest arrival featuring contemporary design with premium craftsmanship. Limited edition piece for the modern wardrobe.',
         sizes: ['XS', 'S', 'M', 'L', 'XL'],
@@ -19,6 +20,7 @@ const productsDB = {
         name: 'Second New In',
         price: '170.710 RSD',
         category: 'newin',
+        available: true,
         images: ['images/slides/newin4.webp', 'images/slides/newin5.webp', 'images/slides/newin6.webp'],
         description: 'Premium statement piece with intricate detailing. Hand-finished edges and exclusive fabric selection.',
         sizes: ['XS', 'S', 'M', 'L'],
@@ -30,6 +32,7 @@ const productsDB = {
         name: 'Dress',
         price: '80.000 RSD',
         category: 'dresses',
+        available: true,
         images: ['images/slides/dresses.jpg', 'images/slides/dresses2.jpg', 'images/slides/dresses3.jpg'],
         description: 'Elegant silhouette with flowing lines. Perfect for both daytime events and evening occasions.',
         sizes: ['XS', 'S', 'M', 'L', 'XL'],
@@ -41,6 +44,7 @@ const productsDB = {
         name: 'Second Dress',
         price: '86.000 RSD',
         category: 'dresses',
+        available: true,
         images: ['images/slides/dress4.webp', 'images/slides/dress5.webp', 'images/slides/dress6.webp'],
         description: 'Sophisticated evening wear with delicate draping. Designed to make a lasting impression.',
         sizes: ['S', 'M', 'L'],
@@ -52,6 +56,7 @@ const productsDB = {
         name: 'Jacket',
         price: '130.000 RSD',
         category: 'jackets',
+        available: true,
         images: ['images/slides/jackets.jpg', 'images/slides/jackets2.jpg', 'images/slides/jackets3.jpg'],
         description: 'Tailored wool blend jacket with structured shoulders. A timeless addition to any wardrobe.',
         sizes: ['XS', 'S', 'M', 'L', 'XL'],
@@ -63,6 +68,7 @@ const productsDB = {
         name: 'Shoe',
         price: '85.000 RSD',
         category: 'shoes',
+        available: true,
         images: ['images/slides/shoes.jpg', 'images/slides/shoes2.jpg', 'images/slides/shoes3.jpg'],
         description: 'Handcrafted leather shoes with cushioned insole. Goodyear welted for durability and comfort.',
         sizes: ['40', '41', '42', '43', '44', '45'],
@@ -74,6 +80,7 @@ const productsDB = {
         name: 'Second Shoe',
         price: '92.000 RSD',
         category: 'shoes',
+        available: true,
         images: ['images/slides/shoe4.webp', 'images/slides/shoe5.webp', 'images/slides/shoe6.webp'],
         description: 'Ankle boots in premium calfskin leather. Blake stitched for flexibility and elegance.',
         sizes: ['40', '41', '42', '43', '44'],
@@ -85,6 +92,7 @@ const productsDB = {
         name: 'Skirt',
         price: '65.000 RSD',
         category: 'skirts',
+        available: true,
         images: ['images/slides/skirts.jpg', 'images/slides/skirts2.jpg', 'images/slides/skirts3.jpg'],
         description: 'Flattering A-line cut in mid-weight fabric. Versatile piece for any season.',
         sizes: ['XS', 'S', 'M', 'L', 'XL'],
@@ -96,6 +104,7 @@ const productsDB = {
         name: 'Second Skirt',
         price: '74.000 RSD',
         category: 'skirts',
+        available: true,
         images: ['images/slides/skirt4.webp', 'images/slides/skirt5.webp', 'images/slides/skirt6.webp'],
         description: 'Precision-pleated skirt with movement and flow. Structured waistband for perfect fit.',
         sizes: ['XS', 'S', 'M', 'L'],
@@ -107,6 +116,7 @@ const productsDB = {
         name: 'Top',
         price: '70.000 RSD',
         category: 'tops',
+        available: true,
         images: ['images/slides/tops.jpg', 'images/slides/tops2.jpg', 'images/slides/tops3.jpg'],
         description: 'Luxurious silk blouse with mother-of-pearl buttons. Effortless elegance for any occasion.',
         sizes: ['XS', 'S', 'M', 'L', 'XL'],
@@ -118,6 +128,7 @@ const productsDB = {
         name: 'Second Top',
         price: '110.000 RSD',
         category: 'tops',
+        available: false,
         images: ['images/slides/top4.webp', 'images/slides/top5.webp', 'images/slides/top6.webp'],
         description: 'Fine gauge knit in cashmere blend. Lightweight warmth with exceptional softness.',
         sizes: ['S', 'M', 'L'],
@@ -129,6 +140,7 @@ const productsDB = {
         name: 'Accessorie',
         price: '45.000 RSD',
         category: 'accessories',
+        available: true,
         images: ['images/slides/accessories.jpg', 'images/slides/accessories2.jpg'],
         description: 'Full-grain leather belt with solid brass buckle. Ages beautifully with wear.',
         sizes: ['80', '85', '90', '95', '100', '105'],
@@ -170,6 +182,52 @@ function loadProduct() {
     generateSizes(product.sizes);
     
     window.currentProduct = product;
+    handleAvailability(product);
+}
+function handleAvailability(product) {
+    const sizesSection = document.querySelector('.sizes-section');
+    const addToCartBtn = document.getElementById('addToCart');
+    const notifyWrapper = document.getElementById('notifyWrapper');
+
+    if (!product.available) {
+        // sakrij stvari
+        if (sizesSection) sizesSection.style.display = 'none';
+        if (addToCartBtn) addToCartBtn.style.display = 'none';
+
+        // pokaži notify
+        if (notifyWrapper) notifyWrapper.style.display = 'block';
+    }
+}
+function notifyMe() {
+    const emailInput = document.getElementById('notifyEmail');
+    const errorEl = document.getElementById('notifyError');
+    const successEl = document.getElementById('notifySuccess');
+    const box = document.getElementById('notifyBox');
+
+    const email = emailInput.value.trim();
+
+    // reset state
+    errorEl.textContent = '';
+    box.classList.remove('error');
+
+    // VALIDACIJA
+    if (!email || !email.includes('@') || !email.includes('.')) {
+        errorEl.textContent = "Please enter a valid email address";
+        box.classList.add('error');
+        return;
+    }
+
+    // FAKE SUBMIT (kasnije može API)
+    console.log("Notify:", email);
+
+    // sakrij input + dugme
+    box.style.display = 'none';
+
+    // prikaži success
+    successEl.style.display = 'block';
+
+    // opcionalno: očisti input
+    emailInput.value = '';
 }
 
 function loadSlider(images, productName) {
