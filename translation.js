@@ -6,6 +6,7 @@ const translations = {
         nav_home: "Home",
         nav_shop: "Shop",
         nav_categories: "Categories",
+        nav_lookbook: "Lookbook",
         nav_about: "About",
         nav_contact: "Contact",
         nav_returns: "Returns",
@@ -164,6 +165,7 @@ const translations = {
         nav_contact: "Kontakt",
         nav_returns: "Povraćaj",
         nav_instagram: "Instagram",
+        nav_lookbook: "Lookbook",
         
         // Categories
         cat_jackets: "Jakne",

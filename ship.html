@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>asco — Track Your Order</title>
+    <link rel="icon" type="image/x-icon" href="images/icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* =========================
+           TRACK ORDER ONLY
+        ========================= */
+        .track-container {
+            max-width: 800px;
+            margin: 140px auto 100px;
+            padding: 0 20px;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .track-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .track-header h2 {
+            font-family: var(--font-serif);
+            font-size: 48px;
+            color: var(--color-accent);
+            margin-bottom: 12px;
+            font-weight: 400;
+            letter-spacing: -0.5px;
+        }
+
+        .track-header p {
+            color: var(--color-text-light);
+            font-size: 16px;
+            font-weight: 300;
+        }
+
+        /* Search Box */
+        .track-search-box {
+            background: #fff;
+            border: 1.5px solid var(--color-border);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .track-search-box:focus-within {
+            border-color: var(--color-accent);
+            box-shadow: 0 10px 40px rgba(63, 53, 44, 0.08);
+        }
+
+        .track-input-wrap {
+            display: flex;
+            gap: 12px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .track-input {
+            flex: 1;
+            padding: 16px 24px;
+            border: 1.5px solid var(--color-border);
+            border-radius: 100px;
+            font-family: var(--font-sans);
+            font-size: 15px;
+            color: var(--color-accent);
+            background: var(--color-bg);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .track-input:focus {
+            border-color: var(--color-accent);
+            background: #fff;
+        }
+
+        .track-input::placeholder {
+            color: #b8b3ab;
+        }
+
+        .track-btn {
+            padding: 16px 32px;
+            background: var(--color-accent);
+            color: #fff;
+            border: none;
+            border-radius: 100px;
+            font-family: var(--font-sans);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .track-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(63, 53, 44, 0.25);
+        }
+
+        .track-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Order Result Card */
+        .order-result {
+            display: none;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .order-result.active {
+            display: block;
+        }
+
+        .order-card {
+            background: #fff;
+            border: 1.5px solid var(--color-border);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .order-card-header {
+            padding: 30px 35px;
+            background: linear-gradient(135deg, var(--color-accent) 0%, #5a4d42 100%);
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .order-card-header h3 {
+            font-family: var(--font-serif);
+            font-size: 24px;
+            font-weight: 400;
+            margin: 0;
+        }
+
+        .order-status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(10px);
+        }
+
+        .order-status-badge.delivered { background: rgba(76, 175, 80, 0.25); }
+        .order-status-badge.shipped { background: rgba(33, 150, 243, 0.25); }
+        .order-status-badge.processing { background: rgba(255, 152, 0, 0.25); }
+        .order-status-badge.pending { background: rgba(158, 158, 158, 0.25); }
+
+        .order-card-body {
+            padding: 35px;
+        }
+
+        .order-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+
+        .order-info-item {
+            text-align: center;
+            padding: 20px;
+            background: var(--color-bg);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .order-info-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(63, 53, 44, 0.06);
+        }
+
+        .order-info-item i {
+            font-size: 20px;
+            color: var(--color-accent);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .order-info-item label {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-text-light);
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .order-info-item span {
+            font-size: 15px;
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        /* Progress Bar */
+        .progress-section {
+            margin-bottom: 35px;
+        }
+
+        .progress-section h4 {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            color: var(--color-accent);
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+
+        .progress-track {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .progress-track::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            right: 40px;
+            height: 3px;
+            background: var(--color-border);
+            z-index: 1;
+        }
+
+        .progress-line-fill {
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            height: 3px;
+            background: var(--color-accent);
+            z-index: 2;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .progress-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 3;
+        }
+
+        .step-circle {
+            width: 44px;
+            height: 44px;
+            background: #fff;
+            border: 3px solid var(--color-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-size: 14px;
+            color: var(--color-text-light);
+            transition: all 0.4s ease;
+        }
+
+        .progress-step.completed .step-circle {
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+            color: #fff;
+        }
+
+        .progress-step.active .step-circle {
+            background: #fff;
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+            box-shadow: 0 0 0 4px rgba(63, 53, 44, 0.1);
+            animation: pulse 2s infinite;
+        }
+
+        .step-label {
+            font-size: 12px;
+            color: var(--color-text-light);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .progress-step.completed .step-label,
+        .progress-step.active .step-label {
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 4px rgba(63, 53, 44, 0.1); }
+            50% { box-shadow: 0 0 0 8px rgba(63, 53, 44, 0.05); }
+        }
+
+        /* Timeline Events */
+        .events-timeline {
+            border-left: 2px solid var(--color-border);
+            margin-left: 15px;
+            padding-left: 30px;
+        }
+
+        .event-item {
+            position: relative;
+            padding-bottom: 25px;
+            animation: fadeInUp 0.4s ease backwards;
+        }
+
+        .event-item:nth-child(1) { animation-delay: 0.1s; }
+        .event-item:nth-child(2) { animation-delay: 0.2s; }
+        .event-item:nth-child(3) { animation-delay: 0.3s; }
+        .event-item:nth-child(4) { animation-delay: 0.4s; }
+
+        .event-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .event-dot {
+            position: absolute;
+            left: -39px;
+            top: 2px;
+            width: 14px;
+            height: 14px;
+            background: var(--color-accent);
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0 0 0 2px var(--color-accent);
+        }
+
+        .event-item.pending .event-dot {
+            background: var(--color-border);
+            box-shadow: 0 0 0 2px var(--color-border);
+        }
+
+        .event-date {
+            font-size: 12px;
+            color: var(--color-text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .event-title {
+            font-size: 15px;
+            color: var(--color-accent);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .event-desc {
+            font-size: 14px;
+            color: var(--color-text-light);
+            line-height: 1.5;
+        }
+
+        /* Items in Order */
+        .order-items-section {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .order-items-section h4 {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            color: var(--color-accent);
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .order-item-row {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .order-item-row:last-child {
+            border-bottom: none;
+        }
+
+        .order-item-img {
+            width: 60px;
+            height: 60px;
+            background: var(--color-bg);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--color-accent);
+            flex-shrink: 0;
+        }
+
+        .order-item-info {
+            flex: 1;
+        }
+
+        .order-item-info h5 {
+            font-size: 15px;
+            color: var(--color-accent);
+            margin: 0 0 4px 0;
+            font-weight: 500;
+        }
+
+        .order-item-info p {
+            font-size: 13px;
+            color: var(--color-text-light);
+            margin: 0;
+        }
+
+        .order-item-price {
+            font-size: 15px;
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        /* Error State */
+        .track-error {
+            display: none;
+            text-align: center;
+            padding: 50px 30px;
+            background: #fff;
+            border: 1.5px solid #e8e0d8;
+            border-radius: 16px;
+            animation: fadeInUp 0.4s ease;
+        }
+
+        .track-error.active {
+            display: block;
+        }
+
+        .track-error i {
+            font-size: 48px;
+            color: #d4c8bc;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .track-error h3 {
+            font-family: var(--font-serif);
+            font-size: 24px;
+            color: var(--color-accent);
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .track-error p {
+            color: var(--color-text-light);
+            font-size: 15px;
+            margin-bottom: 25px;
+        }
+
+        .track-error .track-btn {
+            background: transparent;
+            color: var(--color-accent);
+            border: 1.5px solid var(--color-accent);
+        }
+
+        .track-error .track-btn:hover {
+            background: var(--color-accent);
+            color: #fff;
+        }
+
+        /* Demo Orders Hint */
+        .demo-orders {
+            margin-top: 30px;
+            padding: 25px;
+            background: var(--color-bg);
+            border-radius: 12px;
+            border: 1px dashed var(--color-border);
+        }
+
+        .demo-orders h4 {
+            font-family: var(--font-serif);
+            font-size: 16px;
+            color: var(--color-accent);
+            margin-bottom: 12px;
+            font-weight: 400;
+        }
+
+        .demo-orders p {
+            font-size: 13px;
+            color: var(--color-text-light);
+            margin: 4px 0;
+        }
+
+        .demo-orders code {
+            background: #fff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: var(--color-accent);
+            font-weight: 600;
+            border: 1px solid var(--color-border);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .track-container {
+                margin: 100px auto 60px;
+            }
+
+            .track-header h2 {
+                font-size: 36px;
+            }
+
+            .track-search-box {
+                padding: 25px 20px;
+            }
+
+            .track-input-wrap {
+                flex-direction: column;
+            }
+
+            .track-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .order-card-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .progress-track::before,
+            .progress-line-fill {
+                left: 20px;
+                right: 20px;
+            }
+
+            .step-label {
+                font-size: 10px;
+            }
+
+            .events-timeline {
+                margin-left: 10px;
+                padding-left: 20px;
+            }
+
+            .event-dot {
+                left: -28px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .track-header h2 {
+                font-size: 32px;
+            }
+
+            .order-info-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="nav-left">
+            <button class="menu-btn hamburger-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="top-dropdown">
+                <div class="menu-header">
+                    <button class="close-menu" aria-label="Close menu">&times;</button>
+                    <h2 class="dropdown-title">asco</h2>
+                </div>
+                <nav class="menu-links">
+                    <a href="index.html" data-translate="nav_home">Home</a>
+                    <a href="shop.html" data-translate="nav_shop">Shop</a>
+                    <div class="submenu">
+                        <button class="submenu-btn">
+                            <span data-translate="nav_categories">Categories</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <div class="submenu-content">
+                            <a href="shop.html?category=jackets" data-translate="cat_jackets">Jackets</a>
+                            <a href="shop.html?category=shoes" data-translate="cat_shoes">Shoes</a>
+                            <a href="shop.html?category=newin" data-translate="cat_newin">New In</a>
+                            <a href="shop.html?category=accessories" data-translate="cat_accessories">Accessories</a>
+                            <a href="shop.html?category=dresses" data-translate="cat_dresses">Dresses</a>
+                            <a href="shop.html?category=tops" data-translate="cat_tops">Tops</a>
+                            <a href="shop.html?category=skirts" data-translate="cat_skirts">Skirts</a>
+                        </div>
+                    </div>
+                    <a href="aboutus.html" data-translate="nav_about">About</a>
+                    <a href="contact.html" data-translate="nav_contact">Contact</a>
+                    <a href="startareturn.html" data-translate="nav_returns">Returns</a>
+                    <a href="https://www.instagram.com/vukotaaaaaa" target="_blank" rel="noopener" data-translate="nav_instagram">Instagram</a>
+                </nav>
+            </div>
+        </div>
+        <div class="overlay"></div>
+
+        <div class="nav-center">
+            <a href="index.html" class="logo-link"><h1>asco</h1></a>
+        </div>
+
+        <div class="nav-right">
+            <button class="icon-btn search-btn" aria-label="Search"><i class="fas fa-magnifying-glass"></i></button>
+            <div class="cart-container">
+                <button class="icon-btn cart-btn-header" onclick="toggleCartDropdown()" aria-label="Cart">
+                    <i class="fas fa-bag-shopping"></i>
+                    <span class="cart-counter" id="cartCounter">0</span>
+                </button>
+                <div class="cart-dropdown" id="cartDropdown">
+                    <div class="cart-header">
+                        <h3 data-translate="cart_title">Your Cart</h3>
+                        <button class="close-cart" onclick="toggleCartDropdown()" aria-label="Close cart">&times;</button>
+                    </div>
+                    <div class="cart-items" id="cartItems"></div>
+                    <div class="cart-footer">
+                        <div class="cart-total">
+                            <span data-translate="cart_subtotal">Subtotal</span>
+                            <span id="cartTotal">0 RSD</span>
+                        </div>
+                        <a href="checkout.html" class="checkout-btn" data-translate="checkout">Checkout</a>
+                    </div>
+                </div>
+            </div>
+            <div class="dropdown language-dropdown">
+                <button class="dropbtn">EN <i class="fas fa-chevron-down"></i></button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="setLanguage('en'); return false;">EN</a>
+                    <a href="#" onclick="setLanguage('rs'); return false;">RS</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="search-dropdown">
+            <div class="search-container">
+                <i class="fas fa-magnifying-glass search-icon"></i>
+                <input type="text" class="search-input" data-translate-placeholder="search_placeholder" placeholder="Search products..." autocomplete="off">
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= TRACK ORDER ================= -->
+    <section class="track-container">
+        <div class="track-header">
+            <h2>Track Your Order</h2>
+            <p>Enter your order number to see live status</p>
+        </div>
+
+        <div class="track-search-box">
+            <div class="track-input-wrap">
+                <input 
+                    type="text" 
+                    class="track-input" 
+                    id="trackInput" 
+                    placeholder="e.g. ASC-2026-001234"
+                    maxlength="20"
+                    autocomplete="off"
+                >
+                <button class="track-btn" onclick="trackOrder()" id="trackBtn">
+                    <i class="fas fa-search"></i> Track
+                </button>
+            </div>
+
+        <!-- Order Result -->
+        <div class="order-result" id="orderResult">
+            <div class="order-card">
+                <div class="order-card-header">
+                    <div>
+                        <h3 id="resOrderNum">Order #ASC-2026-001234</h3>
+                        <span id="resOrderDate" style="opacity:0.8; font-size:14px; margin-top:4px; display:block;">Placed on April 20, 2026</span>
+                    </div>
+                    <span class="order-status-badge" id="resStatusBadge">
+                        <i class="fas fa-check-circle"></i> Delivered
+                    </span>
+                </div>
+                <div class="order-card-body">
+                    <div class="order-info-grid">
+                        <div class="order-info-item">
+                            <i class="fas fa-truck"></i>
+                            <label>Carrier</label>
+                            <span id="resCarrier">DHL Express</span>
+                        </div>
+                        <div class="order-info-item">
+                            <i class="fas fa-barcode"></i>
+                            <label>Tracking #</label>
+                            <span id="resTracking">1Z999AA10123456784</span>
+                        </div>
+                        <div class="order-info-item">
+                            <i class="fas fa-box"></i>
+                            <label>Items</label>
+                            <span id="resItemsCount">3 items</span>
+                        </div>
+                        <div class="order-info-item">
+                            <i class="fas fa-receipt"></i>
+                            <label>Total</label>
+                            <span id="resTotal">24,500 RSD</span>
+                        </div>
+                    </div>
+
+                    <div class="progress-section">
+                        <h4>Shipment Progress</h4>
+                        <div class="progress-track" id="progressTrack">
+                            <div class="progress-line-fill" id="progressFill" style="width: 100%;"></div>
+                            <div class="progress-step completed" id="step1">
+                                <div class="step-circle"><i class="fas fa-clipboard-check"></i></div>
+                                <div class="step-label">Ordered</div>
+                            </div>
+                            <div class="progress-step completed" id="step2">
+                                <div class="step-circle"><i class="fas fa-box-open"></i></div>
+                                <div class="step-label">Processing</div>
+                            </div>
+                            <div class="progress-step completed" id="step3">
+                                <div class="step-circle"><i class="fas fa-shipping-fast"></i></div>
+                                <div class="step-label">Shipped</div>
+                            </div>
+                            <div class="progress-step completed" id="step4">
+                                <div class="step-circle"><i class="fas fa-home"></i></div>
+                                <div class="step-label">Delivered</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="events-timeline" id="eventsTimeline">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <div class="order-items-section">
+                        <h4>Order Items</h4>
+                        <div id="orderItemsList">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error State -->
+        <div class="track-error" id="trackError">
+            <i class="fas fa-search"></i>
+            <h3>Order Not Found</h3>
+            <p>We couldn't find an order with that number. Please check and try again.</p>
+            <button class="track-btn" onclick="resetTrack()">
+                <i class="fas fa-arrow-left"></i> Try Again
+            </button>
+        </div>
+    </section>
+ 
+    <footer class="footer">
+        <div class="footer-main">
+            <div class="footer-brand">
+                <h3>asco</h3>
+                <p>Contemporary fashion for the modern individual. Designed in Užice, worn everywhere.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/vukotaaaaaa" target="_blank" rel="noopener" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4 data-translate="footer_shop">Shop</h4>
+                    <ul>
+                        <li><a href="shop.html?category=newin" data-translate="footer_new_arrivals">New Arrivals</a></li>
+                        <li><a href="shop.html?category=dresses" data-translate="cat_dresses">Dresses</a></li>
+                        <li><a href="shop.html?category=jackets" data-translate="footer_outerwear">Outerwear</a></li>
+                        <li><a href="shop.html?category=accessories" data-translate="cat_accessories">Accessories</a></li>
+                        <li><a href="shop.html" data-translate="footer_view_all">View All</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 data-translate="footer_help">Help</h4>
+                    <ul>
+                        <li><a href="contact.html" data-translate="footer_contact_us">Contact Us</a></li>
+                        <li><a href="shipping.html" data-translate="footer_shipping_info">Shipping Info</a></li>
+                        <li><a href="trackorder.html">Track Order</a></li>
+                        <li><a href="startareturn.html" data-translate="nav_returns">Returns</a></li>
+                        <li><a href="FAQ.html">FAQ</a></li>
+                        <li><a href="privacypolicy.html" data-translate="footer_privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4 data-translate="footer_company">Company</h4>
+                    <ul>
+                        <li><a href="aboutus.html" data-translate="footer_about_us">About Us</a></li>
+                        <li><a href="lookbook.html">Lookbook</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 asco. <span data-translate="footer_rights">All rights reserved.</span></p>
+            <div class="payment-methods">
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-paypal"></i>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="search.js"></script>
+    <script src="cart-mini.js"></script>
+    <script src="translation.js"></script>
+    <script>
+        // =========================
+        // ORDER DATABASE (Demo)
+        // =========================
+        const orderDatabase = {
+            'ASC-2026-001234': {
+                orderNum: 'ASC-2026-001234',
+                date: 'April 20, 2026',
+                status: 'delivered',
+                statusLabel: 'Delivered',
+                carrier: 'DHL Express',
+                trackingNum: '1Z999AA10123456784',
+                itemsCount: 3,
+                total: '24,500 RSD',
+                progress: 100,
+                items: [
+                    { name: 'Linen Blend Overshirt', variant: 'Beige / M', price: '8,500 RSD', icon: 'fa-shirt' },
+                    { name: 'Wide Leg Trousers', variant: 'Charcoal / 32', price: '9,000 RSD', icon: 'fa-user' },
+                    { name: 'Leather Crossbody Bag', variant: 'Tan', price: '7,000 RSD', icon: 'fa-bag-shopping' }
+                ],
+                events: [
+                    { date: 'Apr 24, 2026 — 2:15 PM', title: 'Delivered', desc: 'Package delivered to front door. Signed by: M. Petrović', completed: true },
+                    { date: 'Apr 24, 2026 — 8:30 AM', title: 'Out for Delivery', desc: 'Courier is on the way to your address in Belgrade', completed: true },
+                    { date: 'Apr 23, 2026 — 6:45 PM', title: 'Arrived at Local Facility', desc: 'Package arrived at DHL Belgrade distribution center', completed: true },
+                    { date: 'Apr 22, 2026 — 11:20 AM', title: 'In Transit', desc: 'Package left Frankfurt hub, heading to Serbia', completed: true },
+                    { date: 'Apr 21, 2026 — 4:00 PM', title: 'Shipped', desc: 'Order handed to DHL Express. Tracking active.', completed: true },
+                    { date: 'Apr 20, 2026 — 10:30 AM', title: 'Order Placed', desc: 'Payment confirmed. Order sent to warehouse.', completed: true }
+                ]
+            },
+            'ASC-2026-005678': {
+                orderNum: 'ASC-2026-005678',
+                date: 'April 22, 2026',
+                status: 'shipped',
+                statusLabel: 'In Transit',
+                carrier: 'Post Express Srbija',
+                trackingNum: 'RS9876543210',
+                itemsCount: 2,
+                total: '15,200 RSD',
+                progress: 65,
+                items: [
+                    { name: 'Structured Blazer', variant: 'Navy / L', price: '12,000 RSD', icon: 'fa-user-tie' },
+                    { name: 'Silk Scarf', variant: 'Forest Green', price: '3,200 RSD', icon: 'fa-wind' }
+                ],
+                events: [
+                    { date: 'Apr 25, 2026 — 9:00 AM', title: 'Out for Delivery', desc: 'Expected delivery today between 10 AM - 2 PM', completed: false },
+                    { date: 'Apr 24, 2026 — 7:30 PM', title: 'Arrived at Novi Sad Facility', desc: 'Package sorted for local delivery', completed: true },
+                    { date: 'Apr 23, 2026 — 3:15 PM', title: 'In Transit', desc: 'Package moving through Serbia postal network', completed: true },
+                    { date: 'Apr 22, 2026 — 5:00 PM', title: 'Shipped', desc: 'Order dispatched from Užice warehouse', completed: true },
+                    { date: 'Apr 22, 2026 — 11:00 AM', title: 'Order Placed', desc: 'Payment confirmed via credit card', completed: true }
+                ]
+            },
+            'ASC-2026-009999': {
+                orderNum: 'ASC-2026-009999',
+                date: 'April 26, 2026',
+                status: 'processing',
+                statusLabel: 'Processing',
+                carrier: 'DHL Express',
+                trackingNum: '—',
+                itemsCount: 1,
+                total: '18,000 RSD',
+                progress: 25,
+                items: [
+                    { name: 'Wool Overcoat', variant: 'Camel / M', price: '18,000 RSD', icon: 'fa-shirt' }
+                ],
+                events: [
+                    { date: 'Apr 26, 2026 — 3:45 PM', title: 'Processing', desc: 'Item being quality checked and packed with care', completed: true },
+                    { date: 'Apr 26, 2026 — 2:00 PM', title: 'Order Placed', desc: 'Payment confirmed. Preparing for shipment.', completed: true }
+                ]
+            },
+            'ASC-2026-002222': {
+                orderNum: 'ASC-2026-002222',
+                date: 'April 27, 2026',
+                status: 'pending',
+                statusLabel: 'Pending',
+                carrier: '—',
+                trackingNum: '—',
+                itemsCount: 4,
+                total: '31,500 RSD',
+                progress: 0,
+                items: [
+                    { name: 'Cotton Knit Sweater', variant: 'Cream / S', price: '6,500 RSD', icon: 'fa-shirt' },
+                    { name: 'Pleated Midi Skirt', variant: 'Black / M', price: '7,000 RSD', icon: 'fa-person' },
+                    { name: 'Leather Belt', variant: 'Brown / 95cm', price: '5,000 RSD', icon: 'fa-ring' },
+                    { name: 'Canvas Tote Bag', variant: 'Natural', price: '13,000 RSD', icon: 'fa-bag-shopping' }
+                ],
+                events: [
+                    { date: 'Apr 27, 2026 — 10:15 AM', title: 'Order Placed', desc: 'Awaiting payment confirmation. Bank transfer pending.', completed: true }
+                ]
+            }
+        };
+
+        // =========================
+        // TRACK ORDER LOGIC
+        // =========================
+        function trackOrder() {
+            const input = document.getElementById('trackInput');
+            const btn = document.getElementById('trackBtn');
+            const query = input.value.trim().toUpperCase();
+            
+            if (!query) {
+                input.style.borderColor = '#e74c3c';
+                setTimeout(() => input.style.borderColor = '', 1000);
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Searching...';
+
+            // Simulate network delay
+            setTimeout(() => {
+                const order = orderDatabase[query];
+                
+                if (order) {
+                    showOrder(order);
+                    document.getElementById('trackError').classList.remove('active');
+                } else {
+                    document.getElementById('orderResult').classList.remove('active');
+                    document.getElementById('trackError').classList.add('active');
+                }
+
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-search"></i> Track';
+            }, 800);
+        }
+
+        function showOrder(order) {
+            const result = document.getElementById('orderResult');
+            
+            // Header info
+            document.getElementById('resOrderNum').textContent = 'Order #' + order.orderNum;
+            document.getElementById('resOrderDate').textContent = 'Placed on ' + order.date;
+            
+            // Status badge
+            const badge = document.getElementById('resStatusBadge');
+            badge.className = 'order-status-badge ' + order.status;
+            const iconMap = {
+                delivered: 'fa-check-circle',
+                shipped: 'fa-shipping-fast',
+                processing: 'fa-box-open',
+                pending: 'fa-clock'
+            };
+            badge.innerHTML = `<i class="fas ${iconMap[order.status]}"></i> ${order.statusLabel}`;
+
+            // Info grid
+            document.getElementById('resCarrier').textContent = order.carrier;
+            document.getElementById('resTracking').textContent = order.trackingNum;
+            document.getElementById('resItemsCount').textContent = order.itemsCount + (order.itemsCount === 1 ? ' item' : ' items');
+            document.getElementById('resTotal').textContent = order.total;
+
+            // Progress bar
+            document.getElementById('progressFill').style.width = order.progress + '%';
+            const steps = ['step1', 'step2', 'step3', 'step4'];
+            const stepStatus = {
+                pending: [false, false, false, false],
+                processing: [true, true, false, false],
+                shipped: [true, true, true, false],
+                delivered: [true, true, true, true]
+            };
+            
+            steps.forEach((id, idx) => {
+                const el = document.getElementById(id);
+                const states = stepStatus[order.status];
+                el.className = 'progress-step';
+                if (states[idx]) el.classList.add('completed');
+                else if (idx === states.indexOf(false) && states.indexOf(false) !== -1) el.classList.add('active');
+            });
+
+            // If shipped but not delivered, mark step 3 as active instead of completed
+            if (order.status === 'shipped') {
+                document.getElementById('step3').classList.remove('completed');
+                document.getElementById('step3').classList.add('active');
+            }
+
+            // Events timeline
+            const timeline = document.getElementById('eventsTimeline');
+            timeline.innerHTML = order.events.map(evt => `
+                <div class="event-item ${evt.completed ? '' : 'pending'}">
+                    <div class="event-dot"></div>
+                    <div class="event-date">${evt.date}</div>
+                    <div class="event-title">${evt.title}</div>
+                    <div class="event-desc">${evt.desc}</div>
+                </div>
+            `).join('');
+
+            // Items list
+            document.getElementById('orderItemsList').innerHTML = order.items.map(item => `
+                <div class="order-item-row">
+                    <div class="order-item-img"><i class="fas ${item.icon}"></i></div>
+                    <div class="order-item-info">
+                        <h5>${item.name}</h5>
+                        <p>${item.variant}</p>
+                    </div>
+                    <div class="order-item-price">${item.price}</div>
+                </div>
+            `).join('');
+
+            result.classList.add('active');
+            result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function resetTrack() {
+            document.getElementById('trackError').classList.remove('active');
+            document.getElementById('trackInput').value = '';
+            document.getElementById('trackInput').focus();
+        }
+
+        // Enter key support
+        document.getElementById('trackInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') trackOrder();
+        });
+
+        // Close dropdowns on outside click (copied from your snippet)
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.cart-container')) {
+                document.getElementById('cartDropdown')?.classList.remove('active');
+            }
+            if (!e.target.closest('.search-dropdown')) {
+                document.querySelector('.search-dropdown')?.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

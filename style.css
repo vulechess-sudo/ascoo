@@ -3112,7 +3112,7 @@ MOBILE RESPONSIVE
 }
 
 .size-btn.selected {
-    background: #111;
+    background: #4b4036;
     color: #f6f4ef;
 }
 
@@ -3215,12 +3215,12 @@ MOBILE RESPONSIVE
 }
 
 .add-to-cart:hover {
-    background: #111;
+    background: #4b4036;
     color: #f6f4ef;
 }
 
 .add-to-cart.added {
-    background: #111;
+    background: #4b4036;
     color: #f6f4ef;
 }
 
@@ -3399,10 +3399,10 @@ MOBILE RESPONSIVE
 
 .cart-btn {
     padding: 15px 30px;
-    border: 2px solid #111;
+    border: 2px solid #4b4036;
     background: transparent;
     text-decoration: none;
-    color: #111;
+    color: #4b4036;
     font-size: 14px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -3411,18 +3411,18 @@ MOBILE RESPONSIVE
 }
 
 .cart-btn:hover {
-    background: #111;
+    background: #4b4036;
     color: #f6f4ef;
 }
 
 .cart-btn.go-to-cart {
-    background: #111;
+    background: #4b4036;
     color: #f6f4ef;
 }
 
 .cart-btn.go-to-cart:hover {
     background: transparent;
-    color: #111;
+    color: #4b4036;
 }
 
 /* =========================
@@ -5217,7 +5217,7 @@ select:focus {
 }
 
 .payment-method {
-    border: 2px solid #111;
+    border: 2px solid #4b4036;
     padding: 20px;
     cursor: pointer;
     display: flex;
@@ -5232,7 +5232,7 @@ select:focus {
 }
 
 .payment-method.active {
-    background: #111;
+    background: #4b4036;
     color: #f6f4ef;
 }
 
@@ -5265,7 +5265,7 @@ select:focus {
 }
 
 .order-summary {
-    border: 2px solid #111;
+    border: 2px solid #4b4036;
     padding: 30px;
     background: #fff;
     position: sticky;
@@ -5342,9 +5342,9 @@ select:focus {
 .place-order-btn {
     width: 100%;
     padding: 20px;
-    background: #111;
+    background: #4b4036;
     color: #f6f4ef;
-    border: 2px solid #111;
+    border: 2px solid #4b4036;
     font-size: 16px;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -8954,7 +8954,7 @@ select:focus {
 /* BUTTON – isti feel kao add to cart */
 .notify-btn {
   padding: 14px 22px;
-  border: 2px solid #111;
+  border: 2px solid #4b4036;
   background: transparent;
   font-size: 13px;
   letter-spacing: 1px;
@@ -8964,7 +8964,7 @@ select:focus {
 }
 
 .notify-btn:hover {
-  background: #111;
+  background: #4b4036;
   color: #f6f4ef;
 }
 
@@ -9050,4 +9050,109 @@ select:focus {
 .notify-box.loading input {
   opacity: 0.6;
   pointer-events: none;
+}
+
+
+/* =========================
+CREDIT CARD & PAYPAL STYLES
+========================= */
+
+.payment-details-form {
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 1px solid #ddd;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Card Input Wrapper */
+.card-input-wrapper {
+    position: relative;
+}
+
+.card-input-wrapper input {
+    padding-right: 120px;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 2px;
+    font-size: 16px;
+}
+
+.card-icons {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 8px;
+    font-size: 24px;
+    color: #999;
+    pointer-events: none;
+}
+
+.card-icons i {
+    transition: color 0.3s ease;
+}
+
+/* Detect card type by number prefix and highlight icon */
+#cardNumber[value^="4"] ~ .card-icons .fa-cc-visa,
+#cardNumber[value^="5"] ~ .card-icons .fa-cc-mastercard,
+#cardNumber[value^="3"] ~ .card-icons .fa-cc-amex {
+    color: #111;
+}
+
+/* PayPal Info Box */
+.paypal-info {
+    text-align: center;
+    padding: 30px 20px;
+    background: #f8f9fa;
+    border: 2px solid #003087;
+    border-radius: 8px;
+}
+
+.paypal-info p {
+    margin-top: 15px;
+    color: #555;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+/* Payment method active states */
+.payment-method.active .payment-icon {
+    color: #f6f4ef;
+}
+
+/* Card form specific styling */
+#cardForm .form-group {
+    margin-bottom: 18px;
+}
+
+#cardForm input::placeholder {
+    color: #aaa;
+    font-family: inherit;
+    letter-spacing: normal;
+}
+
+#cardName {
+    text-transform: uppercase;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .card-icons {
+        font-size: 20px;
+        gap: 5px;
+    }
+
+    .card-input-wrapper input {
+        padding-right: 90px;
+        font-size: 14px;
+    }
+
+    .paypal-info {
+        padding: 20px 15px;
+    }
 }
